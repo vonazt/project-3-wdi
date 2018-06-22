@@ -4,4 +4,4 @@
 - Martin Koeoep
 - Richard Tzanov
 
-- Someone important
+Trialling git commits and branches.
