@@ -7,7 +7,8 @@ router.route('/records')
   .post(records.create);
 
 router.route('/records/:id')
-  .put(records.update);
+  .put(records.update)
+  .delete(records.delete);
 
 router.post('/register', auth.register);
 router.post('/login', auth.login);
