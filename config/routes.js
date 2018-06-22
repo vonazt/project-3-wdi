@@ -12,6 +12,11 @@ router.route('/records/:id')
   .put(secureRoute, records.update)
   .delete(secureRoute, records.delete);
 
+router.post('/records/:id/comments', secureRoute, records.commentCreate);
+router.delete('/records/:id/comments/:commentId', secureRoute, records.commentDelete);
+router.update('/records/:id/comments/:commentId', secureRoute, records.commentUpdate);
+
+
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
