@@ -51,10 +51,6 @@ function commentCreateRoute(req, res, next){
     .catch(next);
 }
 
-function commentDeleteRoute(req, res, next){
-
-}
-
 module.exports = {
   index: indexRoute,
   show: showRoute,
