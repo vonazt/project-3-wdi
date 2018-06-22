@@ -21,11 +21,12 @@ userSchema.virtual('passwordConfirmation')
   });
 
 userSchema.pre('validate', function checkPasswordsMatch(next){
-  if(this.isModified('passowrd') && this._passwordConfirmation !== this.password){
+  if(this.isModified('password') && this._passwordConfirmation !== this.password){
     this.invalidate('passwordConfirmation', 'does not match');
   }
   next();
 });
+
 
 userSchema.pre('save', function hashPassword(next){
   if(this.isModified('password')){
