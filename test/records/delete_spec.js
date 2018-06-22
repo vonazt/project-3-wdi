@@ -5,6 +5,13 @@ const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
 const {secret}= require('../../config/environment');
 
+const userData = {
+  username: 'test',
+  email: 'test@test.com',
+  password: 'pass',
+  passwordConfirmation: 'pass'
+};
+
 const recordData = {
   artist: 'David Bowie',
   title: 'The Man Who Sold The World',
@@ -15,11 +22,11 @@ const recordData = {
   comments: [{
     content: 'great pressing',
     rating: 4,
-    author: userData[1]
+    author: userData
   }, {
     content: 'not bowie\'s best',
     rating: 3,
-    author: userData[0]
+    author: userData
   }]
 };
 
@@ -35,12 +42,7 @@ describe('DELETE /records/:id', () => {
       .then((record) => {
         recordId = record._id;
       })
-      .then(() => User.create({
-        username: 'test',
-        email: 'test',
-        password: 'test',
-        passwordConfirmation: 'test'
-      }))
+      .then(() => User.create(userData))
       .then( user => {
         token = jwt.sign({sub: user._id}, secret , {expiresIn: '6h'});
         done();

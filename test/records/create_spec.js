@@ -18,19 +18,29 @@ const recordData = [{
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
   genre: ['Rock'],
   releaseDate: 1970,
-  condition: 'Mint'
+  condition: 'Mint',
+  owner: userData,
+  comments: [{
+    content: 'great pressing',
+    rating: 4
+  }]
 }, {
   artist: 'Aphex Twin',
   title: 'Syro',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
   genre: ['Electronic', 'Experimental'],
   releaseDate: 2014,
-  condition: 'VG'
+  condition: 'VG',
+  owner: userData,
+  comments: [{
+    content: 'great pressing',
+    rating: 4
+  }]
 }];
 
 let token;
 
-xdescribe('POST /records', () => {
+describe('POST /records', () => {
 
   beforeEach(done => {
     Promise.all([
