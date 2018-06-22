@@ -6,6 +6,9 @@ router.route('/records')
   .get(records.index)
   .post(records.create);
 
+router.route('/records/:id')
+  .put(records.update);
+
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
