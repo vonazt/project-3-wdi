@@ -5,7 +5,7 @@ const recordSchema = new mongoose.Schema({
   title: { type: String, required: true },
   image: { type: String, required: true },
   genre: { type: String},
-  releaseDate: String,
+  releaseDate: { type: Number, maxLength: 4, minLength: 4 },
   condition: { type: String, required: true }
 });
 
