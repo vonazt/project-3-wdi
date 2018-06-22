@@ -15,6 +15,13 @@ function createRoute(req, res, next) {
     .catch(next);
 }
 
+function showRoute(req, res, next){
+  Record
+    .findById(req.params.id)
+    .then(record => res.json(record))
+    .catch(next);
+}
+
 function updateRoute(req, res, next){
   Record
     .findById(req.params.id)
@@ -35,6 +42,7 @@ function deleteRoute(req,res,next){
 
 module.exports = {
   index: indexRoute,
+  show: showRoute,
   create: createRoute,
   update: updateRoute,
   delete: deleteRoute

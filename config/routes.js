@@ -7,6 +7,7 @@ router.route('/records')
   .post(records.create);
 
 router.route('/records/:id')
+  .get(records.show)
   .put(records.update)
   .delete(records.delete);
 
