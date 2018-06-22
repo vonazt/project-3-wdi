@@ -39,11 +39,24 @@ function deleteRoute(req,res,next){
     .catch(next);
 }
 
+function commentCreateRoute(req, res, next){
+  req.body.author = req.currentUser;
+  Record
+    .findById(req.params.id)
+    .then(record => {
+      record.comments.push(req.body);
+      return record.save;
+    })
+    .then(record => res.json(record))
+    .catch(next);
+
+}
 
 module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentCreate: commentCreateRoute
 };
