@@ -31,4 +31,25 @@ describe('GET /records/:id', () => {
         done();
       });
   });
+
+  it('should return an object', done => {
+    api.get(`/api/records/${recordId}`)
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+
+  it('should return the correct data', done => {
+    api.get('/api/records/')
+      .end((err, res) => {
+        expect(res.body.artist).to.eq(recordData.artist);
+        expect(res.body.title).to.eq(recordData.title);
+        expect(res.body.image).to.eq(recordData.image);
+        expect(res.body.genre).to.eq(recordData.genre);
+        expect(res.body.releaseDate).to.eq(recordData.releaseDate);
+        expect(res.body.condition).to.eq(recordData.condition);
+        done();
+      });
+  });
 });
