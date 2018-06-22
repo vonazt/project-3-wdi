@@ -10,7 +10,7 @@ const recordData = [{
   condition: 'Mint'
 }];
 
-describe('GET /records', ()=>{
+xdescribe('GET /records', ()=>{
   beforeEach(done => {
     Record
       .remove({})
