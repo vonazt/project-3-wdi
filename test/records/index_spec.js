@@ -46,12 +46,12 @@ describe('GET /records', ()=>{
     api.get('/api/records/')
       .end((err, res) => {
         res.body.forEach((record, index) => {
-          expect(record.artist).to.eq(recordData[index].length);
-          expect(record.title).to.eq(recordData[index].length);
-          expect(record.image).to.eq(recordData[index].length);
-          expect(record.genre).to.eq(recordData[index].length);
-          expect(record.releaseDate).to.eq(recordData[index].length);
-          expect(record.condition).to.eq(recordData[index].length);
+          expect(record.artist).to.eq(recordData[index].artist);
+          expect(record.title).to.eq(recordData[index].title);
+          expect(record.image).to.eq(recordData[index].image);
+          expect(record.genre).to.eq(recordData[index].genre);
+          expect(record.releaseDate).to.eq(recordData[index].releaseDate);
+          expect(record.condition).to.eq(recordData[index].condition);
           done();
         });
       });
