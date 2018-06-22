@@ -30,4 +30,13 @@ describe('POST /login', () => {
       });
   });
 
+  it('should return a 200 response if registered', done => {
+    api.post('/api/login')
+      .send(userData)
+      .end((err, res) => {
+        expect(res.status).to.eq(200);
+        done();
+      });
+  });
+
 });
