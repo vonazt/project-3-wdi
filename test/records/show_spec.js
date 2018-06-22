@@ -41,7 +41,7 @@ describe('GET /records/:id', () => {
   });
 
   it('should return the correct data', done => {
-    api.get('/api/records/')
+    api.get(`/api/records/${recordId}`)
       .end((err, res) => {
         expect(res.body.artist).to.eq(recordData.artist);
         expect(res.body.title).to.eq(recordData.title);
