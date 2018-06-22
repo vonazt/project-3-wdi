@@ -25,4 +25,35 @@ describe('GET /records', ()=>{
         done();
       });
   });
+
+  it('should return an array', done => {
+    api.get('/api/records')
+      .end((err, res) => {
+        expect(res.body).to.be.an('array');
+        done();
+      });
+  });
+
+  it('should return an array of objects', done => {
+    api.get('/api/records')
+      .end((err, res) => {
+        res.body.forEach(record => expect(record).to.be.an('object'));
+        done();
+      });
+  });
+
+  it('should return the correct data', done => {
+    api.get('/api/records/')
+      .end((err, res) => {
+        res.body.forEach((record, index) => {
+          expect(record.artist).to.eq(recordData[index].length);
+          expect(record.title).to.eq(recordData[index].length);
+          expect(record.image).to.eq(recordData[index].length);
+          expect(record.genre).to.eq(recordData[index].length);
+          expect(record.releaseDate).to.eq(recordData[index].length);
+          expect(record.condition).to.eq(recordData[index].length);
+          done();
+        });
+      });
+  });
 });
