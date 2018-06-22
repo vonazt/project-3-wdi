@@ -5,6 +5,9 @@ const auth = require('../controllers/auth');
 router.route('/records')
   .get(records.index);
 
+router.route('/records/:id')
+  .put(records.update);
+
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
