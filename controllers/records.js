@@ -7,6 +7,14 @@ function indexRoute(req, res, next) {
     .catch(next);
 }
 
+function createRoute(req, res, next) {
+  Record
+    .create(req.body)
+    .then(record => res.status(201).json(record))
+    .catch(next);
+}
+
 module.exports = {
-  index: indexRoute
+  index: indexRoute,
+  create: createRoute
 };
