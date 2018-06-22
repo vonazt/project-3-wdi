@@ -1,15 +1,16 @@
 const router = require('express').Router();
 const records = require('../controllers/records');
 const auth = require('../controllers/auth');
+const secureRoute = require('../lib/secureRoute');
 
 router.route('/records')
   .get(records.index)
-  .post(records.create);
+  .post(secureRoute, records.create);
 
 router.route('/records/:id')
   .get(records.show)
-  .put(records.update)
-  .delete(records.delete);
+  .put(secureRoute, records.update)
+  .delete(secureRoute, records.delete);
 
 router.post('/register', auth.register);
 router.post('/login', auth.login);
