@@ -1,4 +1,5 @@
 # Project 3
 ## A MEAN STACK APP
 
-- ON LINE FOUR
+- Martin Koeoep
+- Richard Tzanov
