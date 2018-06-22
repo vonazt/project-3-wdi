@@ -10,15 +10,12 @@ const recordSchema = new mongoose.Schema({
   artist: { type: String, required: true },
   title: { type: String, required: true },
   image: { type: String, required: true },
-  genre: { type: String},
-<<<<<<< HEAD
-  releaseDate: String,
-  condition: { type: String, required: true },
-  comments: [ commentSchema ]
-=======
+  genre: { type: Array },
+  comments: [ commentSchema ],
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
-  condition: { type: String, required: true }
->>>>>>> development
+  condition: { type: String, required: true },
+  cardData: Array,
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true}
 });
 
 module.exports = mongoose.model('Record', recordSchema);
