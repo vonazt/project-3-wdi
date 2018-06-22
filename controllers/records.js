@@ -52,10 +52,23 @@ function commentCreateRoute(req, res, next){
 }
 
 function commentDeleteRoute(req, res, next){
-  Record.findById(req.params.id)
+  Record
+    .findById(req.params.id)
     .then(record => {
       const comment = record.comments.id(req.params.commentId);
       comment.remove();
+      return record.save();
+    })
+    .then(boat => res.json(boat))
+    .catch(next);
+}
+
+function commentUpdateRoute(req, res, next){
+  Record
+    .findById(req.params.id)
+    .then(record => {
+      const comment = record.comments.id(req.params.commentId);
+      comment.update();
       return record.save();
     })
     .then(boat => res.json(boat))
@@ -69,5 +82,6 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   commentCreate: commentCreateRoute,
-  commentDelete: commentDeleteRoute
+  commentDelete: commentDeleteRoute,
+  commentUpdate: commentUpdateRoute
 };
