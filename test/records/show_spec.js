@@ -2,13 +2,35 @@
 
 const Record = require('../../models/record');
 
+const userData = [{
+  username: 'richard',
+  email: 'richard@test.com',
+  password: 'pass',
+  passwordConfirmation: 'pass'
+}, {
+  username: 'martin',
+  email: 'martin@test.com',
+  password: 'pass',
+  passwordConfirmation: 'pass'
+}];
+
 const recordData = {
   artist: 'David Bowie',
   title: 'The Man Who Sold The World',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: 'Rock',
+  genre: ['Rock'],
   releaseDate: 1970,
-  condition: 'Mint'
+  condition: 'Mint',
+  owner: userData[0],
+  comments: [{
+    content: 'great pressing',
+    rating: 4,
+    author: userData[1]
+  }, {
+    content: 'not bowie\'s best',
+    rating: 3,
+    author: userData[0]
+  }]
 };
 
 let recordId;
@@ -46,9 +68,11 @@ describe('GET /records/:id', () => {
         expect(res.body.artist).to.eq(recordData.artist);
         expect(res.body.title).to.eq(recordData.title);
         expect(res.body.image).to.eq(recordData.image);
-        expect(res.body.genre).to.eq(recordData.genre);
+        expect(res.body.genre).to.deep.eq(recordData.genre);
         expect(res.body.releaseDate).to.eq(recordData.releaseDate);
         expect(res.body.condition).to.eq(recordData.condition);
+        expect(res.body.owner).to.deep.eq(recordData.owner);
+        expect(res.body.comments).to.deep.eq(recordData.comments);
         done();
       });
   });

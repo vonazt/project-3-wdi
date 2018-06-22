@@ -9,7 +9,7 @@ const recordData = {
   artist: 'David Bowie',
   title: 'The Man Who Sold The World',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: 'Rock',
+  genre: ['Rock'],
   releaseDate: 1970,
   condition: 'Mint'
 };
@@ -17,9 +17,9 @@ const recordData = {
 const updatedRecordData = {
   artist: 'Aphex Twin',
   title: 'Syro',
-  image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: 'IDN',
-  releaseDate: 2012,
+  image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
+  genre: ['Electronic', 'Experimental'],
+  releaseDate: 2014,
   condition: 'VG'
 };
 
@@ -77,7 +77,9 @@ describe('PUT /records/:id', () => {
           'image',
           'genre',
           'releaseDate',
-          'condition'
+          'condition',
+          'owner',
+          'comments'
         ]);
         done();
       });
@@ -91,7 +93,7 @@ describe('PUT /records/:id', () => {
         expect(res.body.artist).to.eq(updatedRecordData.artist);
         expect(res.body.title).to.eq(updatedRecordData.title);
         expect(res.body.image).to.eq(updatedRecordData.image);
-        expect(res.body.genre).to.eq(updatedRecordData.genre);
+        expect(res.body.genre).to.deep.eq(updatedRecordData.genre);
         expect(res.body.releaseDate).to.eq(updatedRecordData.releaseDate);
         expect(res.body.condition).to.eq(updatedRecordData.condition);
         done();

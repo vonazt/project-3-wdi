@@ -9,11 +9,19 @@ const recordData = {
   artist: 'David Bowie',
   title: 'The Man Who Sold The World',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: 'Rock',
+  genre: ['Rock'],
   releaseDate: 1970,
-  condition: 'Mint'
+  condition: 'Mint',
+  comments: [{
+    content: 'great pressing',
+    rating: 4,
+    author: userData[1]
+  }, {
+    content: 'not bowie\'s best',
+    rating: 3,
+    author: userData[0]
+  }]
 };
-
 
 let token;
 let recordId;

@@ -1,14 +1,14 @@
 /* global describe, it, api, expect, beforeEach */
 const Record = require('../../models/record');
 
-const recordData = [{
+const recordData = {
   artist: 'David Bowie',
   title: 'The Man Who Sold The World',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: 'Rock',
+  genre: ['Rock'],
   releaseDate: 1970,
   condition: 'Mint'
-}];
+};
 
 describe('GET /records', ()=>{
   beforeEach(done => {
@@ -49,7 +49,7 @@ describe('GET /records', ()=>{
           expect(record.artist).to.eq(recordData[index].artist);
           expect(record.title).to.eq(recordData[index].title);
           expect(record.image).to.eq(recordData[index].image);
-          expect(record.genre).to.eq(recordData[index].genre);
+          expect(record.genre).to.deep.eq(recordData[index].genre);
           expect(record.releaseDate).to.eq(recordData[index].releaseDate);
           expect(record.condition).to.eq(recordData[index].condition);
           done();

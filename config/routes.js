@@ -14,7 +14,7 @@ router.route('/records/:id')
 
 router.post('/records/:id/comments', secureRoute, records.commentCreate);
 router.delete('/records/:id/comments/:commentId', secureRoute, records.commentDelete);
-router.update('/records/:id/comments/:commentId', secureRoute, records.commentUpdate);
+router.put('/records/:id/comments/:commentId', secureRoute, records.commentUpdate);
 
 
 router.post('/register', auth.register);
