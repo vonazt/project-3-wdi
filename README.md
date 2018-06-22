@@ -3,5 +3,5 @@
 
 - Martin Koeoep
 - Richard Tzanov
-- Who?
-- Someone else
+
+- Someone important
