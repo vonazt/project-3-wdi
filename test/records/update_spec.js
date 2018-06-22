@@ -5,62 +5,69 @@ const Record = require('../../models/record');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../../config/environment');
 
-const recordData = [{
+const recordData = {
   artist: 'David Bowie',
   title: 'The Man Who Sold The World',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
   genre: 'Rock',
   releaseDate: 1970,
   condition: 'Mint'
-}, {
+};
+
+const updatedRecordData = {
   artist: 'Aphex Twin',
   title: 'Syro',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
   genre: 'IDN',
   releaseDate: 2012,
   condition: 'VG'
-}];
+};
 
-const userData = { username: 'test', email: 'test@test.com', password: 'test', passwordConfirmation: 'test' };
-
+let recordId;
 let token;
 
-describe('POST /records', () => {
-
+describe('PUT /records/:id', () => {
   beforeEach(done => {
-    Promise.all([
-      User.remove({}),
-      Record.remove({})
-    ])
-      .then(() => User.create(userData))
-      .then(user => {
-        token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' });
+    Record
+      .remove({})
+      .then(() => User.remove({}))
+      .then(() => Record.create(recordData))
+      .then((record) => {
+        recordId = record._id;
       })
-      .then(done);
+      .then(() => User.create({
+        username: 'test',
+        email: 'test',
+        password: 'test',
+        passwordConfirmation: 'test'
+      }))
+      .then( user => {
+        token = jwt.sign({sub: user._id}, secret , {expiresIn: '6h'});
+        done();
+      });
   });
 
   it('should return a 401 response without a token', done => {
-    api.post('/api/records')
+    api.put(`/api/records/${recordId}`)
       .end((err, res) => {
         expect(res.status).to.eq(401);
         done();
       });
   });
 
-  it('should return a 201 response', done => {
-    api.post('/api/records')
+  it('should return a 200 response with a token', done => {
+    api.put(`/api/records/${recordId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(recordData[0])
       .end((err, res) => {
-        expect(res.status).to.eq(201);
+        expect(res.status).to.eq(200);
         done();
       });
   });
 
-  it('should return the created record', done => {
-    api.post('/api/records')
+  it('should return a record', done => {
+    api.put(`/api/records/${recordId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(recordData[0])
+      .send(updatedRecordData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.body).to.include.keys([
@@ -77,16 +84,16 @@ describe('POST /records', () => {
   });
 
   it('should return the correct data', done => {
-    api.post('/api/records')
+    api.put(`/api/records/${recordId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(recordData[0])
+      .send(updatedRecordData)
       .end((err, res) => {
-        expect(res.body.artist).to.eq(recordData[0].artist);
-        expect(res.body.title).to.eq(recordData[0].title);
-        expect(res.body.image).to.eq(recordData[0].image);
-        expect(res.body.genre).to.eq(recordData[0].genre);
-        expect(res.body.releaseDate).to.eq(recordData[0].releaseDate);
-        expect(res.body.condition).to.eq(recordData[0].condition);
+        expect(res.body.artist).to.eq(updatedRecordData.artist);
+        expect(res.body.title).to.eq(updatedRecordData.title);
+        expect(res.body.image).to.eq(updatedRecordData.image);
+        expect(res.body.genre).to.eq(updatedRecordData.genre);
+        expect(res.body.releaseDate).to.eq(updatedRecordData.releaseDate);
+        expect(res.body.condition).to.eq(updatedRecordData.condition);
         done();
       });
   });
