@@ -9,10 +9,10 @@ function register(req, res, next) {
 }
 
 function login(req, res, next){
-  User.findOne({email: req.body.email})
+  User.findOne({ email: req.body.email })
     .then( user => {
       if(!user || !user.validatePassword(req.body.password)){
-        return res.status(401).json({message: 'unauthorized'});
+        return res.status(401).json({ message: 'unauthorized' });
       }
 
       const token = jwt.sign({sub: user._id}, secret , {expiresIn: '6h'});

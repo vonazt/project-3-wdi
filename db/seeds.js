@@ -11,12 +11,23 @@ mongoose.connect(dbURI, (err, db) => {
     username: 'richard',
     email: 'richard@test.com',
     password: 'pass',
-    passwordConfirmation: 'pass'
+    passwordConfirmation: 'pass',
+    wishlist: [{
+      artist: 'Death Grips',
+      album: 'Exmilitary'
+    }, {
+      artist: 'El-P',
+      album: 'I\'ll Sleep When You\'re Dead'
+    }]
   }, {
     username: 'martin',
     email: 'martin@test.com',
     password: 'pass',
-    passwordConfirmation: 'pass'
+    passwordConfirmation: 'pass',
+    wishlist: [{
+      artist: 'Led Zeppelin',
+      album: 'IV'
+    }]
   }])
     .then(users => {
       console.log(`${users.length} users created`);
