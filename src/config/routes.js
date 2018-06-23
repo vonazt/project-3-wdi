@@ -33,6 +33,12 @@ function Router($stateProvider, $urlRouterProvider) {
       controller: 'RecordsNewCtrl',
       resolve: { secureState }
     })
+    .state('recordsEdit', {
+      url: '/records/:id/edit',
+      templateUrl: './views/records/edit.html',
+      controller: 'RecordsEditCtrl',
+      resolve: {secureState}
+    })
     .state('login', {
       url: '/login',
       templateUrl: './views/auth/login.html',
