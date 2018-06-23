@@ -1,32 +1,57 @@
-<form ng-submit="createRecord()">
+<form ng-submit="createRecord()" name="form" novalidate>
   <div class="field">
     <label for="artist" class="label">Artist</label>
-    <input type="text" class="input" name="artist" id="artist" ng-model="data.artist">
+    <input type="text" class="input" name="artist" id="artist" ng-model="data.artist" required>
+
+    <div ng-messages="form.artist.$error" ng-if="form.artist.$touched">
+      <small ng-message="required">Artist name is required</small>
+    </div>
   </div>
+
   <div class="field">
     <label for="title" class="label">Album Title</label>
-    <input type="text" class="input" name="title" id="title" ng-model="data.title">
+    <input type="text" class="input" name="title" id="title" ng-model="data.title" required>
+
+    <div ng-messages="form.title.$error" ng-if="form.title.$touched">
+      <small ng-message="required">Album title is required</small>
+    </div>
   </div>
+
   <div class="field">
     <label for="image" class="label">Album Cover</label>
-    <input type="text" class="input" name="image" id="image" ng-model="data.image">
+    <input type="text" class="input" name="image" id="image" ng-model="data.image" required>
+
   </div>
   <div class="field">
     <label for="genre" class="label">Genre</label>
     <input type="text" class="input" name="genre" id="genre" ng-model="data.genre">
   </div>
+
   <div class="field">
     <label for="label" class="label">Label</label>
-    <input type="text" class="input" name="label" id="label" ng-model="data.label">
-  </div>
-  <div class="field">
-    <label for="releaseDate" class="label">Release Date</label>
-    <input type="text" class="input" name="releaseDate" id="releaseDate" ng-model="data.releaseDate">
-  </div>
-  <div class="field">
-    <label for="condition" class="label">Condition</label>
-    <input type="text" class="input" name="condition" id="condition" ng-model="data.condition">
+    <input type="text" class="input" name="label" id="label" ng-model="data.label" required>
+
+    <div ng-messages="form.label.$error" ng-if="form.label.$touched">
+      <small ng-message="required">Please include record label</small>
+    </div>
   </div>
 
-  <button class="button">Submit</button>
+  <div class="field">
+    <label for="releaseDate" class="label">Release Date</label>
+    <input type="text" class="input" name="releaseDate" id="releaseDate" ng-model="data.releaseDate" required>
+
+    <div ng-messages="form.releaseDate.$error" ng-if="form.releaseDate.$touched">
+      <small ng-message="required">Please include the year of release</small>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="condition" class="label">Condition</label>
+    <input type="text" class="input" name="condition" id="condition" ng-model="data.condition" required>
+    <div ng-messages="form.condition.$error" ng-if="form.condition.$touched">
+      <small ng-message="required">Please include the condition</small>
+    </div>
+  </div>
+
+  <button class="button">Create Record</button>
 </form>
