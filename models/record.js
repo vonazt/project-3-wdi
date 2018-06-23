@@ -18,4 +18,15 @@ const recordSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true}
 });
 
+recordSchema.virtual('avgRating')
+  .get(function() {
+    return Math.floor(this.comments.reduce((sum, comment) => {
+      return sum + comment.rating;
+    }, 0) / this.comments.length);
+  });
+
+recordSchema.set('toJSON', {
+  virtuals: true
+});
+
 module.exports = mongoose.model('Record', recordSchema);
