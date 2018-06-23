@@ -17,6 +17,10 @@
     </div>
   </nav>
 
+  <div class="notification is-{{ flashMessage.type }}" ng-if="flashMessage">
+    {{ flashMessage.content }}
+  </div>
+
   <section class="section" ng-if="!isHomepage">
     <div class="container">
       <ui-view></ui-view>
