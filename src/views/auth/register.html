@@ -1,0 +1,23 @@
+<form ng-submit="handleSubmit()" name="form">
+  <div class="field">
+    <label for="username" class="username">Username</label>
+    <input type="text" name="username" class="input" id="username" ng-model="data.username" required>
+  </div>
+
+  <div class="field">
+    <label for="email" class="email">Email</label>
+    <input type="email" name="email" class="input" id="email" ng-model="data.email" required>
+  </div>
+
+  <div class="field">
+    <label for="password" class="username">Password</label>
+    <input type="password" name="password" class="input" id="password" ng-model="data.password" required>
+  </div>
+
+  <div class="field">
+    <label for="passwordConfirmation" class="passwordConfirmation">Confirm password</label>
+    <input type="password" name="passwordConfirmation" class="input" id="passwordConfirmation" ng-model="data.password" required>
+  </div>
+
+  <button class="button">Submit</button>
+</form>
