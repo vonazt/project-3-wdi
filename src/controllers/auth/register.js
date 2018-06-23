@@ -3,11 +3,11 @@ function AuthRegisterCtrl($scope, $auth, $state, $rootScope) {
 
   $scope.handleSubmit = function() {
     $auth.signup($scope.data)
-      .then($state.go('login'))
+      .then(() => $state.go('login'))
       .catch(() => {
         $rootScope.$broadcast('flashMessage', {
           type: 'danger',
-          content: 'Username or password already exists'
+          content: 'Username or email already exists'
         });
       });
   };
