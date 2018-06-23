@@ -21,7 +21,7 @@ router.get('/profiles', profiles.index);
 
 router.route('/profiles/:id')
   .get(profiles.show)
-  .put(profiles.update);
+  .put(secureRoute, profiles.update);
 
 router.post('/register', auth.register);
 router.post('/login', auth.login);
