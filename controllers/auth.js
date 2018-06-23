@@ -26,7 +26,14 @@ function login(req, res, next){
     .catch(next);
 }
 
+function profile(req, res, next) {
+  User.populate(req.currentUser, { path: 'records' })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports= {
   register,
-  login
+  login,
+  profile
 };
