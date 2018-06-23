@@ -3,7 +3,7 @@ function AuthRegisterCtrl($scope, $auth, $state) {
 
   $scope.handleSubmit = function() {
     $auth.signup($scope.data)
-      .then($state.go('/'));
+      .then($state.go('home'));
   };
 }
 
