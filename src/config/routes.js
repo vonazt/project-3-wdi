@@ -22,6 +22,11 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: './views/records/index.html',
       controller: 'RecordsIndexCtrl'
     })
+    .state('recordsShow', {
+      url: '/records/:id',
+      templateUrl: './views/records/show.html',
+      controller: 'RecordsShowCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: './views/auth/login.html',
