@@ -19,6 +19,9 @@ router.put('/records/:id/comments/:commentId', secureRoute, records.commentUpdat
 
 router.get('/profiles', profiles.index);
 
+router.route('/profiles/:id')
+  .get(profiles.show);
+
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
