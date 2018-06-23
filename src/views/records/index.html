@@ -1,0 +1,7 @@
+<div class="columns is-multiline">
+  <div ng-repeat="record in records" class="column is-one-third-desktop is-half-tablet">
+    <a ui-sref="recordsShow({ id: record._id})">
+      <bulma-card image="record.image" title="record.name"></bulma-card>
+    </a>
+  </div>
+</div>
