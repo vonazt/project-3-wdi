@@ -1,5 +1,9 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
 
 import 'bulma';
 
-angular.module('tallManRecordsApi', [])
+import Router from './config/routes';
+
+angular.module('tallManRecordsApi', ['ui.router'])
+  .config(Router);
