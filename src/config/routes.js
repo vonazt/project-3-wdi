@@ -4,6 +4,11 @@ function Router($stateProvider, $urlRouterProvider) {
       url: '/',
       templateUrl: './views/home.html'
     })
+    .state('recordsIndex', {
+      url: '/records',
+      templateUrl: './views/records/index.html',
+      controller: 'RecordsIndexCtrl'
+    })
     .state('register', {
       url: '/register',
       templateUrl: './views/auth/register.html',
