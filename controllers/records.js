@@ -19,6 +19,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next){
   Record
     .findById(req.params.id)
+    .populate('comments.author')
     .then(record => res.json(record))
     .catch(next);
 }
@@ -44,9 +45,10 @@ function commentCreateRoute(req, res, next){
   req.body.author = req.currentUser;
   Record
     .findById(req.params.id)
+    .populate('comments.author')
     .then(record => {
       record.comments.push(req.body);
-      return record.save;
+      return record.save();
     })
     .then(record => res.json(record))
     .catch(next);
@@ -75,6 +77,7 @@ function commentUpdateRoute(req, res, next){
     .then(boat => res.json(boat))
     .catch(next);
 }
+
 
 module.exports = {
   index: indexRoute,
