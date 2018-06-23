@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const records = require('../controllers/records');
+const profiles = require('../controllers/profiles');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 
@@ -16,7 +17,7 @@ router.post('/records/:id/comments', secureRoute, records.commentCreate);
 router.delete('/records/:id/comments/:commentId', secureRoute, records.commentDelete);
 router.put('/records/:id/comments/:commentId', secureRoute, records.commentUpdate);
 
-router.get('/profile', secureRoute, auth.profile);
+router.get('/profiles', profiles.index);
 
 router.post('/register', auth.register);
 router.post('/login', auth.login);
