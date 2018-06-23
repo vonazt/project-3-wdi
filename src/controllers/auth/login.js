@@ -9,11 +9,10 @@ function AuthLoginCtrl($scope, $auth, $state, $rootScope) {
           type: 'danger',
           content: 'Invalid credentials'
         });
+        $scope.data.password = '';
       });
 
-    $scope.data.password = '';
   };
 }
-
 
 export default AuthLoginCtrl;
