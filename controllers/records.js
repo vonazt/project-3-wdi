@@ -46,7 +46,7 @@ function commentCreateRoute(req, res, next){
     .findById(req.params.id)
     .populate('recordComments.author')
     .then(record => {
-      record.comments.push(req.body);
+      record.recordComments.push(req.body);
       return record.save();
     })
     .then(record => res.json(record))
@@ -57,11 +57,11 @@ function commentDeleteRoute(req, res, next){
   Record
     .findById(req.params.id)
     .then(record => {
-      const comment = record.comments.id(req.params.commentId);
+      const comment = record.recordComments.id(req.params.commentId);
       comment.remove();
       return record.save();
     })
-    .then(boat => res.json(boat))
+    .then(record => res.json(record))
     .catch(next);
 }
 
@@ -69,14 +69,13 @@ function commentUpdateRoute(req, res, next){
   Record
     .findById(req.params.id)
     .then(record => {
-      const comment = record.comments.id(req.params.commentId);
+      const comment = record.recordComments.id(req.params.commentId);
       comment.update();
       return record.save();
     })
-    .then(boat => res.json(boat))
+    .then(record => res.json(record))
     .catch(next);
 }
-
 
 module.exports = {
   index: indexRoute,

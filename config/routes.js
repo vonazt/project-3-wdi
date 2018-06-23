@@ -13,9 +13,9 @@ router.route('/records/:id')
   .put(secureRoute, records.update)
   .delete(secureRoute, records.delete);
 
-router.post('/records/:id/comments', secureRoute, records.commentCreate);
-router.delete('/records/:id/comments/:commentId', secureRoute, records.commentDelete);
-router.put('/records/:id/comments/:commentId', secureRoute, records.commentUpdate);
+router.post('/records/:id/record-comments', secureRoute, records.commentCreate);
+router.delete('/records/:id/record-comments/:commentId', secureRoute, records.commentDelete);
+router.put('/records/:id/record-comments/:commentId', secureRoute, records.commentUpdate);
 
 router.get('/profiles', profiles.index);
 

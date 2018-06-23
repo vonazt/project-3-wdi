@@ -14,21 +14,21 @@ function RecordsShowCtrl($scope, $http, $state){
       $scope.record = res.data;
     });
 
-  $scope.commentData= {};
-  $scope.createComment = function(){
+  $scope.commentData = {};
+  $scope.createComment = function() {
     $http({
       method: 'POST',
-      url: `/api/records/${$state.params.id}/comments`,
+      url: `/api/records/${$state.params.id}/record-comments`,
       data: $scope.commentData
     })
-      .then(() => $state.go($state.current, {}, {reload: true}));
+      .then(() => $state.go($state.current, {}, { reload: true }));
   };
   $scope.deleteComment = function(comment){
     $http({
       method: 'DELETE',
-      url: `/api/records/${$state.params.id}/comments/${comment._id}`
+      url: `/api/records/${$state.params.id}/record-comments/${comment._id}`
     })
-      .then(() => $state.go($state.current, {}, {reload: true}));
+      .then(() => $state.go($state.current, {}, { reload: true }));
   };
 }
 
