@@ -44,10 +44,23 @@ function commentCreateRoute(req, res, next) {
     .catch(next);
 }
 
+function commentDeleteRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .then(user => {
+      const comment = user.userComments.id(req.params.commentId);
+      comment.remove();
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   update: updateRoute,
   delete: deleteRoute,
-  commentCreate: commentCreateRoute
+  commentCreate: commentCreateRoute,
+  commentDelete: commentDeleteRoute
 };

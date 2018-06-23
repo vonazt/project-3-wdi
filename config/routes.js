@@ -27,6 +27,9 @@ router.route('/profiles/:id')
 
 router.post('/profiles/:id/profile-comments', secureRoute, profiles.commentCreate);
 
+router.route('/profiles/:id/profile-comments/:commentId')
+  .delete(secureRoute, profiles.commentDelete);
+
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
