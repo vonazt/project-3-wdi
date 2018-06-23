@@ -3,6 +3,11 @@ function Router($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/',
       templateUrl: './views/home.html'
+    })
+    .state('recordsIndex', {
+      url: '/records',
+      templateUrl: './views/records/index.html',
+      controller: 'RecordsIndexCtrl'
     });
 
   $urlRouterProvider.otherwise('/');
