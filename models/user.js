@@ -15,6 +15,12 @@ userSchema.set('toJSON',{
   }
 });
 
+userSchema.virtual('records', {
+  localField: '_id',
+  foreignField: 'owner',
+  ref: 'Record'
+});
+
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation){
     this._passwordConfirmation = passwordConfirmation;

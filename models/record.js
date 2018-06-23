@@ -11,6 +11,7 @@ const recordSchema = new mongoose.Schema({
   title: { type: String, required: true },
   image: { type: String, required: true },
   genre: { type: Array },
+  label: { type: String, required: true },
   comments: [ commentSchema ],
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
   condition: { type: String, required: true },

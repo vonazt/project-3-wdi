@@ -9,6 +9,7 @@ function indexRoute(req, res, next) {
 
 
 function createRoute(req, res, next) {
+  req.body.owner = req.currentUser;
   Record
     .create(req.body)
     .then(record => res.status(201).json(record))

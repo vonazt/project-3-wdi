@@ -27,6 +27,12 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: './views/records/show.html',
       controller: 'RecordsShowCtrl'
     })
+    .state('recordsNew', {
+      url: '/records/new',
+      templateUrl: './views/records/new.html',
+      controller: 'RecordsNewCtrl',
+      resolve: { secureState }
+    })
     .state('login', {
       url: '/login',
       templateUrl: './views/auth/login.html',
