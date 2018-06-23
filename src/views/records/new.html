@@ -19,9 +19,10 @@
 
   <div class="field">
     <label for="image" class="label">Album Cover</label>
-    <input type="text" class="input" name="image" id="image" ng-model="data.image" required>
-
+    <button class="button" name="image" id="image" ng-model="data.image" file-picker required>Pick album cover</button>
   </div>
+  <img src="{{ data.image }}" ng-if="data.image" />
+
   <div class="field">
     <label for="genre" class="label">Genre</label>
     <input type="text" class="input" name="genre" id="genre" ng-model="data.genre">
