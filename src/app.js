@@ -5,5 +5,8 @@ import 'bulma';
 
 import Router from './config/routes';
 
+import MainCtrl from './controllers/main';
+
 angular.module('tallManRecordsApi', ['ui.router'])
-  .config(Router);
+  .config(Router)
+  .controller('MainCtrl', MainCtrl);
