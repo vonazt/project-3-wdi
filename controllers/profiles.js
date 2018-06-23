@@ -31,9 +31,23 @@ function deleteRoute(req, res, next) {
     .catch(next);
 }
 
+function commentCreateRoute(req, res, next) {
+  req.body.author = req.currentUser;
+  User
+    .findById(req.params.id)
+    .populate('userComments.author')
+    .then(user => {
+      user.userComments.push(req.body);
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentCreate: commentCreateRoute
 };
