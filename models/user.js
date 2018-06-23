@@ -1,12 +1,19 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const userCommentSchema = new mongoose.Schema({
+  content: { type: String, required: true },
+  author: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  rating: { type: Number, min: 1, max: 5 }
+});
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   avatar: { type: String },
   wishlist: { type: Array },
-  password: { type: String, required: true }
+  userComments: [ userCommentSchema ]
 });
 
 userSchema.set('toJSON',{
@@ -21,6 +28,13 @@ userSchema.virtual('records', {
   foreignField: 'owner',
   ref: 'Record'
 });
+
+userSchema.virtual('avgRating')
+  .get(function() {
+    return Math.floor(this.userComments.reduce((sum, comment) => {
+      return sum + comment.rating;
+    }, 0) / this.userComments.length);
+  });
 
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation){
