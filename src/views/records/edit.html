@@ -28,7 +28,7 @@
     <input type="text" class="input" name="genre" id="genre" ng-model="data.genre">
     <a class="button" ng-click="addGenre()">+ Add genre</a>
   </div>
-  <p ng-if="showGenreArray"><strong>Selected genres:</strong> <span ng-repeat="genre in genreArray">| {{ genre }} | </p>
+  <p ng-if="showGenreArray"><strong>Selected genres (click on genre to remove):</strong> <span ng-repeat="genre in genreArray" ng-click="removeGenre(genre)">| {{ genre }} | </p>
 
   <div class="field">
     <label for="label" class="label">Label</label>
