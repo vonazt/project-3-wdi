@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   avatar: { type: String },
   wishlist: { type: Array },
-  userComments: [ userCommentSchema ]
+  userComments: [ userCommentSchema ],
+  profileData: { type: Array }
 });
 
 userSchema.set('toJSON',{
@@ -21,6 +22,10 @@ userSchema.set('toJSON',{
     delete json.password;
     return json;
   }
+});
+
+userSchema.set('toJSON', {
+  virtuals: true
 });
 
 userSchema.virtual('records', {

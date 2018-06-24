@@ -12,6 +12,7 @@ mongoose.connect(dbURI, (err, db) => {
     email: 'richard@test.com',
     password: 'pass',
     passwordConfirmation: 'pass',
+    avatar: 'https://www.panzerdragoonlegacy.com/system/pictures/1517/original/azel-panzer-dragoon-rpg-ntsc-j-version-case-back-insert-enhanced.jpg?1483099400',
     wishlist: [{
       artist: 'Death Grips',
       album: 'Exmilitary'
@@ -24,6 +25,7 @@ mongoose.connect(dbURI, (err, db) => {
     email: 'martin@test.com',
     password: 'pass',
     passwordConfirmation: 'pass',
+    avatar: 'https://res.cloudinary.com/jpress/image/fetch/c_fill,f_auto,h_405,q_auto:eco,w_600/https://inews.co.uk/wp-content/uploads/2017/05/GamesMaster-main.jpg',
     wishlist: [{
       artist: 'Led Zeppelin',
       album: 'IV'
@@ -31,12 +33,12 @@ mongoose.connect(dbURI, (err, db) => {
   }])
     .then(users => {
       console.log(`${users.length} users created`);
-      users[1].userComments.push({
+      users[0].userComments.push({
         content: 'great trader',
         rating: 4,
-        author: users[0]
+        author: users[1]
       });
-      console.log(users[1].userComments);
+      console.log(users[0].userComments);
       return Record.create([{
         artist: 'David Bowie',
         title: 'The Man Who Sold The World',
