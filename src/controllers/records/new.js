@@ -9,6 +9,12 @@ function RecordsNewCtrl($scope, $state, $http) {
     $scope.data.genre = '';
   };
 
+  $scope.removeGenre = function(e) {
+    const index = $scope.genreArray.indexOf(e);
+    $scope.genreArray.splice(index, 1);
+    $scope.data.genre = '';
+  };
+
   $scope.createRecord = function() {
     if($scope.genreArray.length > 0) $scope.data.genre = $scope.genreArray;
     $http({
