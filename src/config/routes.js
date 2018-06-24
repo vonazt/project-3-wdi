@@ -39,6 +39,11 @@ function Router($stateProvider, $urlRouterProvider) {
       controller: 'RecordsEditCtrl',
       resolve: {secureState}
     })
+    .state('profilesIndex', {
+      url: '/profiles',
+      templateUrl: './views/profiles/index.html',
+      controller: 'ProfilesIndexCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: './views/auth/login.html',
