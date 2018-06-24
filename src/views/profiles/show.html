@@ -1,0 +1,12 @@
+<h1 class="title is-1">{{ user.username }}'s profile</h1>
+
+<div class="columns is-multiline">
+  <div class="column is-one-quarter">
+    <img src="{{ user.avatar }}" alt="{{ user.username }}">
+  </div>
+  <div class="column is-two-thirds">
+    <ul>
+      <li ng-repeat="data in user.profileData"></li>
+    </ul>
+  </div>
+</div>

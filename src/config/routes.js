@@ -44,6 +44,11 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: './views/profiles/index.html',
       controller: 'ProfilesIndexCtrl'
     })
+    .state('profilesShow', {
+      url: '/profiles/:id',
+      templateUrl: './views/profiles/show.html',
+      controller: 'ProfilesShowCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: './views/auth/login.html',

@@ -17,6 +17,7 @@ import RecordsShowCtrl from './controllers/records/show.js';
 import RecordsNewCtrl from './controllers/records/new.js';
 import RecordsEditCtrl from './controllers/records/edit.js';
 import ProfilesIndexCtrl from './controllers/profiles/index.js';
+import ProfilesShowCtrl from './controllers/profiles/show.js';
 import AuthLoginCtrl from './controllers/auth/login';
 import AuthRegisterCtrl from './controllers/auth/register';
 
@@ -37,6 +38,7 @@ angular.module('tallManRecordsApi', [
   .controller('RecordsNewCtrl', RecordsNewCtrl)
   .controller('RecordsEditCtrl', RecordsEditCtrl)
   .controller('ProfilesIndexCtrl', ProfilesIndexCtrl)
+  .controller('ProfilesShowCtrl', ProfilesShowCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .directive('filePicker', filePicker);

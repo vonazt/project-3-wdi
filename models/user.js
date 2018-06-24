@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   avatar: { type: String },
   wishlist: { type: Array },
-  userComments: [ userCommentSchema ]
+  userComments: [ userCommentSchema ],
+  profileData: { type: Array }
 });
 
 userSchema.set('toJSON',{
