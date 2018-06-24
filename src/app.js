@@ -45,4 +45,4 @@ angular.module('tallManRecordsApi', [
   .controller('ProfilesEditCtrl', ProfilesEditCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
-  .directive('filePicker', filePicker);
+  .directive('filePicker', filePicker)
