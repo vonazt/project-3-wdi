@@ -81,6 +81,7 @@ function collectionsIndexRoute(req, res, next){
   Record
     .find()
     .then((records) => {
+      console.log('working');
       res.json(records);
     })
     .catch(next);

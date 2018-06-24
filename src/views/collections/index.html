@@ -1,7 +1,6 @@
 <div class="columns is-multiline">
-  <div ng-repeat="record in records" class="column is-one-fifth-desktop is-third-tablet">
-    <!-- req.currentUser is not accessible here, being a backend thing. -->
-    <a ui-sref="recordsShow({ id: record._id})" ng-if="record.owner === req.currentUser">
+  <div ng-repeat="record in records" class="column is-one-fifth-desktop is-third-tablet" ng-if="record.isOwner">
+    <a ui-sref="recordsShow({ id: record._id})">
       <div class="card">
         <div class="card-image">
           <figure class="image">

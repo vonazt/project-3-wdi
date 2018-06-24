@@ -48,6 +48,7 @@ mongoose.connect(dbURI, (err, db) => {
         releaseDate: 1970,
         condition: 'Mint',
         owner: users[0],
+        isOwner: false,
         recordComments: [{
           content: 'great pressing',
           rating: 4,
@@ -66,6 +67,7 @@ mongoose.connect(dbURI, (err, db) => {
         releaseDate: 2014,
         condition: 'VG',
         owner: users[1],
+        isOwner: false,
         recordComments: [{
           content: 'comes on three vinyl',
           rating: 5,

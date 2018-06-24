@@ -16,7 +16,8 @@ const recordSchema = new mongoose.Schema({
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
   condition: { type: String, required: true },
   cardData: Array,
-  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true}
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
+  isOwner: Boolean
 });
 
 recordSchema.virtual('avgRating')
