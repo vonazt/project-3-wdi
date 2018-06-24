@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
   avatar: { type: String },
   wishlist: { type: Array },
   userComments: [ userCommentSchema ],
-  profileData: { type: Array }
+  profileData: { type: Array },
+  isOwner: Boolean
 });
 
 userSchema.set('toJSON',{

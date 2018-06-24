@@ -1,10 +1,18 @@
-function ProfilesShowCtrl($scope, $http, $state) {
+function ProfilesShowCtrl($scope, $http, $state, $auth) {
 
   $http({
     method: 'GET',
     url: `/api/profiles/${$state.params.id}`
   })
-    .then(res => $scope.user = res.data);
+    .then(res => {
+      $scope.user = res.data;
+      console.log($scope.user.id);
+      console.log($auth.getPayload().sub);
+    });
+
+
+
+
 
   $scope.commentData = {};
   $scope.createComment = function() {

@@ -12,6 +12,7 @@ mongoose.connect(dbURI, (err, db) => {
     email: 'richard@test.com',
     password: 'pass',
     passwordConfirmation: 'pass',
+    isOwner: false,
     avatar: 'https://www.panzerdragoonlegacy.com/system/pictures/1517/original/azel-panzer-dragoon-rpg-ntsc-j-version-case-back-insert-enhanced.jpg?1483099400',
     wishlist: [{
       artist: 'Death Grips',
@@ -25,6 +26,7 @@ mongoose.connect(dbURI, (err, db) => {
     email: 'martin@test.com',
     password: 'pass',
     passwordConfirmation: 'pass',
+    isOwner: false,
     avatar: 'https://res.cloudinary.com/jpress/image/fetch/c_fill,f_auto,h_405,q_auto:eco,w_600/https://inews.co.uk/wp-content/uploads/2017/05/GamesMaster-main.jpg',
     wishlist: [{
       artist: 'Led Zeppelin',
