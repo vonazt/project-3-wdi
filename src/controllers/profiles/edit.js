@@ -21,6 +21,7 @@ function ProfilesEditCtrl($scope, $state, $http, $rootScope) {
   })
     .then(res => {
       $scope.data = res.data;
+      $scope.data.passwordConfirmation = res.data.password;
     });
 }
 
