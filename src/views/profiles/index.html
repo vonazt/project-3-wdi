@@ -4,13 +4,15 @@
     <th>Rating</th>
     <th>Most Wanted</th>
     <th>Collection</th>
+    <th>Contact</th>
   </thead>
   <tbody ng-repeat="user in users">
     <tr>
       <td>{{ user.username }}</td>
       <td>{{ user.avgRating }}</td>
       <td>{{ user.wishlist[0].album }} by {{ user.wishlist[0].artist }}</td>
-      <td></td>
+      <td>Collection link</td>
+      <td>Message</td>
     </tr>
   </tbody>
 </table>

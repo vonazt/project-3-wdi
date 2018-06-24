@@ -31,6 +31,12 @@ mongoose.connect(dbURI, (err, db) => {
   }])
     .then(users => {
       console.log(`${users.length} users created`);
+      users[1].userComments.push({
+        content: 'great trader',
+        rating: 4,
+        author: users[0]
+      });
+      console.log(users[1].userComments);
       return Record.create([{
         artist: 'David Bowie',
         title: 'The Man Who Sold The World',
