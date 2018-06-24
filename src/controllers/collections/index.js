@@ -1,4 +1,4 @@
-import isRecordOwner from '../../functions/isRecordOwner.js';
+import isMultipleRecordsOwner from '../../functions/isMultipleRecordsOwner.js';
 
 function CollectionsIndexCtrl($scope, $http, $auth){
   $http({
@@ -7,7 +7,7 @@ function CollectionsIndexCtrl($scope, $http, $auth){
   })
     .then((res) => {
       $scope.records = res.data;
-      isRecordOwner(res, $auth);
+      isMultipleRecordsOwner(res, $auth);
     });
 }
 

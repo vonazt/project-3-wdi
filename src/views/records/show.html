@@ -6,7 +6,7 @@
       </figure>
     </div>
     <hr>
-    <a ui-sref="recordsEdit({ id: record._id })" class="button" ng-if="isAuthenticated()">Edit Album Details</a>
+    <a ui-sref="recordsEdit({ id: record._id })" class="button" ng-if="isAuthenticated()" ng-if="record.isOwner">Edit Album Details</a>
     <button class="button is-danger" ng-click="deleteRecord()" ng-if="isAuthenticated()">Delete Album</button>
   </div>
   <div class="column is-half-desktop">
