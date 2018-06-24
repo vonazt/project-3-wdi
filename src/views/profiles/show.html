@@ -6,6 +6,7 @@
       <img src="{{ user.avatar }}" alt="{{ user.username }}">
     </figure>
     <a ui-sref="profilesEdit({ id: user._id })" class="button" ng-if="isAuthenticated() && user.isOwner">Edit Profile</a>
+    <a ui-sref="profilesDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && user.isOwner">Delete User</a>
   </div>
   <div class="column is-half">
     <ul>
@@ -73,4 +74,5 @@
   <div class="column is-one-sixth">
 
   </div>
+
 </div>

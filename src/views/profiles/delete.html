@@ -1,0 +1,5 @@
+<div class="deleteUserPage">
+  <h1 class="title is-1">Are you sure you want to delete your profile? All records and data will be lost</h1>
+  <button class="button is-danger" ng-click="deleteUser()" ng-if="isAuthenticated() && user.isOwner">Yes</button>
+  <a class="button" ui-sref="profilesShow({ id: user._id})">No</a>
+</div>

@@ -11,8 +11,16 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
       isOwner(res, $auth);
     });
 
-
-
+  $scope.deleteUser = function() {
+    $http({
+      method: 'DELETE',
+      url: `/api/profiles/${$state.params.id}`
+    })
+      .then(() => {
+        $auth.logout();
+        $state.go('home');
+      });
+  };
 
 
   $scope.commentData = {};
