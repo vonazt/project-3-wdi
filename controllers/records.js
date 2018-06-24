@@ -77,6 +77,15 @@ function commentUpdateRoute(req, res, next){
     .catch(next);
 }
 
+function collectionsIndexRoute(req, res, next){
+  Record
+    .find()
+    .then((records) => {
+      res.json(records);
+    })
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
@@ -85,5 +94,6 @@ module.exports = {
   delete: deleteRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
-  commentUpdate: commentUpdateRoute
+  commentUpdate: commentUpdateRoute,
+  collectionsIndex: collectionsIndexRoute
 };

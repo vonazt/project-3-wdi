@@ -4,6 +4,7 @@ const profiles = require('../controllers/profiles');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 
+
 router.route('/records')
   .get(records.index)
   .post(secureRoute, records.create);
@@ -17,6 +18,8 @@ router.post('/records/:id/record-comments', secureRoute, records.commentCreate);
 router.route('/records/:id/record-comments/:commentId')
   .put(secureRoute, records.commentUpdate)
   .delete(secureRoute, records.commentDelete);
+
+router.get('/collections', secureRoute, records.collectionsIndex);
 
 router.get('/profiles', profiles.index);
 

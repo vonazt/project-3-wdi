@@ -15,6 +15,7 @@
       <div class="navbar-end">
         <a class="navbar-item" ui-sref="recordsIndex">Records</a>
         <a class="navbar-item" ui-sref="recordsNew" ng-if="isAuthenticated()">Add Record</a>
+        <a class="navbar-item" ui-sref="collectionsIndex" ng-if="isAuthenticated()">My Collections</a>
         <a class="navbar-item" ui-sref="register" ng-if="!isAuthenticated()">Register</a>
         <a class="navbar-item" ui-sref="login" ng-if="!isAuthenticated()">Login</a>
         <a class="navbar-item" ng-click="logout()" ng-if="isAuthenticated()">Logout</a>

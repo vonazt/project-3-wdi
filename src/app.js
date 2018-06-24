@@ -16,6 +16,7 @@ import RecordsIndexCtrl from './controllers/records/index.js';
 import RecordsShowCtrl from './controllers/records/show.js';
 import RecordsNewCtrl from './controllers/records/new.js';
 import RecordsEditCtrl from './controllers/records/edit.js';
+import CollectionsIndexCtrl from './controllers/collections/index.js';
 import ProfilesIndexCtrl from './controllers/profiles/index.js';
 import AuthLoginCtrl from './controllers/auth/login';
 import AuthRegisterCtrl from './controllers/auth/register';
@@ -36,6 +37,7 @@ angular.module('tallManRecordsApi', [
   .controller('RecordsShowCtrl', RecordsShowCtrl)
   .controller('RecordsNewCtrl', RecordsNewCtrl)
   .controller('RecordsEditCtrl', RecordsEditCtrl)
+  .controller('CollectionsIndexCtrl', CollectionsIndexCtrl)
   .controller('ProfilesIndexCtrl', ProfilesIndexCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
