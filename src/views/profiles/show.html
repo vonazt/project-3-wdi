@@ -5,6 +5,7 @@
     <figure class="image is-square">
       <img src="{{ user.avatar }}" alt="{{ user.username }}">
     </figure>
+    <a ui-sref="profilesEdit({ id: user._id })" class="button" ng-if="isAuthenticated()">Edit Profile</a>
   </div>
   <div class="column is-half">
     <ul>
