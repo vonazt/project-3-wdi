@@ -8,11 +8,8 @@ function CollectionsIndexCtrl($scope, $http, $auth){
       const currentUserId = $auth.getPayload().sub;
       res.data.forEach(record => {
         if(record.owner === currentUserId) record.isOwner = true;
+        //checks the id of the logged in user and the record owner, then sets isOwner to true so that it will be displayed in collections
       });
-      // console.log($auth.getPayload().sub);
-      console.log(res.data);
-      // console.log($auth.getPayload().sub === res.data[0].owner);
-
     });
 }
 
