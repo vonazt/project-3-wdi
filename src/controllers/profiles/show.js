@@ -1,3 +1,5 @@
+import isOwner from '../../functions/isOwner.js';
+
 function ProfilesShowCtrl($scope, $http, $state, $auth) {
 
   $http({
@@ -6,8 +8,7 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
   })
     .then(res => {
       $scope.user = res.data;
-      console.log($scope.user.id);
-      console.log($auth.getPayload().sub);
+      isOwner(res, $auth);
     });
 
 
