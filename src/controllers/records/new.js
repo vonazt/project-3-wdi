@@ -1,9 +1,11 @@
 function RecordsNewCtrl($scope, $state, $http) {
   $scope.data = {};
   $scope.genreArray = [];
+  $scope.showGenreArray = false;
 
   $scope.addGenre = function() {
     $scope.genreArray.push($scope.data.genre);
+    $scope.showGenreArray = true;
     $scope.data.genre = '';
   };
 

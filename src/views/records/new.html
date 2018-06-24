@@ -23,13 +23,12 @@
   </div>
   <img src="{{ data.image }}" ng-if="data.image" />
 
-  {{ data.genre }}
-  {{ genreArray }}
   <div class="field">
     <label for="genre" class="label">Genre</label>
     <input type="text" class="input" name="genre" id="genre" ng-model="data.genre">
     <a class="button" ng-click="addGenre()">+ Add genre</a>
   </div>
+  <p ng-if="showGenreArray"><strong>Selected genres:</strong> <span ng-repeat="genre in genreArray">{{ genre }} | </p>
 
   <div class="field">
     <label for="label" class="label">Label</label>
