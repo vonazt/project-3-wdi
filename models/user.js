@@ -24,6 +24,10 @@ userSchema.set('toJSON',{
   }
 });
 
+userSchema.set('toJSON', {
+  virtuals: true
+});
+
 userSchema.virtual('records', {
   localField: '_id',
   foreignField: 'owner',
