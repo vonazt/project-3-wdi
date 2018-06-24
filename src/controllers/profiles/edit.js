@@ -1,4 +1,4 @@
-function ProfilesEditCtrl($scope, $state, $http) {
+function ProfilesEditCtrl($scope, $state, $http, $rootScope) {
 
   $scope.updateUser = function() {
     $http({
@@ -6,14 +6,22 @@ function ProfilesEditCtrl($scope, $state, $http) {
       url: `/api/profiles/${$state.params.id}`,
       data: $scope.data
     })
-      .then(() => $state.go('profilesShow', { id: $state.params.id }));
+      .then(() => $state.go('profilesShow', { id: $state.params.id }))
+      .catch(() => {
+        $rootScope.$broadcast('flashMessage', {
+          type: 'danger',
+          content: 'Username or email already exists'
+        });
+      });
   };
 
   $http({
     method: 'GET',
     url: `/api/profiles/${$state.params.id}`
   })
-    .then(res => $scope.data = res.data);
+    .then(res => {
+      $scope.data = res.data;
+    });
 }
 
 export default ProfilesEditCtrl;
