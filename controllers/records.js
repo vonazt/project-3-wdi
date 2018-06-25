@@ -86,6 +86,13 @@ function commentUpdateRoute(req, res, next){
     .catch(next);
 }
 
+function showRequestRoute(req, res, next) {
+  Record
+    .findById(req.params.id)
+    .then(record => res.json(record))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
@@ -95,5 +102,6 @@ module.exports = {
   collectionsIndex: collectionsIndexRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
-  commentUpdate: commentUpdateRoute
+  commentUpdate: commentUpdateRoute,
+  showRequest: showRequestRoute
 };

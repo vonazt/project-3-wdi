@@ -3,6 +3,8 @@ const User = require('../models/user');
 function indexRoute(req, res, next) {
   User
     .find()
+    .populate('comments.author records')
+    .fill('incomingRequests outgoingRequests')
     .then(users => res.json(users))
     .catch(next);
 }

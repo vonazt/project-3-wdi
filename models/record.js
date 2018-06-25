@@ -10,7 +10,7 @@ const recordSchema = new mongoose.Schema({
   comments: [ commentSchema ],
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
   condition: { type: String, required: true },
-  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true}
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 });
 
 recordSchema.virtual('requests', {

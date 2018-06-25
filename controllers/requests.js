@@ -1,13 +1,7 @@
 const Request = require('../models/request');
 
-function showRequestRoute(req, res, next) {
-  Request
-    .findById(req.params.id)
-    .then(request => res.json(request))
-    .catch(next);
-}
-
 function createRequestRoute(req, res, next) {
+  req.body.wantedRecord = req.params.id;
   Request
     .create(req.body)
     .then(request => res.status(201).json(request))
@@ -25,7 +19,6 @@ function updateRequestRoute(req, res, next) {
     .catch(next);
 }
 
-
 function deleteRequestRoute(req, res, next) {
   Request
     .findById(req.params.id)
@@ -38,7 +31,6 @@ function deleteRequestRoute(req, res, next) {
 }
 
 module.exports = {
-  showRequest: showRequestRoute,
   createRequest: createRequestRoute,
   updateRequest: updateRequestRoute,
   deleteRequest: deleteRequestRoute

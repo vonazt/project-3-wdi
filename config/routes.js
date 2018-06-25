@@ -15,15 +15,16 @@ router.route('/records/:id')
   .put(secureRoute, records.update)
   .delete(secureRoute, records.delete);
 
+router.get('/records/:id/requests', secureRoute, records.showRequest);
+
 router.post('/records/:id/comments', secureRoute, records.commentCreate);
 router.route('/records/:id/comments/:commentId')
   .put(secureRoute, records.commentUpdate)
   .delete(secureRoute, records.commentDelete);
 
-router.route('/requests')
+router.route('/records/:id/requests')
   .post(secureRoute, requests.createRequest);
-router.route('/requests/:id/')
-  .get(secureRoute, requests.showRequest)
+router.route('/requests/:id')
   .put(secureRoute, requests.updateRequest)
   .delete(secureRoute, requests.deleteRequest);
 
@@ -42,7 +43,7 @@ router.route('/users/:id/comments/:commentId')
   .put(secureRoute, users.commentUpdate)
   .delete(secureRoute, users.commentDelete);
 
-router.post('/register', auth.register);
 router.post('/login', auth.login);
+router.post('/register', auth.register);
 
 module.exports = router;
