@@ -92,13 +92,6 @@ function collectionsIndexRoute(req, res, next){
     .catch(next);
 }
 
-function indexRequestRoute(req, res, next) {
-  Record
-    .find()
-    .populate('owner requests.offer')
-    .then(records => res.json(records))
-    .catch(next);
-}
 
 function showRequestRoute(req, res, next) {
   Record
@@ -109,6 +102,7 @@ function showRequestRoute(req, res, next) {
 }
 
 function createRequestRoute(req, res, next) {
+  req.body.madeBy = req.currentUser._id;
   Record
     .findById(req.params.id)
     .then(record => {
@@ -153,7 +147,6 @@ module.exports = {
   commentDelete: commentDeleteRoute,
   commentUpdate: commentUpdateRoute,
   collectionsIndex: collectionsIndexRoute,
-  indexRequest: indexRequestRoute,
   showRequest: showRequestRoute,
   createRequest: createRequestRoute,
   updateRequest: updateRequestRoute,
