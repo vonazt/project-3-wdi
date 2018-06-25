@@ -16,7 +16,6 @@ const recordSchema = new mongoose.Schema({
   comments: [ commentSchema ],
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
   condition: { type: String, required: true },
-  cardData: Array,
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   requests: [ requestSchema ]
 });

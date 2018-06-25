@@ -1,0 +1,34 @@
+<div class="columns is-multiline">
+  <div class="column is-one-quarter-desktop">
+    <div class="card-image">
+      <figure class="image">
+        <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
+      </figure>
+    </div>
+  </div>
+  <div class="column is-half-desktop">
+    <div class="card">
+      <div class="content">
+        <h2 class="title is-2">{{ record.artist }}</h2>
+        <h5 class="title is-5">{{ record.title }}</h5>
+        <h5 class="title is-5">Condition: "{{ record.condition }}"</h5>
+        <h5 class="title is-5">Rating: {{ record.avgRating }}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="column is-quarter-desktop">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image">
+          <img ng-src="{{ record.owner.avatar }}" alt="{{ record.owner.username }}"/>
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content">
+          <h4 class="subtitle is-4">{{ record.owner.username }}</h4>
+          <h5 class="subtitle is-5">Rating: {{ record.owner.avgRating }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,9 @@ router.route('/records/:id/comments/:commentId')
   .put(secureRoute, records.commentUpdate)
   .delete(secureRoute, records.commentDelete);
 
-router.post('/records/:id/requests', secureRoute, records.createRequest);
+router.route('/records/:id/requests')
+  .get(secureRoute, records.showRequest)
+  .post(secureRoute, records.createRequest);
 router.route('/records/:id/requests/:requestId')
   .put(secureRoute, records.updateRequest)
   .delete(secureRoute, records.deleteRequest);
