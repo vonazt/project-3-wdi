@@ -45,6 +45,18 @@ function commentCreateRoute(req, res, next) {
     .catch(next);
 }
 
+function commentUpdateRoute(req, res, next){
+  User
+    .findById(req.params.id)
+    .then(user => {
+      const comment = user.comments.id(req.params.commentId);
+      comment.set(req.body);
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 function commentDeleteRoute(req, res, next) {
   User
     .findById(req.params.id)
@@ -63,5 +75,6 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   commentCreate: commentCreateRoute,
-  commentDelete: commentDeleteRoute
+  commentDelete: commentDeleteRoute,
+  commentUpdate: commentUpdateRoute
 };

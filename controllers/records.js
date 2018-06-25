@@ -70,7 +70,7 @@ function commentUpdateRoute(req, res, next){
     .findById(req.params.id)
     .then(record => {
       const comment = record.comments.id(req.params.commentId);
-      comment.update();
+      comment.set(req.body);
       return record.save();
     })
     .then(record => res.json(record))

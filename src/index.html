@@ -15,10 +15,10 @@
     <div class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" ui-sref="profilesIndex">Profiles</a>
+          <a class="navbar-link" ui-sref="usersIndex">Users</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" ng-if="isAuthenticated()" ui-sref="profilesShow({ id: currentUserId})">My Profile</a>
-            <a class="navbar-item" ui-sref="profilesIndex">User Profiles</a>
+            <a class="navbar-item" ng-if="isAuthenticated()" ui-sref="usersShow({ id: currentUserId})">My User</a>
+            <a class="navbar-item" ui-sref="usersIndex">User Users</a>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">

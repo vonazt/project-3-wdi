@@ -7,8 +7,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   avatar: { type: String },
-  comments: [ commentSchema ],
-  profileData: { type: Array }
+  comments: [ commentSchema ]
 });
 
 userSchema.set('toJSON', {

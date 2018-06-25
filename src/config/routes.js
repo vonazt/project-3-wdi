@@ -44,26 +44,26 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: './views/collections/index.html',
       controller: 'CollectionsIndexCtrl'
     })
-    .state('profilesIndex', {
-      url: '/profiles',
-      templateUrl: './views/profiles/index.html',
-      controller: 'ProfilesIndexCtrl'
+    .state('usersIndex', {
+      url: '/users',
+      templateUrl: './views/users/index.html',
+      controller: 'UsersIndexCtrl'
     })
-    .state('profilesShow', {
-      url: '/profiles/:id',
-      templateUrl: './views/profiles/show.html',
-      controller: 'ProfilesShowCtrl'
+    .state('usersShow', {
+      url: '/users/:id',
+      templateUrl: './views/users/show.html',
+      controller: 'UsersShowCtrl'
     })
-    .state('profilesEdit', {
-      url: '/profiles/:id/edit',
-      templateUrl: './views/profiles/edit.html',
-      controller: 'ProfilesEditCtrl',
+    .state('usersEdit', {
+      url: '/users/:id/edit',
+      templateUrl: './views/users/edit.html',
+      controller: 'UsersEditCtrl',
       resolve: { secureState }
     })
-    .state('profilesDelete', {
-      url: 'profiles/:id',
-      templateUrl: './views/profiles/delete.html',
-      controller: 'ProfilesShowCtrl',
+    .state('usersDelete', {
+      url: 'users/:id',
+      templateUrl: './views/users/delete.html',
+      controller: 'UsersShowCtrl',
       resolve: { secureState }
     })
     .state('login', {

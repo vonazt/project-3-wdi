@@ -1,10 +1,10 @@
 import isOwner from '../../functions/isOwner.js';
 
-function ProfilesShowCtrl($scope, $http, $state, $auth) {
+function UsersShowCtrl($scope, $http, $state, $auth) {
 
   $http({
     method: 'GET',
-    url: `/api/profiles/${$state.params.id}`
+    url: `/api/users/${$state.params.id}`
   })
     .then(res => {
       $scope.user = res.data;
@@ -14,7 +14,7 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
   $scope.deleteUser = function() {
     $http({
       method: 'DELETE',
-      url: `/api/profiles/${$state.params.id}`
+      url: `/api/users/${$state.params.id}`
     })
       .then(() => {
         $auth.logout();
@@ -27,7 +27,7 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
   $scope.createComment = function() {
     $http({
       method: 'POST',
-      url: `/api/profiles/${$state.params.id}/comments`,
+      url: `/api/users/${$state.params.id}/comments`,
       data: $scope.commentData
     })
       .then(() => $state.go($state.current, {}, { reload: true }));
@@ -35,10 +35,10 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
   $scope.deleteComment = function(comment){
     $http({
       method: 'DELETE',
-      url: `/api/profiles/${$state.params.id}/comments/${comment._id}`
+      url: `/api/users/${$state.params.id}/comments/${comment._id}`
     })
       .then(() => $state.go($state.current, {}, { reload: true }));
   };
 }
 
-export default ProfilesShowCtrl;
+export default UsersShowCtrl;

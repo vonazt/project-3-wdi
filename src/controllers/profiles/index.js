@@ -1,9 +1,9 @@
-function ProfilesIndexCtrl($scope, $http) {
+function UsersIndexCtrl($scope, $http) {
   $http({
     method: 'GET',
-    url: '/api/profiles'
+    url: '/api/users'
   })
     .then(res => $scope.users = res.data);
 }
 
-export default ProfilesIndexCtrl;
+export default UsersIndexCtrl;

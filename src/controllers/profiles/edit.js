@@ -1,12 +1,12 @@
-function ProfilesEditCtrl($scope, $state, $http, $rootScope) {
+function UsersEditCtrl($scope, $state, $http, $rootScope) {
 
   $scope.updateUser = function() {
     $http({
       method: 'PUT',
-      url: `/api/profiles/${$state.params.id}`,
+      url: `/api/users/${$state.params.id}`,
       data: $scope.data
     })
-      .then(() => $state.go('profilesShow', { id: $state.params.id }))
+      .then(() => $state.go('usersShow', { id: $state.params.id }))
       .catch(() => {
         $rootScope.$broadcast('flashMessage', {
           type: 'danger',
@@ -17,7 +17,7 @@ function ProfilesEditCtrl($scope, $state, $http, $rootScope) {
 
   $http({
     method: 'GET',
-    url: `/api/profiles/${$state.params.id}`
+    url: `/api/users/${$state.params.id}`
   })
     .then(res => {
       $scope.data = res.data;
@@ -25,4 +25,4 @@ function ProfilesEditCtrl($scope, $state, $http, $rootScope) {
     });
 }
 
-export default ProfilesEditCtrl;
+export default UsersEditCtrl;
