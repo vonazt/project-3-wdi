@@ -27,7 +27,7 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
   $scope.createComment = function() {
     $http({
       method: 'POST',
-      url: `/api/profiles/${$state.params.id}/profile-comments`,
+      url: `/api/profiles/${$state.params.id}/comments`,
       data: $scope.commentData
     })
       .then(() => $state.go($state.current, {}, { reload: true }));
@@ -35,7 +35,7 @@ function ProfilesShowCtrl($scope, $http, $state, $auth) {
   $scope.deleteComment = function(comment){
     $http({
       method: 'DELETE',
-      url: `/api/profiles/${$state.params.id}/profile-comments/${comment._id}`
+      url: `/api/profiles/${$state.params.id}/comments/${comment._id}`
     })
       .then(() => $state.go($state.current, {}, { reload: true }));
   };

@@ -93,7 +93,19 @@ function createRequestRoute(req, res, next) {
       record.requests.push(req.body);
       return record.save();
     })
-    .then(record => record.json())
+    .then(record => res.json(record))
+    .catch(next);
+}
+
+function updateRequestRoute(req, res, next) {
+  Record
+    .findById(req.params.id)
+    .then(record => {
+      const request = record.requests.id(req.params.requestId);
+      request.set(req.body);
+      return record.save();
+    })
+    .then(record => res.json(record))
     .catch(next);
 }
 
@@ -107,5 +119,6 @@ module.exports = {
   commentDelete: commentDeleteRoute,
   commentUpdate: commentUpdateRoute,
   collectionsIndex: collectionsIndexRoute,
-  createRequest: createRequestRoute
+  createRequest: createRequestRoute,
+  updateRequest: updateRequestRoute
 };

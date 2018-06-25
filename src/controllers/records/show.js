@@ -21,7 +21,7 @@ function RecordsShowCtrl($scope, $http, $state, $auth){
   $scope.createComment = function() {
     $http({
       method: 'POST',
-      url: `/api/records/${$state.params.id}/record-comments`,
+      url: `/api/records/${$state.params.id}/comments`,
       data: $scope.commentData
     })
       .then(() => $state.go($state.current, {}, { reload: true }));
@@ -29,7 +29,7 @@ function RecordsShowCtrl($scope, $http, $state, $auth){
   $scope.deleteComment = function(comment){
     $http({
       method: 'DELETE',
-      url: `/api/records/${$state.params.id}/record-comments/${comment._id}`
+      url: `/api/records/${$state.params.id}/comments/${comment._id}`
     })
       .then(() => $state.go($state.current, {}, { reload: true }));
   };

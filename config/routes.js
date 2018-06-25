@@ -14,10 +14,13 @@ router.route('/records/:id')
   .put(secureRoute, records.update)
   .delete(secureRoute, records.delete);
 
-router.post('/records/:id/record-comments', secureRoute, records.commentCreate);
-router.route('/records/:id/record-comments/:commentId')
+router.post('/records/:id/comments', secureRoute, records.commentCreate);
+router.route('/records/:id/comments/:commentId')
   .put(secureRoute, records.commentUpdate)
   .delete(secureRoute, records.commentDelete);
+
+router.post('/records/:id/requests', secureRoute, records.createRequest);
+router.put('/records/:id/requests/:requestId', secureRoute, records.updateRequest);
 
 router.get('/collections', secureRoute, records.collectionsIndex);
 
@@ -28,9 +31,9 @@ router.route('/profiles/:id')
   .put(secureRoute, profiles.update)
   .delete(secureRoute, profiles.delete);
 
-router.post('/profiles/:id/profile-comments', secureRoute, profiles.commentCreate);
+router.post('/profiles/:id/comments', secureRoute, profiles.commentCreate);
 
-router.route('/profiles/:id/profile-comments/:commentId')
+router.route('/profiles/:id/comments/:commentId')
   .delete(secureRoute, profiles.commentDelete);
 
 router.post('/register', auth.register);
