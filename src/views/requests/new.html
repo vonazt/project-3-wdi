@@ -31,4 +31,18 @@
       </div>
     </div>
   </div>
+  <div class="column">
+    <form ng-submit="submitRequest()">
+      <div class="field">
+        <label for="offer" class="label">Offer</label>
+        <input type="text" class="input" name="offer" ng.model="data.offer" id="offer">
+      </div>
+
+      <div class="field">
+        <label for="message" class="label">Message</label>
+        <textarea type="text" class="input" name="message" ng.model="data.message" id="message"></textarea>
+      </div>
+      <button class="button">Make request</button>
+    </form>
+  </div>
 </div>

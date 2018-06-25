@@ -79,5 +79,5 @@ mongoose.connect(dbURI, (err, db) => {
     })
     .then(records => console.log(`${records.length} record(s) created`))
     .catch(err => console.log(err))
-    .finally(() => mongoose.connection.close());
+    .finally(() =>  mongoose.connection.close());
 });
