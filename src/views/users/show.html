@@ -23,25 +23,15 @@
         <th>Message</th>
         <th>Status</th>
       </thead>
-      {{ user.records[0].requests[0].offer.owner.username }}
-      <ul>
-        <div ng-repeat="record in user.records">
-          <li ng-repeat="request in record.requests">{{ request.offer.owner.username }}</li>
-        </div>
 
-      </ul>
-      <tbody>
-
-        <div >
-
-          <tr>
-            <td><img class="icon is-medium" src="{{ }}" alt="{{  }}"><a ui-sref="">{{  }}</a></td>
-            <td>{{ request.offer  }}</td>
-            <td>{{ }}</td>
-            <td>{{  }}</td>
-            <td>{{  }}</td>
+      <tbody ng-repeat="record in user.records">
+          <tr ng-repeat="request in record.requests">
+            <td>{{ request.offer.owner.username }}</td>
+            <td>{{ request.offer.owner.avgRating }}</td>
+            <td>{{  request.offer.title }}</td>
+            <td>{{ request.message }}</td>
+            <td>{{ request.status }}</td>
           </tr>
-        </div>
       </tbody>
     </table>
   </div>
