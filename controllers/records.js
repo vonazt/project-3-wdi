@@ -19,6 +19,12 @@ function showRoute(req, res, next){
   Record
     .findById(req.params.id)
     .populate('comments.author owner')
+    .populate({
+      path: 'requests.offer',
+      populate: {
+        path: 'owner'
+      }
+    })
     .then(record => res.json(record))
     .catch(next);
 }
@@ -86,6 +92,14 @@ function collectionsIndexRoute(req, res, next){
     .catch(next);
 }
 
+function indexRequestRoute(req, res, next) {
+  Record
+    .find()
+    .populate('owner requests.offer')
+    .then(records => res.json(records))
+    .catch(next);
+}
+
 function showRequestRoute(req, res, next) {
   Record
     .findById(req.params.id)
@@ -139,6 +153,7 @@ module.exports = {
   commentDelete: commentDeleteRoute,
   commentUpdate: commentUpdateRoute,
   collectionsIndex: collectionsIndexRoute,
+  indexRequest: indexRequestRoute,
   showRequest: showRequestRoute,
   createRequest: createRequestRoute,
   updateRequest: updateRequestRoute,

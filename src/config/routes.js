@@ -44,6 +44,11 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: './views/collections/index.html',
       controller: 'CollectionsIndexCtrl'
     })
+    .state('requestsIndex', {
+      url: '/requests',
+      templateUrl: './views/requests/index.html',
+      controller: 'RequestsIndexCtrl'
+    })
     .state('requestsNew', {
       url: '/records/:id/requests',
       templateUrl: './views/requests/new.html',

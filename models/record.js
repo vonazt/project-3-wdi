@@ -5,6 +5,7 @@ const requestSchema = new mongoose.Schema({
   offer: { type: mongoose.Schema.ObjectId, ref: 'Record', required: true },
   message: { type: String, required: true },
   status: { type: String, required: true, default: 'pending' }
+  // madeBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 });
 
 const recordSchema = new mongoose.Schema({

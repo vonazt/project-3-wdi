@@ -1,5 +1,4 @@
 <h1 class="title is-1">{{ user.username }}'s profile</h1>
-
 <div class="columns is-multiline">
   <div class="column is-one-quarter">
     <figure class="image is-square">
@@ -8,15 +7,43 @@
     <a ui-sref="usersEdit({ id: user._id })" class="button" ng-if="isAuthenticated() && user.isOwner">Edit Profile</a>
     <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && user.isOwner">Delete User</a>
   </div>
-  <div class="column is-half">
+  <div class="column is-one-quarter">
     <ul>
       <li>Rating: {{ user.avgRating }}</li>
       <li>Number of trades: </li>
     </ul>
   </div>
-  <div class="column is-one-quarter">
-    <h3 class="title is-3">OFFERS MADE PLACEHOLDER</h3>
-    <h3 class="title is-3">OFFERS RECEIVED PLACEHOLDER</h3>
+  <div class="column is-half">
+    <h1 class="title is-1">Offers received</h1>
+    <table class="table is-hoverable is-fullwidth">
+      <thead>
+        <th>User</th>
+        <th>User Rating</th>
+        <th>Offer</th>
+        <th>Message</th>
+        <th>Status</th>
+      </thead>
+      {{ user.records[0].requests[0].offer.owner.username }}
+      <ul>
+        <div ng-repeat="record in user.records">
+          <li ng-repeat="request in record.requests">{{ request.offer.owner.username }}</li>
+        </div>
+
+      </ul>
+      <tbody>
+
+        <div >
+
+          <tr>
+            <td><img class="icon is-medium" src="{{ }}" alt="{{  }}"><a ui-sref="">{{  }}</a></td>
+            <td>{{ request.offer  }}</td>
+            <td>{{ }}</td>
+            <td>{{  }}</td>
+            <td>{{  }}</td>
+          </tr>
+        </div>
+      </tbody>
+    </table>
   </div>
   <div class="column is-one-sixth">
 
