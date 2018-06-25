@@ -1,3 +1,5 @@
+const Request = require('../models/request');
+
 function showRequestRoute(req, res, next) {
   Request
     .findById(req.params.id)
@@ -7,12 +9,8 @@ function showRequestRoute(req, res, next) {
 
 function createRequestRoute(req, res, next) {
   Request
-    .findById(req.params.id)
-    .then(request => {
-      request.requests.push(req.body);
-      return request.save();
-    })
-    .then(request => res.json(request))
+    .create(req.body)
+    .then(request => res.status(201).json(request))
     .catch(next);
 }
 

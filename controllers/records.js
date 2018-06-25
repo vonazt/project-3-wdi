@@ -18,13 +18,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next){
   Record
     .findById(req.params.id)
-    .populate('comments.author owner')
-    .populate({
-      path: 'requests.offer',
-      populate: {
-        path: 'owner'
-      }
-    })
+    .populate('comments.author owner requests')
     .then(record => res.json(record))
     .catch(next);
 }

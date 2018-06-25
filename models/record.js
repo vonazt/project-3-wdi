@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const commentSchema = require('./comment');
 
-
 const recordSchema = new mongoose.Schema({
   artist: { type: String, required: true },
   title: { type: String, required: true },
@@ -12,6 +11,12 @@ const recordSchema = new mongoose.Schema({
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
   condition: { type: String, required: true },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true}
+});
+
+recordSchema.virtual('requests', {
+  localField: '_id',
+  foreignField: 'wantedRecord',
+  ref: 'Request'
 });
 
 recordSchema.virtual('avgRating')

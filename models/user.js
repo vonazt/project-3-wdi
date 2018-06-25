@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose-fill');
 const bcrypt = require('bcrypt');
 const commentSchema = require('./comment');
+const Promise = require('bluebird');
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -24,10 +25,60 @@ userSchema.virtual('records', {
   ref: 'Record'
 });
 
-// userSchema.virtual('requests')
-//   .get(function() {
-//     return this.records && this.records.map(record => record.requests).reduce((all, request) => all.concat(request), []);
-//   });
+userSchema.fill('incomingRequests', function(callback){
+  const requests = this.records.map(record => {
+    return this.model('Request')
+      .find({ wantedRecord: record._id })
+      .populate('wantedRecord')
+      .populate({
+        path: 'offeredRecord',
+        populate: {
+          path: 'owner'
+        }
+      });
+  });
+  Promise.all(requests)
+    .then(allRequests => {
+      const requests = allRequests
+        .reduce((flattened, requests) => flattened.concat(requests))
+        .map(request => {
+          request = request.toJSON();
+          delete request.wantedRecord.comments;
+          delete request.offeredRecord.comments;
+          delete request.offeredRecord.owner.comments;
+          return request;
+        });
+      callback(null, requests);
+    });
+});
+
+userSchema.fill('outgoingRequests', function(callback){
+  const requests = this.records.map(record => {
+    return this.model('Request')
+      .find({ offeredRecord: record._id })
+      .populate('offeredRecord')
+      .populate({
+        path: 'wantedRecord',
+        populate: {
+          path: 'owner'
+        }
+      });
+  });
+  Promise.all(requests)
+    .then(allRequests => {
+      const requests = allRequests
+        .reduce((flattened, requests) => flattened.concat(requests))
+        .map(request => {
+          request = request.toJSON();
+          delete request.wantedRecord.comments;
+          delete request.wantedRecord.owner.comments;
+          delete request.offeredRecord.comments;
+          return request;
+        });
+
+      callback(null, requests);
+    });
+});
 
 userSchema.virtual('avgRating')
   .get(function() {

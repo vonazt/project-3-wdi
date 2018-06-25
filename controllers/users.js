@@ -10,16 +10,9 @@ function indexRoute(req, res, next) {
 function showRoute(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('comments.author')
-    .populate({
-      path: 'records',
-      populate: {
-        path: 'requests.offer',
-        populate: {
-          path: 'owner'
-        }
-      }
-    })
+    .populate('comments.author records')
+    .fill('incomingRequests outgoingRequests')
+    .exec()
     .then(user => res.json(user))
     .catch(next);
 }
