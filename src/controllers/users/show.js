@@ -1,4 +1,4 @@
-import isOwner from '../../functions/isOwner.js';
+import checkOwner from '../../functions/checkOwner.js';
 
 function UsersShowCtrl($scope, $http, $state, $auth) {
 
@@ -8,7 +8,7 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
   })
     .then(res => {
       $scope.user = res.data;
-      isOwner(res, $auth);
+      checkOwner(res, $auth);
     });
 
   $scope.deleteUser = function() {

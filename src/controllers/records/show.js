@@ -1,6 +1,8 @@
-import isOwner from '../../functions/isOwner.js';
+import checkOwner from '../../functions/checkOwner.js';
 
 function RecordsShowCtrl($scope, $http, $state, $auth){
+  $scope.isOwner;
+
   $scope.deleteRecord = function(){
     $http({
       method: 'DELETE',
@@ -14,7 +16,7 @@ function RecordsShowCtrl($scope, $http, $state, $auth){
   })
     .then(res  => {
       $scope.record = res.data;
-      isOwner(res, $auth);
+      $scope.isOwner = checkOwner(res, $auth) ? true : false;
     });
 
   $scope.commentData = {};
