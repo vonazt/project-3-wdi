@@ -10,25 +10,6 @@
   </div>
   <div class="column is-half">
     <ul>
-      <li>
-        <div class="dropdown is-hoverable">
-          <div class="dropdown-trigger">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-              <span>Wishlist</span>
-              <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
-          <div class="dropdown-menu" id="dropdown-menu" role="menu">
-            <div class="dropdown-content" ng-repeat="record in user.wishlist">
-              <a href="#" class="dropdown-item">
-                {{ record.album }} by {{ record.artist }}
-              </a>
-            </div>
-          </div>
-        </div>
-      </li>
       <li>Rating: {{ user.avgRating }}</li>
       <li>Number of trades: </li>
     </ul>

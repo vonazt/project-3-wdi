@@ -7,10 +7,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   avatar: { type: String },
-  wishlist: { type: Array },
   comments: [ commentSchema ],
-  profileData: { type: Array },
-  isOwner: Boolean
+  profileData: { type: Array }
 });
 
 userSchema.set('toJSON', {

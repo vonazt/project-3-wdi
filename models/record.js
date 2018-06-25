@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const commentSchema = require('./comment');
 
+const requestSchema = new mongoose.Schema({
+  offer: { type: mongoose.Schema.ObjectId, ref: 'Record', required: true },
+  message: { type: String, required: true },
+  status: { type: String, required: true, default: 'pending' }
+});
+
 const recordSchema = new mongoose.Schema({
   artist: { type: String, required: true },
   title: { type: String, required: true },
@@ -12,7 +18,7 @@ const recordSchema = new mongoose.Schema({
   condition: { type: String, required: true },
   cardData: Array,
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
-  isOwner: Boolean
+  requests: [ requestSchema ]
 });
 
 recordSchema.virtual('avgRating')

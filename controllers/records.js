@@ -86,6 +86,17 @@ function collectionsIndexRoute(req, res, next){
     .catch(next);
 }
 
+function createRequestRoute(req, res, next) {
+  Record
+    .findById(req.params.id)
+    .then(record => {
+      record.requests.push(req.body);
+      return record.save();
+    })
+    .then(record => record.json())
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
@@ -95,5 +106,6 @@ module.exports = {
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
   commentUpdate: commentUpdateRoute,
-  collectionsIndex: collectionsIndexRoute
+  collectionsIndex: collectionsIndexRoute,
+  createRequest: createRequestRoute
 };
