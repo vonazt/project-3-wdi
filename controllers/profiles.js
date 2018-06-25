@@ -10,7 +10,7 @@ function indexRoute(req, res, next) {
 function showRoute(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('userComments.author')
+    .populate('comments.author')
     .then(user => res.json(user))
     .catch(next);
 }
@@ -36,9 +36,9 @@ function commentCreateRoute(req, res, next) {
   req.body.author = req.currentUser;
   User
     .findById(req.params.id)
-    .populate('userComments.author')
+    .populate('comments.author')
     .then(user => {
-      user.userComments.push(req.body);
+      user.comments.push(req.body);
       return user.save();
     })
     .then(user => res.json(user))
@@ -49,7 +49,7 @@ function commentDeleteRoute(req, res, next) {
   User
     .findById(req.params.id)
     .then(user => {
-      const comment = user.userComments.id(req.params.commentId);
+      const comment = user.comments.id(req.params.commentId);
       comment.remove();
       return user.save();
     })

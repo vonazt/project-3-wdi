@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
-const userCommentSchema = new mongoose.Schema({
-  content: { type: String, required: true },
-  author: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  rating: { type: Number, min: 1, max: 5 }
-});
+const commentSchema = require('./comment');
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -13,20 +8,17 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   avatar: { type: String },
   wishlist: { type: Array },
-  userComments: [ userCommentSchema ],
+  comments: [ commentSchema ],
   profileData: { type: Array },
   isOwner: Boolean
 });
 
-userSchema.set('toJSON',{
+userSchema.set('toJSON', {
+  virtuals: true,
   transform(doc, json) {
     delete json.password;
     return json;
   }
-});
-
-userSchema.set('toJSON', {
-  virtuals: true
 });
 
 userSchema.virtual('records', {
@@ -37,9 +29,9 @@ userSchema.virtual('records', {
 
 userSchema.virtual('avgRating')
   .get(function() {
-    return Math.floor(this.userComments.reduce((sum, comment) => {
+    return Math.floor(this.comments.reduce((sum, comment) => {
       return sum + comment.rating;
-    }, 0) / this.userComments.length);
+    }, 0) / this.comments.length);
   });
 
 userSchema.virtual('passwordConfirmation')
