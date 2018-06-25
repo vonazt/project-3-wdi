@@ -46,6 +46,15 @@ function deleteRoute(req,res,next){
     .catch(next);
 }
 
+function collectionsIndexRoute(req, res, next){
+  Record
+    .find()
+    .then((records) => {
+      res.json(records);
+    })
+    .catch(next);
+}
+
 function commentCreateRoute(req, res, next){
   req.body.author = req.currentUser;
   Record
@@ -83,72 +92,14 @@ function commentUpdateRoute(req, res, next){
     .catch(next);
 }
 
-function collectionsIndexRoute(req, res, next){
-  Record
-    .find()
-    .then((records) => {
-      res.json(records);
-    })
-    .catch(next);
-}
-
-
-function showRequestRoute(req, res, next) {
-  Record
-    .findById(req.params.id)
-    .populate('owner')
-    .then(record => res.json(record))
-    .catch(next);
-}
-
-function createRequestRoute(req, res, next) {
-  req.body.madeBy = req.currentUser._id;
-  Record
-    .findById(req.params.id)
-    .then(record => {
-      record.requests.push(req.body);
-      return record.save();
-    })
-    .then(record => res.json(record))
-    .catch(next);
-}
-
-function updateRequestRoute(req, res, next) {
-  Record
-    .findById(req.params.id)
-    .then(record => {
-      const request = record.requests.id(req.params.requestId);
-      request.set(req.body);
-      return record.save();
-    })
-    .then(record => res.json(record))
-    .catch(next);
-}
-
-function deleteRequestRoute(req, res, next) {
-  Record
-    .findById(req.params.id)
-    .then(record => {
-      const request = record.requests.id(req.params.requestId);
-      request.remove();
-      return record.save();
-    })
-    .then(record => res.json(record))
-    .catch(next);
-}
-
 module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
   update: updateRoute,
   delete: deleteRoute,
+  collectionsIndex: collectionsIndexRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
-  commentUpdate: commentUpdateRoute,
-  collectionsIndex: collectionsIndexRoute,
-  showRequest: showRequestRoute,
-  createRequest: createRequestRoute,
-  updateRequest: updateRequestRoute,
-  deleteRequest: deleteRequestRoute
+  commentUpdate: commentUpdateRoute
 };

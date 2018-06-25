@@ -24,10 +24,10 @@ userSchema.virtual('records', {
   ref: 'Record'
 });
 
-userSchema.virtual('requests')
-  .get(function() {
-    return this.records && this.records.map(record => record.requests).reduce((all, request) => all.concat(request), []);
-  });
+// userSchema.virtual('requests')
+//   .get(function() {
+//     return this.records && this.records.map(record => record.requests).reduce((all, request) => all.concat(request), []);
+//   });
 
 userSchema.virtual('avgRating')
   .get(function() {

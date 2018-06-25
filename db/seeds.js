@@ -44,8 +44,8 @@ mongoose.connect(dbURI, (err, db) => {
     .then(users => {
       console.log(`${users.length} users(s) created`);
       return Record.create([{
-        artist: 'David Bowie',
-        title: 'The Man Who Sold The World',
+        artist: 'Richard Aritst',
+        title: 'Richard Album',
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
         genre: ['Rock'],
         label: 'RCA',
@@ -62,8 +62,8 @@ mongoose.connect(dbURI, (err, db) => {
           author: users[0]
         }]
       }, {
-        artist: 'Aphex Twin',
-        title: 'Syro',
+        artist: 'Martin Artist',
+        title: 'Martin Title',
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
         genre: ['Electronic', 'Experimental'],
         label: 'Warp',

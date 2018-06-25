@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const records = require('../controllers/records');
+const requests = require('../controllers/requests');
 const users = require('../controllers/users');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
@@ -19,12 +20,12 @@ router.route('/records/:id/comments/:commentId')
   .put(secureRoute, records.commentUpdate)
   .delete(secureRoute, records.commentDelete);
 
-router.route('/records/:id/requests')
-  .get(secureRoute, records.showRequest)
-  .post(secureRoute, records.createRequest);
-router.route('/records/:id/requests/:requestId')
-  .put(secureRoute, records.updateRequest)
-  .delete(secureRoute, records.deleteRequest);
+router.route('/requests')
+  .post(secureRoute, requests.createRequest);
+router.route('/requests/:id/')
+  .get(secureRoute, requests.showRequest)
+  .put(secureRoute, requests.updateRequest)
+  .delete(secureRoute, requests.deleteRequest);
 
 router.get('/collections', secureRoute, records.collectionsIndex);
 

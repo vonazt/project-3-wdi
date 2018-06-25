@@ -34,6 +34,27 @@
           </tr>
       </tbody>
     </table>
+
+    <h1 class="title is-1">Offers made</h1>
+    <table class="table is-hoverable is-fullwidth">
+      <thead>
+        <th>User</th>
+        <th>User Rating</th>
+        <th>Offer</th>
+        <th>Message</th>
+        <th>Status</th>
+      </thead>
+
+      <tbody ng-repeat="record in user.records">
+          <tr ng-repeat="request in record.requests">
+            <td>{{ request.offer.owner.username }}</td>
+            <td>{{ request.offer.owner.avgRating }}</td>
+            <td>{{ request.offer.title }}</td>
+            <td>{{ request.message }}</td>
+            <td>{{ request.status }}</td>
+          </tr>
+      </tbody>
+    </table>
   </div>
   <div class="column is-one-sixth">
 
