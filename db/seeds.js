@@ -63,7 +63,7 @@ mongoose.connect(dbURI, (err, db) => {
         }]
       }, {
         artist: 'Martin Artist',
-        title: 'Martin Title',
+        title: 'Martin Album',
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
         genre: ['Electronic', 'Experimental'],
         label: 'Warp',

@@ -19,16 +19,17 @@
       <thead>
         <th>User</th>
         <th>User Rating</th>
+        <th>Wants</th>
         <th>Offer</th>
         <th>Message</th>
         <th>Status</th>
       </thead>
-
-      <tbody ng-repeat="record in user.records">
-          <tr ng-repeat="request in record.requests">
-            <td>{{ request.offer.owner.username }}</td>
-            <td>{{ request.offer.owner.avgRating }}</td>
-            <td>{{ request.offer.title }}</td>
+      <tbody>
+          <tr ng-repeat="request in user.incomingRequests">
+            <td>{{ request.offeredRecord.owner.username }}</td>
+            <td>{{ request.offeredRecord.owner.avgRating }}</td>
+            <td>{{ request.wantedRecord.title }}</td>
+            <td>{{ request.offeredRecord.title }}</td>
             <td>{{ request.message }}</td>
             <td>{{ request.status }}</td>
           </tr>
@@ -40,16 +41,18 @@
       <thead>
         <th>User</th>
         <th>User Rating</th>
+        <th>Wants</th>
         <th>Offer</th>
         <th>Message</th>
         <th>Status</th>
       </thead>
 
-      <tbody ng-repeat="record in user.records">
-          <tr ng-repeat="request in record.requests">
-            <td>{{ request.offer.owner.username }}</td>
-            <td>{{ request.offer.owner.avgRating }}</td>
-            <td>{{ request.offer.title }}</td>
+      <tbody>
+          <tr ng-repeat="request in user.outgoingRequests">
+            <td>{{ request.wantedRecord.owner.username }}</td>
+            <td>{{ request.wantedRecord.owner.avgRating }}</td>
+            <td>{{ request.wantedRecord.title }}</td>
+            <td>{{ request.offeredRecord.title }}</td>
             <td>{{ request.message }}</td>
             <td>{{ request.status }}</td>
           </tr>
