@@ -109,6 +109,18 @@ function updateRequestRoute(req, res, next) {
     .catch(next);
 }
 
+function deleteRequestRoute(req, res, next) {
+  Record
+    .findById(req.params.id)
+    .then(record => {
+      const request = record.requests.id(req.params.requestId);
+      request.remove();
+      return record.save();
+    })
+    .then(record => res.json(record))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
@@ -120,5 +132,6 @@ module.exports = {
   commentUpdate: commentUpdateRoute,
   collectionsIndex: collectionsIndexRoute,
   createRequest: createRequestRoute,
-  updateRequest: updateRequestRoute
+  updateRequest: updateRequestRoute,
+  deleteRequest: deleteRequestRoute
 };

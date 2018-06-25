@@ -20,7 +20,9 @@ router.route('/records/:id/comments/:commentId')
   .delete(secureRoute, records.commentDelete);
 
 router.post('/records/:id/requests', secureRoute, records.createRequest);
-router.put('/records/:id/requests/:requestId', secureRoute, records.updateRequest);
+router.route('/records/:id/requests/:requestId')
+  .put(secureRoute, records.updateRequest)
+  .delete(secureRoute, records.deleteRequest);
 
 router.get('/collections', secureRoute, records.collectionsIndex);
 
