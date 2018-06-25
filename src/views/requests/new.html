@@ -6,7 +6,7 @@
       </figure>
     </div>
   </div>
-  <div class="column is-half-desktop">
+  <div class="column is-one-third-desktop">
     <div class="card">
       <div class="content">
         <h2 class="title is-2">{{ record.artist }}</h2>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <div class="column is-quarter-desktop">
+  <div class="column is-one-quarter-desktop">
     <div class="card">
       <div class="card-image">
         <figure class="image">
@@ -31,18 +31,21 @@
       </div>
     </div>
   </div>
-  <div class="column">
+  <div class="column is-one-sixth-desktop">
+  </div>
+  <div class="column is-two-thirds-desktop">
     <form ng-submit="submitRequest()">
       <div class="field">
         <label for="offer" class="label">Offer</label>
-        <input type="text" class="input" name="offer" ng.model="data.offer" id="offer">
+        <input type="text" class="input" name="offer" ng-model="data.offer" id="offer">
       </div>
-
       <div class="field">
         <label for="message" class="label">Message</label>
-        <textarea type="text" class="input" name="message" ng.model="data.message" id="message"></textarea>
+        <textarea type="text" class="input" name="message" ng-model="data.message" id="message"></textarea>
       </div>
       <button class="button">Make request</button>
     </form>
   </div>
+
+
 </div>
