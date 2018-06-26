@@ -2,6 +2,7 @@ import checkProfileOwner from '../../functions/checkProfileOwner.js';
 
 function UsersShowCtrl($scope, $http, $state, $auth) {
   $scope.isOwner;
+  $scope.currentUser = $auth.getPayload();
 
   $http({
     method: 'GET',
@@ -24,6 +25,8 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
   };
 
   $scope.acceptOffer = function(request) {
+    request.stage[0]++;
+    request.stage[1]++;
     request.status = 'accepted';
     $http({
       method: 'PUT',
@@ -41,6 +44,61 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       data: request
     })
       .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
+
+  $scope.incomingRecordsSent = function(username, request) {
+    request.status = `records sent by ${username}`;
+    request.stage[0]++;
+    $http({
+      method: 'PUT',
+      url: `/api/requests/${request._id}`,
+      data: request
+    })
+      .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
+  $scope.outgoingRecordsSent = function(username, request) {
+    request.status = `records sent by ${username}`;
+    request.stage[1]++;
+    $http({
+      method: 'PUT',
+      url: `/api/requests/${request._id}`,
+      data: request
+    })
+      .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
+
+  $scope.incomingRecordsReceived = function(username, request) {
+    request.status = `records received by ${username}`;
+    request.stage[1]++;
+    $http({
+      method: 'PUT',
+      url: `/api/requests/${request._id}`,
+      data: request
+    })
+      .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
+  $scope.outgoingRecordsReceived = function(username, request) {
+    request.status = `records received by ${username}`;
+    request.stage[0]++;
+    $http({
+      method: 'PUT',
+      url: `/api/requests/${request._id}`,
+      data: request
+    })
+      .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
+
+  $scope.swapRecords = function(outgoingRecordId, incomingRecordId ) {
+    const data = {
+      ownedRecordId: outgoingRecordId,
+      offeredRecordId: incomingRecordId
+    };
+    $http({
+      method: 'POST',
+      url: '/api/records/swap',
+      data: data
+    })
+      .then(() => $state.go('collectionsIndex'));
   };
 
   $scope.deleteOffer = function(request) {

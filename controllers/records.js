@@ -94,6 +94,27 @@ function showRequestRoute(req, res, next) {
     .catch(next);
 }
 
+
+function swapRecordsRoute(req, res, next) {
+  Record
+    .find({
+      '_id': [
+        req.body.ownedRecordId,
+        req.body.wantedRecordId
+      ]
+    })
+    .then(records => {
+      const firstOwnerIdToSwap = records[0].owner;
+      const secondOwnerIdToSwap = records[1].owner;
+      records[0].owner = secondOwnerIdToSwap;
+      records[1].owner = firstOwnerIdToSwap;
+      records[0].save();
+      records[1].save();
+    })
+    .then(records => res.json(records))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
@@ -104,5 +125,6 @@ module.exports = {
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
   commentUpdate: commentUpdateRoute,
-  showRequest: showRequestRoute
+  showRequest: showRequestRoute,
+  swapRecords: swapRecordsRoute
 };

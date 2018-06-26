@@ -15,7 +15,10 @@ function showRoute(req, res, next) {
     .populate('comments.author records')
     .fill('incomingRequests outgoingRequests')
     .exec()
-    .then(user => res.json(user))
+    .then(user => {
+      console.log(res.json(user));
+      res.json(user);
+    })
     .catch(next);
 }
 

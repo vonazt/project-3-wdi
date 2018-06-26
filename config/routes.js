@@ -17,6 +17,8 @@ router.route('/records/:id')
 
 router.get('/records/:id/requests', secureRoute, records.showRequest);
 
+router.post('/records/swap', secureRoute, records.swapRecords);
+
 router.post('/records/:id/comments', secureRoute, records.commentCreate);
 router.route('/records/:id/comments/:commentId')
   .put(secureRoute, records.commentUpdate)
