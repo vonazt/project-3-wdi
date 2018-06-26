@@ -3,6 +3,7 @@ const Message = require('../models/message');
 function indexRoute(req, res, next) {
   Message
     .find()
+    .populate('userOneId userTwoId')
     .then(messages => res.json(messages))
     .catch(next);
 }
@@ -17,6 +18,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next){
   Message
     .findById(req.params.id)
+    .populate('comments.author')
     .then(message => res.json(message))
     .catch(next);
 }

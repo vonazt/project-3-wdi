@@ -71,6 +71,16 @@ function Router($stateProvider, $urlRouterProvider) {
       controller: 'UsersShowCtrl',
       resolve: { secureState }
     })
+    .state('messagesIndex', {
+      url: '/messages',
+      templateUrl: './views/messages/index.html',
+      controller: 'MessagesIndexCtrl'
+    })
+    .state('messagesShow', {
+      url: '/messages/:id',
+      templateUrl: './views/messages/show.html',
+      controller: 'MessagesShowCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: './views/auth/login.html',

@@ -13,6 +13,19 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       $scope.isOwner = checkProfileOwner(res, $auth) ? true : false;
     });
 
+  $scope.createMessage = function(user, currentUser) {
+    const data = {
+      userOneId: user._id,
+      userTwoId: currentUser.sub
+    };
+    $http({
+      method: 'POST',
+      url: '/api/messages',
+      data: data
+    })
+      .then(() => $state.go('messagesIndex'));
+  };
+
   $scope.deleteUser = function() {
     $http({
       method: 'DELETE',
