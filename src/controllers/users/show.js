@@ -33,6 +33,15 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       .then(() => $state.go('usersShow', { id: $state.params.id }));
   };
 
+  $scope.declineOffer = function(request){
+    request.status = 'declined';
+    $http({
+      method: 'PUT',
+      url: `/api/requests/${request._id}`,
+      data: request
+    })
+      .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
 
   $scope.commentData = {};
   $scope.createComment = function() {
