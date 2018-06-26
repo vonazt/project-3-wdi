@@ -35,6 +35,7 @@
   <div class="column is-one-quarter-desktop">
     <form ng-submit="submitRequest(currentUserId)">
       <div class="field">
+        {{offerDisplay}}
         <label for="offeredRecord" class="label">Offer</label>
         <input type="text" class="input" name="offeredRecord" ng-model="data.offeredRecord" id="offeredRecord">
       </div>
@@ -46,7 +47,7 @@
     </form>
   </div>
   <div class="column is-half-desktop" ng-repeat="record in userRecords">
-    <p>{{ record.title }} by {{ record.artist }}</p>
+    <a class="button" ng-click="addToOffer(record._id, record.title, record.artist)" ng-model="recordToOffer">{{ record.title }}</a>
   </div>
 
 </div>

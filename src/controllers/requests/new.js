@@ -1,8 +1,16 @@
 function RequestsNewCtrl($scope, $state, $http, $auth) {
   $scope.recordToDisplay = [];
   $scope.userRecords = [];
+  $scope.offerArray = [];
+  $scope.offerDisplay = [];
   $scope.data = {};
   $scope.currentUserId = $auth.getPayload().sub;
+
+  $scope.addToOffer = function(recordId, recordTitle, recordArtist) {
+    $scope.offerArray.push(recordId);
+    $scope.offerDisplay.push(`${recordTitle} by ${recordArtist}`);
+  };
+
   $scope.submitRequest = function(currentUserId) {
     $http({
       method: 'POST',
