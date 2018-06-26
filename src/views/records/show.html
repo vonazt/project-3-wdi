@@ -19,11 +19,11 @@
         <h5 class="title is-5">Condition: {{ record.condition }} </h5>
       </div>
     </div>
-    <div class="card" ng-repeat="comment in record.recordComments">
+    <div class="card" ng-repeat="comment in record.comments">
       <div class="card-content">
         <div class="content">
           <h5 class="title is-5">{{ comment.content }}</h5>
-          <h6 class="title is-6">Rated: {{ comment.rating }}</h6>
+          <h6 class="title is-6">Rated: {{ '⭐️'.repeat(comment.rating) }}</h6>
           <h6 class="title is-6">By: {{ comment.author.username }}</h6>
         </div>
         <button class="button is-danger commentDelete" ng-click="deleteComment(comment)" ng-if="isAuthenticated()">DELETE</button>
@@ -37,12 +37,19 @@
           </textarea>
         </div>
         <div class="field">
-          <label class="label" for="content">Rating</label>
-          <input type="radio" ng-model="commentData.rating" value="1"> 1
-          <input type="radio" ng-model="commentData.rating" value="2"> 2
-          <input type="radio" ng-model="commentData.rating" value="3"> 3
-          <input type="radio" ng-model="commentData.rating" value="4"> 4
-          <input type="radio" ng-model="commentData.rating" value="5"> 5
+          <div class="control">
+            <label class="label">Rating</label>
+            <div class="select">
+              <select ng-model="commentData.rating">
+                <option value="">Please select</option>
+                <option value="1">⭐️</option>
+                <option value="2">⭐️⭐️</option>
+                <option value="3">⭐️⭐️⭐️</option>
+                <option value="4">⭐️⭐️⭐️⭐️</option>
+                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+              </select>
+            </div>
+          </div>
         </div>
         <button>Submit Comment</button>
       </form>
