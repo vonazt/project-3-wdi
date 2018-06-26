@@ -88,9 +88,9 @@ function commentUpdateRoute(req, res, next){
 
 function showRequestRoute(req, res, next) {
   Record
-    .findById(req.params.id)
+    .find()
     .populate('owner')
-    .then(record => res.json(record))
+    .then(records => res.json(records))
     .catch(next);
 }
 
