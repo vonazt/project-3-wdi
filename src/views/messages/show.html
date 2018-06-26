@@ -1,0 +1,19 @@
+<div class="card" ng-repeat="comment in message.comments">
+  <div class="card-content">
+    <div class="content">
+      <h6 class="title is-6">By: {{ comment.author.username }}</h6>
+      <h5 class="title is-5">{{ comment.content }}</h5>
+    </div>
+    <button class="button is-danger commentDelete" ng-click="deleteComment(comment)" ng-if="isAuthenticated()">DELETE</button>
+  </div>
+</div>
+<div class="column is-three-quarters">
+  <form ng-submit="createComment()">
+    <div class="field">
+      <label class="label" for="content">Comment</label>
+      <textarea class="input" id="content" name="content" placeholder="Content" ng-model="commentData.content">
+      </textarea>
+    </div>
+    <button>Send</button>
+  </form>
+</div>

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const records = require('../controllers/records');
 const requests = require('../controllers/requests');
 const users = require('../controllers/users');
+const messages = require('../controllers/messages');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 
@@ -44,6 +45,20 @@ router.post('/users/:id/comments', secureRoute, users.commentCreate);
 router.route('/users/:id/comments/:commentId')
   .put(secureRoute, users.commentUpdate)
   .delete(secureRoute, users.commentDelete);
+
+router.route('/messages')
+  .get(messages.index)
+  .post(secureRoute, messages.create);
+
+router.route('/messages/:id')
+  .get(messages.show)
+  .put(secureRoute, messages.update)
+  .delete(secureRoute, messages.delete);
+
+router.post('/messages/:id/comments', secureRoute, messages.commentCreate);
+router.route('/messages/:id/comments/:commentId')
+  .delete(secureRoute, messages.commentDelete);
+
 
 router.post('/login', auth.login);
 router.post('/register', auth.register);
