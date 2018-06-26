@@ -23,6 +23,16 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       });
   };
 
+  $scope.acceptOffer = function(request) {
+    request.status = 'accepted';
+    $http({
+      method: 'PUT',
+      url: `/api/requests/${request._id}`,
+      data: request.status
+    })
+      .then(() => $state.go('usersShow', { id: $state.params.id }));
+  };
+
 
   $scope.commentData = {};
   $scope.createComment = function() {

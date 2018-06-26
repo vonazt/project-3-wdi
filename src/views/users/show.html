@@ -25,6 +25,7 @@
         <th>Status</th>
       </thead>
       <tbody>
+
           <tr ng-repeat="request in user.incomingRequests">
             <td>{{ request.offeredRecord.owner.username }}</td>
             <td>{{ request.offeredRecord.owner.avgRating }}</td>
@@ -32,6 +33,8 @@
             <td>{{ request.offeredRecord.title }}</td>
             <td>{{ request.message }}</td>
             <td>{{ request.status }}</td>
+            <td><a class="button is-success" ng-click="acceptOffer(request)">Accept</a></td>
+            <td><a class="button is-danger" ng-click="declineOffer()">Decline</a></td>
           </tr>
       </tbody>
     </table>
