@@ -24,9 +24,8 @@ function deleteRequestRoute(req, res, next) {
     .findById(req.params.id)
     .then(request => {
       request.remove();
-      return request.save();
     })
-    .then(request => res.json(request))
+    .then(() => res.sendStatus(204))
     .catch(next);
 }
 

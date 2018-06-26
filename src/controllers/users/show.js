@@ -43,6 +43,14 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       .then(() => $state.go('usersShow', { id: $state.params.id }));
   };
 
+  $scope.deleteOffer = function(request) {
+    $http({
+      method: 'DELETE',
+      url: `/api/requests/${request._id}`
+    })
+      .then(() => $state.go($state.current, {}, { reload: true }));
+  };
+
   $scope.commentData = {};
   $scope.createComment = function() {
     $http({

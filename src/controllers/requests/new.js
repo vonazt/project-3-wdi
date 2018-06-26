@@ -1,13 +1,13 @@
-function RequestsNewCtrl($scope, $state, $http) {
+function RequestsNewCtrl($scope, $state, $http, $auth) {
   $scope.data = {};
-
-  $scope.submitRequest = function() {
+  $scope.currentUserId = $auth.getPayload().sub;
+  $scope.submitRequest = function(currentUserId) {
     $http({
       method: 'POST',
       url: `/api/records/${$state.params.id}/requests`,
       data: $scope.data
     })
-      .then(() => $state.go('recordsShow', { id: $state.params.id }));
+      .then(() => $state.go('usersShow', { id: currentUserId }));
   };
 
   $http({

@@ -34,7 +34,7 @@
   <div class="column is-one-sixth-desktop">
   </div>
   <div class="column is-two-thirds-desktop">
-    <form ng-submit="submitRequest()">
+    <form ng-submit="submitRequest(currentUserId)">
       <div class="field">
         <label for="offeredRecord" class="label">Offer</label>
         <input type="text" class="input" name="offeredRecord" ng-model="data.offeredRecord" id="offeredRecord">

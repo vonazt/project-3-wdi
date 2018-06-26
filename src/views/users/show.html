@@ -58,6 +58,8 @@
             <td>{{ request.offeredRecord.title }}</td>
             <td>{{ request.message }}</td>
             <td>{{ request.status }}</td>
+            <td><a class="button is-success" ng-click="editOffer(request)">Edit</a></td>
+            <td><a class="button is-danger" ng-click="deleteOffer(request)">Delete</a></td>
           </tr>
       </tbody>
     </table>
