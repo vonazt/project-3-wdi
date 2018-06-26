@@ -35,9 +35,8 @@
   <div class="column is-one-quarter-desktop">
     <form ng-submit="submitRequest(currentUserId)">
       <div class="field">
-        {{offerDisplay}}
-        <label for="offeredRecord" class="label">Offer</label>
-        <input type="text" class="input" name="offeredRecord" ng-model="data.offeredRecord" id="offeredRecord">
+        <label class="label">Offer</label>
+        <p class="input" ng-repeat="offer in offerDisplay">{{ offer }}</p>
       </div>
       <div class="field">
         <label for="message" class="label">Message</label>

@@ -1,17 +1,18 @@
 function RequestsNewCtrl($scope, $state, $http, $auth) {
   $scope.recordToDisplay = [];
   $scope.userRecords = [];
-  $scope.offerArray = [];
+  const offerArray = [];
   $scope.offerDisplay = [];
   $scope.data = {};
   $scope.currentUserId = $auth.getPayload().sub;
 
   $scope.addToOffer = function(recordId, recordTitle, recordArtist) {
-    $scope.offerArray.push(recordId);
+    offerArray.push(recordId);
     $scope.offerDisplay.push(`${recordTitle} by ${recordArtist}`);
   };
 
   $scope.submitRequest = function(currentUserId) {
+    $scope.data.offeredRecord = offerArray[0];
     $http({
       method: 'POST',
       url: `/api/records/${$state.params.id}/requests`,
