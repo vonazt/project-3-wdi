@@ -5,7 +5,7 @@ const recordSchema = new mongoose.Schema({
   artist: { type: String, required: true },
   title: { type: String, required: true },
   image: { type: String, required: true },
-  genre: { type: Array },
+  genres: { type: Array },
   label: { type: String, required: true },
   comments: [ commentSchema ],
   releaseDate: { type: Number, maxLength: 4, minLength: 4 },
