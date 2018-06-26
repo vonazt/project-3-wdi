@@ -14,9 +14,9 @@
       <div class="content">
         <h2 class="title is-2"> {{ record.artist }} </h2>
         <h5 class="title is-5"> {{ record.title }} </h5>
-        <h5 class="title is-5" ng-repeat="genre in genres"> {{ record.genre }} </h5>
-        <h5 class="title is-5"> {{ record.label }} </h5>
-        <h5 class="title is-5">Condition: "{{ record.condition }}" </h5>
+        <h5 class="title is-5">Genres: <span ng-repeat="genre in record.genres">{{ genre }} | </span> </h5>
+        <h5 class="title is-5">Label: {{ record.label }} </h5>
+        <h5 class="title is-5">Condition: {{ record.condition }} </h5>
       </div>
     </div>
     <div class="card" ng-repeat="comment in record.recordComments">
@@ -49,6 +49,6 @@
     </div>
   </div>
   <div class="column is-one-quarter-desktop">
-    <a ui-sref="requestsNew({ id: record._id })">Make an offer</a>
+    <a class="button" ng-if="!isOwner" ui-sref="requestsNew({ id: record._id })">Make an offer</a>
   </div>
 </div>
