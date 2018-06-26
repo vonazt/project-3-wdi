@@ -96,14 +96,16 @@ function showRequestRoute(req, res, next) {
 
 
 function swapRecordsRoute(req, res, next) {
+  console.log(req.body.ownedRecordId, req.body.offeredRecordId);
   Record
     .find({
       '_id': [
         req.body.ownedRecordId,
-        req.body.wantedRecordId
+        req.body.offeredRecordId
       ]
     })
     .then(records => {
+      console.log(records);
       const firstOwnerIdToSwap = records[0].owner;
       const secondOwnerIdToSwap = records[1].owner;
       records[0].owner = secondOwnerIdToSwap;
