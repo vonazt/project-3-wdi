@@ -1,5 +1,3 @@
-import isMultipleRecordsOwner from '../../functions/isMultipleRecordsOwner.js';
-
 function CollectionsIndexCtrl($scope, $http, $auth){
   $http({
     method: 'GET',
@@ -7,7 +5,12 @@ function CollectionsIndexCtrl($scope, $http, $auth){
   })
     .then((res) => {
       $scope.records = res.data;
-      isMultipleRecordsOwner(res, $auth);
+      const filteredRecordsArray = [];
+      $scope.records.forEach(record => {
+        if(record.owner ===  $auth.getPayload().sub) filteredRecordsArray.push(record);
+      });
+      $scope.records = filteredRecordsArray;
+      return $scope.records = filteredRecordsArray;
     });
 }
 

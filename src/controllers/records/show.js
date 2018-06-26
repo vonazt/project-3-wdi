@@ -1,4 +1,4 @@
-import checkOwner from '../../functions/checkOwner.js';
+import checkRecordOwner from '../../functions/checkRecordOwner.js';
 
 function RecordsShowCtrl($scope, $http, $state, $auth){
   $scope.isOwner;
@@ -16,7 +16,7 @@ function RecordsShowCtrl($scope, $http, $state, $auth){
   })
     .then(res  => {
       $scope.record = res.data;
-      $scope.isOwner = checkOwner(res, $auth) ? true : false;
+      $scope.isOwner = checkRecordOwner(res, $auth) ? true : false;
     });
 
   $scope.commentData = {};

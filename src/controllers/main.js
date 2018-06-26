@@ -1,6 +1,5 @@
 function MainCtrl($scope, $state, $auth, $transitions, $rootScope, $timeout) {
   $scope.isAuthenticated = $auth.isAuthenticated;
-  // $scope.currentUserId = $auth.getPayload().sub;
 
   $transitions.onSuccess({}, () => {
     $scope.isHomepage = $state.$current.name === 'home';

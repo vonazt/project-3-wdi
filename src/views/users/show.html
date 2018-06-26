@@ -4,8 +4,8 @@
     <figure class="image is-square">
       <img src="{{ user.avatar }}" alt="{{ user.username }}">
     </figure>
-    <a ui-sref="usersEdit({ id: user._id })" class="button" ng-if="isAuthenticated() && user.isOwner">Edit Profile</a>
-    <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && user.isOwner">Delete User</a>
+    <a ui-sref="usersEdit({ id: user._id })" class="button" ng-if="isAuthenticated() && isOwner ">Edit Profile</a>
+    <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && isOwner">Delete User</a>
   </div>
   <div class="column is-one-quarter">
     <ul>

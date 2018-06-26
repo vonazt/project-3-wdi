@@ -1,6 +1,7 @@
-import checkOwner from '../../functions/checkOwner.js';
+import checkProfileOwner from '../../functions/checkProfileOwner.js';
 
 function UsersShowCtrl($scope, $http, $state, $auth) {
+  $scope.isOwner;
 
   $http({
     method: 'GET',
@@ -8,7 +9,7 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
   })
     .then(res => {
       $scope.user = res.data;
-      checkOwner(res, $auth);
+      $scope.isOwner = checkProfileOwner(res, $auth) ? true : false;
     });
 
   $scope.deleteUser = function() {
