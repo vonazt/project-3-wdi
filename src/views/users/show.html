@@ -4,7 +4,7 @@
     <figure class="image is-square">
       <img src="{{ user.avatar }}" alt="{{ user.username }}">
     </figure>
-    <a ui-sref="usersEdit({ id: user._id })" class="button" ng-if="isAuthenticated() && isOwner ">Edit Profile</a>
+    <a ui-sref="usersEdit({ id: user._id })" class="button" ng-if="isAuthenticated() && isOwner">Edit Profile</a>
     <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && isOwner">Delete User</a>
     <a class="button is-success" ng-click="createMessage(user, currentUser)">Message User</a>
   </div>
@@ -28,8 +28,6 @@
       <tbody>
 
           <tr ng-repeat="request in user.incomingRequests">
-            <td>{{ request._id }} </td>
-            <td>{{ request.stage[1] }} </td>
             <td>{{ request.offeredRecord.owner.username }}</td>
             <td>{{ request.offeredRecord.owner.avgRating }}</td>
             <td>{{ request.wantedRecord.title }}</td>
@@ -38,8 +36,8 @@
             <td>{{ request.status }}</td>
             <td><a class="button is-success" ng-if="request.stage[0] < 1" ng-click="acceptOffer(request)">Accept</a></td>
             <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="incomingRecordsSent(user.username, request)">Record(s) sent</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[1] === 2" ng-click="incomingRecordsReceived(user.username, request)">Record(s) received</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 2" ng-click="recordsAction(user.username, request, 'records received', 1)">Record(s) received</a></td>
             <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecord._id, request._id)">Swap records</a></td>
           </tr>
       </tbody>
@@ -58,8 +56,6 @@
 
       <tbody>
           <tr ng-repeat="request in user.outgoingRequests">
-            <td>{{ request.stage[0] }} </td>
-            <td>{{ request.stage[1] }} </td>
             <td>{{ request.wantedRecord.owner.username }}</td>
             <td>{{ request.wantedRecord.owner.avgRating }}</td>
             <td>{{ request.wantedRecord.title }}</td>
@@ -68,8 +64,8 @@
             <td>{{ request.status }}</td>
             <td><a class="button is-success" ng-if="request.stage[1] < 1" ng-click="editOffer(request)">Edit</a></td>
             <td><a class="button is-danger" ng-click="deleteOffer(request)">Delete</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[1] === 1" ng-click="outgoingRecordsSent(user.username, request)">Record(s) sent</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[0] === 2" ng-click="outgoingRecordsReceived(user.username, request)">Record(s) received</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 1" ng-click="recordsAction(user.username, request, 'records sent', 1)">Record(s) sent</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[0] === 2" ng-click="recordsAction(user.username, request, 'records received', 0)">Record(s) received</a></td>
           </tr>
       </tbody>
     </table>

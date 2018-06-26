@@ -59,40 +59,9 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       .then(() => $state.go('usersShow', { id: $state.params.id }));
   };
 
-  $scope.incomingRecordsSent = function(username, request) {
-    request.status = `records sent by ${username}`;
-    request.stage[0]++;
-    $http({
-      method: 'PUT',
-      url: `/api/requests/${request._id}`,
-      data: request
-    })
-      .then(() => $state.go('usersShow', { id: $state.params.id }));
-  };
-  $scope.outgoingRecordsSent = function(username, request) {
-    request.status = `records sent by ${username}`;
-    request.stage[1]++;
-    $http({
-      method: 'PUT',
-      url: `/api/requests/${request._id}`,
-      data: request
-    })
-      .then(() => $state.go('usersShow', { id: $state.params.id }));
-  };
-
-  $scope.incomingRecordsReceived = function(username, request) {
-    request.status = `records received by ${username}`;
-    request.stage[1]++;
-    $http({
-      method: 'PUT',
-      url: `/api/requests/${request._id}`,
-      data: request
-    })
-      .then(() => $state.go('usersShow', { id: $state.params.id }));
-  };
-  $scope.outgoingRecordsReceived = function(username, request) {
-    request.status = `records received by ${username}`;
-    request.stage[0]++;
+  $scope.recordsAction = function(username, request, status, stageNumber) {
+    request.status = `${status} by ${username}`;
+    request.stage[stageNumber]++;
     $http({
       method: 'PUT',
       url: `/api/requests/${request._id}`,
