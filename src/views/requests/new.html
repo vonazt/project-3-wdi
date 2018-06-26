@@ -1,16 +1,13 @@
 
-{{recordToDisplay}}
-{{userRecords}}
-
 <div class="columns is-multiline">
-  <div class="column is-one-quarter-desktop">
+  <div class="column is-one-quarter-desktop" ng-repeat="record in recordToDisplay">
     <div class="card-image">
       <figure class="image">
         <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
       </figure>
     </div>
   </div>
-  <div class="column is-one-third-desktop">
+  <div class="column is-one-third-desktop" ng-repeat="record in recordToDisplay">
     <div class="card">
       <div class="content">
         <h2 class="title is-2">{{ record.artist }}</h2>
@@ -20,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div class="column is-one-quarter-desktop">
+  <div class="column is-one-quarter-desktop" ng-repeat="record in recordToDisplay">
     <div class="card">
       <div class="card-image">
         <figure class="image">
@@ -35,9 +32,7 @@
       </div>
     </div>
   </div>
-  <div class="column is-one-sixth-desktop">
-  </div>
-  <div class="column is-two-thirds-desktop">
+  <div class="column is-one-quarter-desktop">
     <form ng-submit="submitRequest(currentUserId)">
       <div class="field">
         <label for="offeredRecord" class="label">Offer</label>
@@ -49,6 +44,9 @@
       </div>
       <button class="button">Make request</button>
     </form>
+  </div>
+  <div class="column is-half-desktop" ng-repeat="record in userRecords">
+    <p>{{ record.title }} by {{ record.artist }}</p>
   </div>
 
 </div>
