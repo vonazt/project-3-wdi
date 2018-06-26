@@ -28,7 +28,7 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
     $http({
       method: 'PUT',
       url: `/api/requests/${request._id}`,
-      data: request.status
+      data: request
     })
       .then(() => $state.go('usersShow', { id: $state.params.id }));
   };
