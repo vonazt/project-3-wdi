@@ -1,4 +1,5 @@
 const Record = require('../models/record');
+const Request = require('../models/request');
 
 function indexRoute(req, res, next) {
   Record
@@ -96,6 +97,7 @@ function showRequestRoute(req, res, next) {
 
 
 function swapRecordsRoute(req, res, next) {
+  console.log(req.body);
   Record
     .find({
       '_id': [
@@ -110,6 +112,13 @@ function swapRecordsRoute(req, res, next) {
       records[1].owner = firstOwnerIdToSwap;
       records[0].save();
       records[1].save();
+    })
+    .then(() => {
+      Request
+        .findById(req.body.requestId)
+        .then(request => {
+          request.remove();
+        });
     })
     .then(records => res.json(records))
     .catch(next);

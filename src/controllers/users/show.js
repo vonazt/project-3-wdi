@@ -88,10 +88,11 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       .then(() => $state.go('usersShow', { id: $state.params.id }));
   };
 
-  $scope.swapRecords = function(outgoingRecordId, incomingRecordId ) {
+  $scope.swapRecords = function(outgoingRecordId, incomingRecordId, requestId) {
     const data = {
       ownedRecordId: outgoingRecordId,
-      offeredRecordId: incomingRecordId
+      offeredRecordId: incomingRecordId,
+      requestId: requestId
     };
     $http({
       method: 'POST',
