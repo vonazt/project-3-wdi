@@ -75,6 +75,70 @@ mongoose.connect(dbURI, (err, db) => {
           rating: 5,
           author: users[0]
         }]
+      }, {
+        artist: 'Richard Aritst 2',
+        title: 'Richard Album 2',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/CannibalOxTheColdVein.jpg/220px-CannibalOxTheColdVein.jpg',
+        genre: ['Rock'],
+        label: 'RCA',
+        releaseDate: 1970,
+        condition: 'Mint',
+        owner: users[0],
+        comments: [{
+          content: 'great pressing',
+          rating: 4,
+          author: users[1]
+        }, {
+          content: 'not bowie\'s best',
+          rating: 3,
+          author: users[0]
+        }]
+      }, {
+        artist: 'Richard Aritst 3',
+        title: 'Richard Album 3',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Low_%28album%29.jpg/220px-Low_%28album%29.jpg',
+        genre: ['Rock'],
+        label: 'RCA',
+        releaseDate: 1970,
+        condition: 'Mint',
+        owner: users[0],
+        comments: [{
+          content: 'great pressing',
+          rating: 4,
+          author: users[1]
+        }, {
+          content: 'not bowie\'s best',
+          rating: 3,
+          author: users[0]
+        }]
+      }, {
+        artist: 'Martin Artist 2',
+        title: 'Martin Album 2',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Year_of_the_Snitch_album_cover.jpg/220px-Year_of_the_Snitch_album_cover.jpg',
+        genre: ['Electronic', 'Experimental'],
+        label: 'Warp',
+        releaseDate: 2014,
+        condition: 'VG',
+        owner: users[1],
+        comments: [{
+          content: 'comes on three vinyl',
+          rating: 5,
+          author: users[0]
+        }]
+      }, {
+        artist: 'Martin Artist 3',
+        title: 'Martin Album 3',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Bottomlesspitdeathgrips.jpg/220px-Bottomlesspitdeathgrips.jpg',
+        genre: ['Electronic', 'Experimental'],
+        label: 'Warp',
+        releaseDate: 2014,
+        condition: 'VG',
+        owner: users[1],
+        comments: [{
+          content: 'comes on three vinyl',
+          rating: 5,
+          author: users[0]
+        }]
       }]);
     })
     .then(records => console.log(`${records.length} record(s) created`))

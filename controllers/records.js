@@ -97,7 +97,6 @@ function showRequestRoute(req, res, next) {
 
 
 function swapRecordsRoute(req, res, next) {
-  console.log(req.body);
   Record
     .find({
       '_id': [
