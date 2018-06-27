@@ -8,10 +8,17 @@ function createRequestRoute(req, res, next) {
     .catch(next);
 }
 
+function showRequestRoute(req, res, next){
+  Request
+    .findById(req.params.id)
+    .populate('offeredRecord wantedRecord')
+    .then(request => res.json(request))
+    .catch(next);
+}
+
 function updateRequestRoute(req, res, next) {
   Request
     .findById(req.params.id)
-    .populate('owner records')
     .then(request => {
       request.set(req.body);
       return request.save();
@@ -32,6 +39,7 @@ function deleteRequestRoute(req, res, next) {
 
 module.exports = {
   createRequest: createRequestRoute,
+  showRequest: showRequestRoute,
   updateRequest: updateRequestRoute,
   deleteRequest: deleteRequestRoute
 };

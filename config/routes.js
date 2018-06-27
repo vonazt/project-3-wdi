@@ -28,6 +28,7 @@ router.route('/records/:id/comments/:commentId')
 router.route('/records/:id/requests')
   .post(secureRoute, requests.createRequest);
 router.route('/requests/:id')
+  .get(secureRoute, requests.showRequest)
   .put(secureRoute, requests.updateRequest)
   .delete(secureRoute, requests.deleteRequest);
 
