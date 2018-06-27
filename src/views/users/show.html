@@ -14,131 +14,138 @@
       <li>Number of trades: {{ user.numberOfTrades }}</li>
     </ul>
   </div>
-  <div class="column is-fullwidth">
-    <h1 class="title is-1">Offers received</h1>
-    <table class="table is-hoverable is-fullwidth">
-      <thead>
-        <th>User</th>
-        <th>User Rating</th>
-        <th>Wants</th>
-        <th>Offers</th>
-        <th>Message</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="request in user.incomingRequests">
-          <td>
-            {{ request.offeredRecord[0].owner.username }}
-          </td>
-          <td>
-            {{ '⭐️'.repeat(request.offeredRecord[0].owner.avgRating) }}
-          </td>
-          <td>
-            {{ request.wantedRecord.title }}
-          </td>
-          <td>
-            <p ng-repeat="record in request.offeredRecord">
-              <span ng-if="!$last">{{ record.title }}, </span>
-              <span ng-if="$last">{{ record.title }}</span>
-            </p>
-          </td>
-          <td>
-            {{ request.message }}
-          </td>
-          <td>
-            {{ request.status }}
-          </td>
-          <td><a class="button is-success" ng-if="request.stage[0] < 1" ng-click="acceptOffer(request)">Accept</a></td>
-          <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
-          <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
-          <td><a class="button is-danger" ng-if="request.stage[1] === 2" ng-click="recordsAction(user.username, request, 'records received', 1)">Record(s) received</a></td>
-          <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecord._id, request._id)">Swap records</a></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="columns">
+    <div class="column is-fullwidth">
+      <h1 class="title is-1">Offers received</h1>
+      <table class="table is-hoverable is-fullwidth">
+        <thead>
+          <th>User</th>
+          <th>User Rating</th>
+          <th>Wants</th>
+          <th>Offers</th>
+          <th>Message</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="request in user.incomingRequests">
 
-    <h1 class="title is-1">Offers made</h1>
-    <table class="table is-hoverable is-fullwidth">
-      <thead>
-        <th>User</th>
-        <th>User Rating</th>
-        <th>Wants</th>
-        <th>Offers</th>
-        <th>Message</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="offersMade in user.outgoingRequests">
-          <td>
-            {{ offersMade.wantedRecord.owner.username }}
-          </td>
-          <td>
-            {{ '⭐️'.repeat(offersMade.wantedRecord.owner.avgRating) }}
-          </td>
-          <td>
-            {{ offersMade.wantedRecord.artist }}
-          </td>
-          <td>
-            <p ng-repeat="record in offersMade.offeredRecord">
-              <span ng-if="!$last">{{ record.title }}, </span>
-              <span ng-if="$last">{{ record.title }}</span>
-            </p>
-          </td>
-          <td>
-            {{ offersMade.message }}
-          </td>
-          <td>
-            {{ offersMade.status }}
-          </td>
-            <td><a class="button is-success" ng-if="request.stage[1] < 1" ui-sref="requestsEdit({ id: request._id })">Edit</a></td>
-            <td><a class="button is-danger" ng-click="deleteOffer(request)">Delete</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[1] === 1" ng-click="recordsAction(user.username, request, 'records sent', 1)">Record(s) sent</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[0] === 2" ng-click="recordsAction(user.username, request, 'records received', 0)">Record(s) received</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="column is-one-sixth">
+            <td>
+              {{ request.offeredRecord[0].owner.username }}
+            </td>
+            <td>
+              {{ '⭐️'.repeat(request.offeredRecord[0].owner.avgRating) }}
+            </td>
+            <td>
+              {{ request.wantedRecord.title }}
+            </td>
+            <td>
+              <p ng-repeat="record in request.offeredRecord">
+                <span ng-if="!$last">{{ record.title }}, </span>
+                <span ng-if="$last">{{ record.title }}</span>
+              </p>
+            </td>
+            <td>
+              {{ request.message }}
+            </td>
+            <td>
+              {{ request.status }}
+            </td>
+            <td><a class="button is-success" ng-if="request.stage[0] < 1" ng-click="acceptOffer(request)">Accept</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 2" ng-click="recordsAction(user.username, request, 'records received', 1)">Record(s) received</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecord._id, request._id)">Swap records</a></td>
+          </tr>
+        </tbody>
+      </table>
 
-  <div class="column is-two-thirds">
-    <h3 class="title is-3">User comments</h3>
-    <div class="card" ng-repeat="comment in user.comments">
-      <div class="card-content">
-        <div class="content">
-          <h5 class="title is-5">{{ comment.content }}</h5>
-          <h6 class="title is-6">Rated: {{ '⭐️'.repeat(comment.rating) }}</h6>
-          <h6 class="title is-6">By: {{ comment.author.username }}</h6>
-        </div>
-        <button class="button is-danger commentDelete" ng-click="deleteComment(comment)" ng-if="isAuthenticated()">DELETE</button>
-      </div>
+      <h1 class="title is-1">Offers made</h1>
+      <table class="table is-hoverable is-fullwidth">
+        <thead>
+          <th>User</th>
+          <th>User Rating</th>
+          <th>Wants</th>
+          <th>Offers</th>
+          <th>Message</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="offersMade in user.outgoingRequests">
+            <td>
+              {{ offersMade.wantedRecord.owner.username }}
+            </td>
+            <td>
+              {{ '⭐️'.repeat(offersMade.wantedRecord.owner.avgRating) }}
+            </td>
+            <td>
+              {{ offersMade.wantedRecord.artist }}
+            </td>
+            <td>
+              <p ng-repeat="record in offersMade.offeredRecord">
+                <span ng-if="!$last">{{ record.title }}, </span>
+                <span ng-if="$last">{{ record.title }}</span>
+              </p>
+            </td>
+            <td>
+              {{ offersMade.message }}
+            </td>
+            <td>
+              {{ offersMade.status }}
+            </td>
+              <td><a class="button is-success" ng-if="offersMade.stage[1] < 1" ui-sref="requestsEdit({ id: request._id })">Edit</a></td>
+              <td><a class="button is-danger" ng-click="deleteOffer(offersMade)">Delete</a></td>
+              <td><a class="button is-danger" ng-if="offersMade.stage[1] === 1" ng-click="recordsAction(user.username, offersMade, 'records sent', 1)">Record(s) sent</a></td>
+              <td><a class="button is-danger" ng-if="offersMade.stage[0] === 2" ng-click="recordsAction(user.username, offersMade, 'records received', 0)">Record(s) received</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="column is-three-quarters" ng-if="isAuthenticated()">
-      <form ng-submit="createComment()">
-        <div class="field">
-          <label class="label" for="content">Comment</label>
-          <textarea class="input" id="content" name="content" placeholder="Content" ng-model="commentData.content">
-          </textarea>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-one-sixth">
+
+    <div class="column is-two-thirds">
+      <h3 class="title is-3">User comments</h3>
+      <div class="card" ng-repeat="comment in user.comments">
+        <div class="card-content">
+          <div class="content">
+            <h5 class="title is-5">{{ comment.content }}</h5>
+            <h6 class="title is-6">Rated: {{ '⭐️'.repeat(comment.rating) }}</h6>
+            <h6 class="title is-6">By: {{ comment.author.username }}</h6>
+          </div>
+          <button class="button is-danger commentDelete" ng-click="deleteComment(comment)" ng-if="isAuthenticated()">DELETE</button>
         </div>
-        <div class="field">
-          <div class="control">
-            <label class="label">Rating</label>
-            <div class="select">
-              <select ng-model="commentData.rating">
-                <option value="">Please select</option>
-                <option value="1">⭐️</option>
-                <option value="2">⭐️⭐️</option>
-                <option value="3">⭐️⭐️⭐️</option>
-                <option value="4">⭐️⭐️⭐️⭐️</option>
-                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-              </select>
+      </div>
+      <div class="column is-three-quarters" ng-if="isAuthenticated()">
+        <form ng-submit="createComment()">
+          <div class="field">
+            <label class="label" for="content">Comment</label>
+            <textarea class="input" id="content" name="content" placeholder="Content" ng-model="commentData.content">
+            </textarea>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="label">Rating</label>
+              <div class="select">
+                <select ng-model="commentData.rating">
+                  <option value="">Please select</option>
+                  <option value="1">⭐️</option>
+                  <option value="2">⭐️⭐️</option>
+                  <option value="3">⭐️⭐️⭐️</option>
+                  <option value="4">⭐️⭐️⭐️⭐️</option>
+                  <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <button>Submit Comment</button>
-      </form>
+          <button>Submit Comment</button>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="column is-one-sixth">
+    <div class="column is-one-sixth">
+
+    </div>
 
   </div>
 
