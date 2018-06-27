@@ -97,8 +97,6 @@ function swapRecordsRoute(req, res, next) {
     .then(records => {
       const ownedRecord = records.filter(record => record._id.toString() === req.body.ownedRecordId.toString());
       const offeredRecords = records.filter(record => record._id.toString() !== req.body.ownedRecordId.toString());
-      console.log('OWNED RECORD', ownedRecord);
-      console.log('OFFERED RECORDS', offeredRecords);
       const firstOwnerIdToSwap = ownedRecord[0].owner;
       const secondOwnerIdToSwap = offeredRecords[0].owner;
       ownedRecord[0].owner = secondOwnerIdToSwap;
