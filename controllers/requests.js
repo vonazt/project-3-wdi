@@ -11,7 +11,14 @@ function createRequestRoute(req, res, next) {
 function showRequestRoute(req, res, next){
   Request
     .findById(req.params.id)
-    .populate('offeredRecord wantedRecord')
+    .populate({
+      path: 'wantedRecord',
+      populate: { path: 'owner' }
+    })
+    .populate({
+      path: 'offeredRecord',
+      populate: { path: 'owner' }
+    })
     .then(request => res.json(request))
     .catch(next);
 }
