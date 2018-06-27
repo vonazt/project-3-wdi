@@ -1,6 +1,6 @@
 function checkMessageOwner(res, $auth) {
   const currentUserId = $auth.getPayload().sub;
-  if(res.data.userOneId === currentUserId || res.data.userTwoId ===currentUserId ) return true;
+  if(res.data[0].userOneId._id === currentUserId || res.data[0].userTwoId._id ===currentUserId ) return true;
 }
 
 export default checkMessageOwner;

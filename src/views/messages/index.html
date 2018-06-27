@@ -1,6 +1,6 @@
 <div class="columns is-multiline">
   <div ng-repeat="message in messages" class="column is-one-fifth-desktop is-third-tablet">
-    <a ui-sref="messagesShow({ id: message._id})">
+    <a ui-sref="messagesShow({ id: message._id})" ng-if="(isAuthenticated() && isOwner)">
       <div class="card">
         <div class="card-content">
           <div class="content">
@@ -11,3 +11,5 @@
     </a>
   </div>
 </div>
+
+<h1 class="title is-one" ng-if="!isOwner">Unfortunately you have no messages</h1>
