@@ -23,15 +23,14 @@ const userData = [
 
 let userOneId;
 let userTwoId;
-let messageId;
 let token;
 
-const messageData= [{
+const messageData= {
   userOneId: userOneId,
   userTwoId: userTwoId
-}];
+};
 
-describe('GET /messages', () => {
+describe('POST /messages', () => {
   beforeEach(done => {
     User
       .remove({})
@@ -60,11 +59,28 @@ describe('GET /messages', () => {
       });
   });
 
-  it('should return a 200 response', done => {
+  it('should return a 201 response', done => {
     api.get('/api/messages')
       .set('Authorization', `Bearer ${token}`)
+      .send(messageData)
       .end((err, res) => {
-        expect(res.status).to.eq(200);
+        console.log(messageData);
+        expect(res.status).to.eq(201);
+        done();
+      });
+  });
+
+  it('should return the created messageroom', done => {
+    api.post('/api/messages')
+      .set('Authorization', `Bearer ${token}`)
+      .send(messageData)
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        console.log(res.body);
+        expect(res.body).to.include.keys([
+          'userOneId',
+          'userTwoId'
+        ]);
         done();
       });
   });
