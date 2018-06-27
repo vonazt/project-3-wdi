@@ -27,12 +27,27 @@
       </thead>
       <tbody>
         <tr ng-repeat="request in user.incomingRequests">
-          <td>{{ request.offeredRecord.owner.username }}</td>
-          <td>{{ request.offeredRecord.owner.avgRating }}</td>
-          <td>{{ request.wantedRecord.title }}</td>
-          <td>{{ request.offeredRecord.title }}</td>
-          <td>{{ request.message }}</td>
-          <td>{{ request.status }}</td>
+          <td>
+            {{ request.offeredRecord[0].owner.username }}
+          </td>
+          <td>
+            {{ '⭐️'.repeat(request.offeredRecord[0].owner.avgRating) }}
+          </td>
+          <td>
+            {{ request.wantedRecord.title }}
+          </td>
+          <td>
+            <p ng-repeat="record in request.offeredRecord">
+              <span ng-if="!$last">{{ record.title }}, </span>
+              <span ng-if="$last">{{ record.title }}</span>
+            </p>
+          </td>
+          <td>
+            {{ request.message }}
+          </td>
+          <td>
+            {{ request.status }}
+          </td>
           <td><a class="button is-success" ng-if="request.stage[0] < 1" ng-click="acceptOffer(request)">Accept</a></td>
           <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
           <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
@@ -52,42 +67,39 @@
         <th>Message</th>
         <th>Status</th>
       </thead>
-      <!-- {{user.outgoingRequests[0].wantedRecord}}
-      <hr>
-      {{user.outgoingRequests[0].offeredRecord[1]}}
-      <hr>
-      {{user.outgoingRequests[0].offeredRecord[2]}}
-      <hr>
-      {{user.outgoingRequests[1]}} -->
       <tbody>
-            <div ng-repeat="offeredRecords in user.outgoingRequests">
-              <div ng-repeat="records in offeredRecords">
-                <div ng-repeat="record in records">
-                    {{ record.artist }}
-                </div>
-
-              </div>
-
-            </div>
-            <!-- <td><span ng-repeat="record in user.outgoingRequests[0].offeredRecord[0]">{{ record }}</span></td> -->
-
-
-          <!-- <td>{{ request.wantedRecord.owner.avgRating }}</td>
-          <td>{{ request.wantedRecord.title }}</td>
-          <td>{{ request.offeredRecord.title }}</td>
-          <td>{{ request.message }}</td>
-          <td>{{ request.status }}</td> -->
-          <td><a class="button is-success" ng-if="request.stage[1] < 1" ui-sref="requestsEdit({ id: request._id })">Edit</a></td>
-          <td><a class="button is-danger" ng-click="deleteOffer(request)">Delete</a></td>
-          <td><a class="button is-danger" ng-if="request.stage[1] === 1" ng-click="recordsAction(user.username, request, 'records sent', 1)">Record(s) sent</a></td>
-          <td><a class="button is-danger" ng-if="request.stage[0] === 2" ng-click="recordsAction(user.username, request, 'records received', 0)">Record(s) received</a></td>
+        <tr ng-repeat="offersMade in user.outgoingRequests">
+          <td>
+            {{ offersMade.wantedRecord.owner.username }}
+          </td>
+          <td>
+            {{ '⭐️'.repeat(offersMade.wantedRecord.owner.avgRating) }}
+          </td>
+          <td>
+            {{ offersMade.wantedRecord.artist }}
+          </td>
+          <td>
+            <p ng-repeat="record in offersMade.offeredRecord">
+              <span ng-if="!$last">{{ record.title }}, </span>
+              <span ng-if="$last">{{ record.title }}</span>
+            </p>
+          </td>
+          <td>
+            {{ offersMade.message }}
+          </td>
+          <td>
+            {{ offersMade.status }}
+          </td>
+            <td><a class="button is-success" ng-if="request.stage[1] < 1" ui-sref="requestsEdit({ id: request._id })">Edit</a></td>
+            <td><a class="button is-danger" ng-click="deleteOffer(request)">Delete</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 1" ng-click="recordsAction(user.username, request, 'records sent', 1)">Record(s) sent</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[0] === 2" ng-click="recordsAction(user.username, request, 'records received', 0)">Record(s) received</a></td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="column is-one-sixth">
 
-  </div>
   <div class="column is-two-thirds">
     <h3 class="title is-3">User comments</h3>
     <div class="card" ng-repeat="comment in user.comments">
