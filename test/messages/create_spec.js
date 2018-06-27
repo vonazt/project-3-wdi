@@ -25,7 +25,7 @@ let userOneId;
 let userTwoId;
 let token;
 
-const messageData= {
+let messageData= {
   userOneId: userOneId,
   userTwoId: userTwoId
 };
@@ -38,15 +38,19 @@ describe('POST /messages', () => {
       .then(() => User.create(userData[0]))
       .then( user => {
         userOneId = user._id;
-        token = jwt.sign({sub: user._id}, secret , {expiresIn: '6h'});
       })
       .then(() => User.create(userData[1]))
       .then( user => {
         userTwoId = user._id;
+        token = jwt.sign({sub: user._id}, secret , {expiresIn: '6h'});
       })
-      .then(() => Message.create(messageData))
+      .then(() => Message.create({
+        userOneId: userOneId,
+        userTwoId: userTwoId
+      }))
       .then((message) => {
-        messageId = message._id;
+        messageData.userOneId = message.userOneId;
+        messageData.userTwoId = message.userTwoId;
         done();
       });
   });
@@ -60,11 +64,10 @@ describe('POST /messages', () => {
   });
 
   it('should return a 201 response', done => {
-    api.get('/api/messages')
+    api.post('/api/messages')
       .set('Authorization', `Bearer ${token}`)
       .send(messageData)
       .end((err, res) => {
-        console.log(messageData);
         expect(res.status).to.eq(201);
         done();
       });
@@ -76,8 +79,9 @@ describe('POST /messages', () => {
       .send(messageData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        console.log(res.body);
         expect(res.body).to.include.keys([
+          '_id',
+          'comments',
           'userOneId',
           'userTwoId'
         ]);
