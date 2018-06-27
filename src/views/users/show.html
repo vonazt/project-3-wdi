@@ -54,7 +54,7 @@
             <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
             <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
             <td><a class="button is-danger" ng-if="request.stage[1] === 2" ng-click="recordsAction(user.username, request, 'records received', 1)">Record(s) received</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecord._id, request._id)">Swap records</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecord, request._id)">Swap records</a></td>
           </tr>
         </tbody>
       </table>

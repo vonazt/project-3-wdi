@@ -90,19 +90,25 @@ function swapRecordsRoute(req, res, next) {
     .find({
       '_id': [
         req.body.ownedRecordId,
-        req.body.offeredRecordId
+        ...req.body.offeredRecordId
       ]
     })
     .populate('owner')
     .then(records => {
-      const firstOwnerIdToSwap = records[0].owner;
-      const secondOwnerIdToSwap = records[1].owner;
-      records[0].owner = secondOwnerIdToSwap;
-      records[1].owner = firstOwnerIdToSwap;
-      records[0].owner.numberOfTrades ++;
-      records[1].owner.numberOfTrades ++;
-      records[0].owner.save();
-      records[1].owner.save();
+      const ownedRecord = records.filter(record => record._id.toString() === req.body.ownedRecordId.toString());
+      const offeredRecords = records.filter(record => record._id.toString() !== req.body.ownedRecordId.toString());
+      console.log('OWNED RECORD', ownedRecord);
+      console.log('OFFERED RECORDS', offeredRecords);
+      const firstOwnerIdToSwap = ownedRecord[0].owner;
+      const secondOwnerIdToSwap = offeredRecords[0].owner;
+      ownedRecord[0].owner = secondOwnerIdToSwap;
+      offeredRecords.forEach(record => {
+        record.owner = firstOwnerIdToSwap;
+      });
+      ownedRecord[0].owner.numberOfTrades ++;
+      offeredRecords[0].owner.numberOfTrades ++;
+      ownedRecord[0].owner.save();
+      offeredRecords[0].owner.save();
       records.forEach(record => {
         record.save();
       });

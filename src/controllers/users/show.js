@@ -74,10 +74,14 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       .then(getUser);
   };
 
-  $scope.swapRecords = function(outgoingRecordId, incomingRecordId, requestId) {
+  $scope.swapRecords = function(outgoingRecordId, incomingRecords, requestId) {
+    const offeredRecordsIds = [];
+    incomingRecords.forEach(record => {
+      offeredRecordsIds.push(record._id);
+    });
     const data = {
       ownedRecordId: outgoingRecordId,
-      offeredRecordId: incomingRecordId,
+      offeredRecordId: offeredRecordsIds,
       requestId: requestId
     };
     $http({
