@@ -3,10 +3,11 @@
 const Record = require('../../models/record');
 
 const recordData = {
-  artist: 'David Bowie',
-  title: 'The Man Who Sold The World',
+  artist: 'Test Artist',
+  title: 'Test Album',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: ['Rock'],
+  genres: ['Rock'],
+  label: 'RCA',
   releaseDate: 1970,
   condition: 'Mint'
 };
@@ -46,11 +47,10 @@ describe('GET /records/:id', () => {
         expect(res.body.artist).to.eq(recordData.artist);
         expect(res.body.title).to.eq(recordData.title);
         expect(res.body.image).to.eq(recordData.image);
-        expect(res.body.genre).to.deep.eq(recordData.genre);
+        expect(res.body.genres).to.deep.eq(recordData.genres);
+        expect(res.body.label).to.eq(recordData.label);
         expect(res.body.releaseDate).to.eq(recordData.releaseDate);
-        expect(res.body.condition).to.eq(recordData.condition);
-        expect(res.body.owner).to.deep.eq(recordData.owner);
-        expect(res.body.comments).to.deep.eq(recordData.comments);
+        expect(res.body.condition).to.deep.eq(recordData.condition);
         done();
       });
   });

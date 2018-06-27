@@ -1,5 +1,29 @@
+<form>
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <input class="input" name="search" placeholder="Search..." ng-model="search" />
+      </div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <div class="control">
+          <div class="select">
+            <select ng-model="sort">
+              <option value="title">Album: A-Z</option>
+              <option value="-title">Album: Z-A</option>
+              <option value="artist">Artist: A-Z</option>
+              <option value="-artist">Artist: Z-A</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
 <div class="columns is-multiline">
-  <div ng-repeat="record in records" class="column is-one-fifth-desktop is-third-tablet">
+  <div ng-repeat="record in records | filter: search | orderBy: sort" class="column is-one-fifth-desktop is-third-tablet">
     <a ui-sref="recordsShow({ id: record._id})">
       <div class="card">
         <div class="card-image">
