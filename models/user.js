@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   avatar: { type: String },
-  comments: [ commentSchema ]
+  comments: [ commentSchema ],
+  numberOfTrades: { type: Number, default: 0 }
 });
 
 userSchema.set('toJSON', {
