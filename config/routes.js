@@ -51,7 +51,6 @@ router.route('/messages')
 
 router.route('/messages/:id')
   .get(secureRoute, messages.show)
-  .put(secureRoute, messages.update)
   .delete(secureRoute, messages.delete);
 
 router.post('/messages/:id/comments', secureRoute, messages.commentCreate);

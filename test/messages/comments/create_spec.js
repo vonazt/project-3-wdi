@@ -65,6 +65,25 @@ describe('POST /messages/:id/comments', () => {
       });
   });
 
+  it('should return a 401 response', done => {
+    api.post(`/api/messages/${messageId}/comments`)
+      .send(commentData)
+      .end((err, res) => {
+        expect(res.status).to.eq(401);
+        done();
+      });
+  });
+
+  it('should return a 200 response', done => {
+    api.post(`/api/messages/${messageId}/comments`)
+      .set('Authorization', `Bearer ${token}`)
+      .send(commentData)
+      .end((err, res) => {
+        expect(res.status).to.eq(200);
+        done();
+      });
+  });
+
   it('should return the created comment', done => {
     api.post(`/api/messages/${messageId}/comments`)
       .set('Authorization', `Bearer ${token}`)

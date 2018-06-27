@@ -1,9 +1,8 @@
 /* global describe, it, api, expect, beforeEach,   */
-const Message = require('../../../models/message');
-const Comment = require('../../../models/comment');
-const User = require('../../../models/user');
+const Message = require('../../models/message');
+const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
-const { secret } = require('../../../config/environment');
+const { secret } = require('../../config/environment');
 
 const userData = [
   {
@@ -22,21 +21,17 @@ const userData = [
   }
 ];
 
-const commentData = {
-  content: 'test-text'
-};
-
 let userOneId;
 let userTwoId;
 let token;
-let messageId;
+
 let messageData= {
   userOneId: userOneId,
-  userTwoId: userTwoId,
-  comments: [{ content: 'test' }]
+  userTwoId: userTwoId
 };
+let messageId;
 
-describe('GET /messages/:id/comments', () => {
+describe('POST /messages', () => {
   beforeEach(done => {
     User
       .remove({})
@@ -52,8 +47,7 @@ describe('GET /messages/:id/comments', () => {
       })
       .then(() => Message.create({
         userOneId: userOneId,
-        userTwoId: userTwoId,
-        comments: [{ content: 'test' }]
+        userTwoId: userTwoId
       }))
       .then((message) => {
         messageData.userOneId = message.userOneId;
@@ -63,23 +57,30 @@ describe('GET /messages/:id/comments', () => {
       });
   });
 
-  it('should return a 401 response', done => {
-    api.post(`/api/messages/${messageId}/comments`)
-      .send(commentData)
-      .end((err, res) => {
+  it('should return a 401 response without a token', done => {
+    api.delete(`/api/messages/${messageId}`)
+      .end((err, res) =>{
         expect(res.status).to.eq(401);
         done();
       });
   });
 
-  it('should return a 200 response', done => {
-    api.post(`/api/messages/${messageId}/comments`)
+  it('should return a 204', done => {
+    api.delete(`/api/messages/${messageId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(commentData)
-      .end((err, res) => {
-        expect(res.status).to.eq(200);
+      .end((err, res) =>{
+        expect(res.status).to.eq(204);
         done();
       });
   });
 
+  it('should return no data', done => {
+    api
+      .delete(`/api/messages/${messageId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.body).to.be.empty;
+        done();
+      });
+  });
 });

@@ -23,15 +23,6 @@ function showRoute(req, res, next){
     .catch(next);
 }
 
-function updateRoute(req, res, next){
-  Message
-    .findById(req.params.id)
-    .then(message => message.set(req.body))
-    .then(message => message.save())
-    .then(message => res.json(message))
-    .catch(next);
-}
-
 function deleteRoute(req,res,next){
   Message
     .findById(req.params.id)
@@ -69,7 +60,6 @@ module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
-  update: updateRoute,
   delete: deleteRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute
