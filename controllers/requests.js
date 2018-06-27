@@ -2,9 +2,12 @@ const Request = require('../models/request');
 
 function createRequestRoute(req, res, next) {
   req.body.wantedRecord = req.params.id;
+  // console.log(req.body);
   Request
     .create(req.body)
-    .then(request => res.status(201).json(request))
+    .then(request => {
+      res.status(201).json(request);
+    })
     .catch(next);
 }
 

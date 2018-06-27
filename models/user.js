@@ -2,6 +2,7 @@ const mongoose = require('mongoose-fill');
 const bcrypt = require('bcrypt');
 const commentSchema = require('./comment');
 const Promise = require('bluebird');
+const _ = require('lodash');
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -73,13 +74,14 @@ userSchema.fill('outgoingRequests', function(callback){
         .reduce((flattened, requests) => flattened.concat(requests))
         .map(request => {
           request = request.toJSON();
+          request._id = request._id.toString();
           delete request.wantedRecord.comments;
           delete request.wantedRecord.owner.comments;
           delete request.offeredRecord.comments;
           return request;
         });
 
-      callback(null, requests);
+      callback(null, _.uniqBy(requests, '_id'));
     });
 });
 
