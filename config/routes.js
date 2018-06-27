@@ -46,12 +46,11 @@ router.route('/users/:id/comments/:commentId')
   .delete(secureRoute, users.commentDelete);
 
 router.route('/messages')
-  .get(messages.index)
+  .get(secureRoute, messages.index)
   .post(secureRoute, messages.create);
 
 router.route('/messages/:id')
-  .get(messages.show)
-  .put(secureRoute, messages.update)
+  .get(secureRoute, messages.show)
   .delete(secureRoute, messages.delete);
 
 router.post('/messages/:id/comments', secureRoute, messages.commentCreate);

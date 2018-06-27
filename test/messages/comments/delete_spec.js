@@ -1,8 +1,9 @@
 /* global describe, it, api, expect, beforeEach,   */
-const Message = require('../../models/message');
-const User = require('../../models/user');
+const Message = require('../../../models/message');
+const Comment = require('../../../models/comment');
+const User = require('../../../models/user');
 const jwt = require('jsonwebtoken');
-const { secret } = require('../../config/environment');
+const { secret } = require('../../../config/environment');
 
 const userData = [
   {
@@ -21,16 +22,22 @@ const userData = [
   }
 ];
 
+const commentData = {
+  content: 'test-text'
+};
+
 let userOneId;
 let userTwoId;
 let token;
-
+let messageId;
 let messageData= {
   userOneId: userOneId,
-  userTwoId: userTwoId
+  userTwoId: userTwoId,
+  comments: [{ content: 'test' }]
 };
+let commentId;
 
-describe('POST /messages', () => {
+describe('DELETE /messages/:id/comments', () => {
   beforeEach(done => {
     User
       .remove({})
@@ -46,45 +53,40 @@ describe('POST /messages', () => {
       })
       .then(() => Message.create({
         userOneId: userOneId,
-        userTwoId: userTwoId
+        userTwoId: userTwoId,
+        comments: [{ content: 'test' }]
       }))
       .then((message) => {
         messageData.userOneId = message.userOneId;
         messageData.userTwoId = message.userTwoId;
+        messageId = message._id;
+        commentId = message.comments[0]._id;
         done();
       });
   });
 
   it('should return a 401 response without a token', done => {
-    api.post('/api/messages')
-      .end((err, res) => {
+    api.delete(`/api/messages/${messageId}/comments/${commentId}`)
+      .end((err, res) =>{
         expect(res.status).to.eq(401);
         done();
       });
   });
 
-  it('should return a 201 response', done => {
-    api.post('/api/messages')
+  it('should return a 200', done => {
+    api.delete(`/api/messages/${messageId}/comments/${commentId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(messageData)
-      .end((err, res) => {
-        expect(res.status).to.eq(201);
+      .end((err, res) =>{
+        expect(res.status).to.eq(200);
         done();
       });
   });
 
-  it('should return the created messageroom', done => {
-    api.post('/api/messages')
+  it('should return no data', done => {
+    api.delete(`/api/messages/${messageId}/comments/${commentId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(messageData)
       .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.body).to.include.keys([
-          '_id',
-          'comments',
-          'userOneId',
-          'userTwoId'
-        ]);
+        expect(res.body.comments).to.be.empty;
         done();
       });
   });

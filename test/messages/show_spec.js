@@ -1,5 +1,6 @@
 /* global describe, it, api, expect, beforeEach,   */
 const Message = require('../../models/message');
+const Comment = require('../../models/comment');
 const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../../config/environment');
@@ -21,16 +22,22 @@ const userData = [
   }
 ];
 
+const commentData = {
+  content: 'test-text'
+};
+
 let userOneId;
 let userTwoId;
 let token;
-
+let messageId;
 let messageData= {
   userOneId: userOneId,
-  userTwoId: userTwoId
+  userTwoId: userTwoId,
+  comments: [{ content: 'test' }]
 };
+let commentId;
 
-describe('POST /messages', () => {
+describe('GET /messages/:id', () => {
   beforeEach(done => {
     User
       .remove({})
@@ -46,45 +53,51 @@ describe('POST /messages', () => {
       })
       .then(() => Message.create({
         userOneId: userOneId,
-        userTwoId: userTwoId
+        userTwoId: userTwoId,
+        comments: [{ content: 'test' }]
       }))
       .then((message) => {
         messageData.userOneId = message.userOneId;
         messageData.userTwoId = message.userTwoId;
+        messageId = message._id;
+        commentId = message.comments[0]._id;
         done();
       });
   });
 
   it('should return a 401 response without a token', done => {
-    api.post('/api/messages')
+    api.get(`/api/messages/${messageId}`)
       .end((err, res) => {
         expect(res.status).to.eq(401);
         done();
       });
   });
 
-  it('should return a 201 response', done => {
-    api.post('/api/messages')
+  it('should return a 200 response', done => {
+    api.get(`/api/messages/${messageId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(messageData)
       .end((err, res) => {
-        expect(res.status).to.eq(201);
+        expect(res.status).to.eq(200);
         done();
       });
   });
 
-  it('should return the created messageroom', done => {
-    api.post('/api/messages')
+  it('should return an object', done => {
+    api.get(`/api/messages/${messageId}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(messageData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body).to.include.keys([
-          '_id',
-          'comments',
-          'userOneId',
-          'userTwoId'
-        ]);
+        done();
+      });
+  });
+
+  it('should return the correct data', done => {
+    api.get(`/api/messages/${messageId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.body.userOneId).to.eq(messageData.userOneId.toString());
+        expect(res.body.userTwoId).to.eq(messageData.userTwoId.toString());
+        expect(res.body.comments[0].content).to.deep.eq(messageData.comments[0].content);
         done();
       });
   });
