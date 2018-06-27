@@ -9,11 +9,11 @@ function RequestsNewCtrl($scope, $state, $http, $auth) {
   $scope.addToOffer = function(recordId, recordTitle, recordArtist) {
     offerArray.push(recordId);
     $scope.offerDisplay.push(`${recordTitle} by ${recordArtist}`);
+    $scope.userRecords = $scope.userRecords.filter(record => record._id !== recordId);
   };
 
   $scope.submitRequest = function(currentUserId) {
     $scope.data.offeredRecord = offerArray;
-    // console.log($scope.data);
     $http({
       method: 'POST',
       url: `/api/records/${$state.params.id}/requests`,
