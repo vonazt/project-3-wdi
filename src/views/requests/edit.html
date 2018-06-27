@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="column is-one-quarter-desktop">
-    <form ng-submit="submitRequest(currentUserId)">
+    <form ng-submit="editRequest(currentUserId)">
       <div class="field">
         <label class="label">Offer</label>
         <p class="input" ng-repeat="record in offerArray" ng-click="removeRecord(record)">{{ record.title }} by {{record.artist }}</p>
@@ -43,7 +43,7 @@
         <label for="message" class="label">Message</label>
         <textarea type="text" class="input" name="message" ng-model="data.message" id="message"></textarea>
       </div>
-      <button class="button">Make request</button>
+      <button class="button">Update request</button>
     </form>
   </div>
   <div ng-repeat="record in userRecords">
