@@ -1,19 +1,25 @@
 function RequestsNewCtrl($scope, $state, $http, $auth) {
   $scope.recordToDisplay = [];
   $scope.userRecords = [];
-  const offerArray = [];
-  $scope.offerDisplay = [];
+  $scope.offerArray = [];
   $scope.data = {};
   $scope.currentUserId = $auth.getPayload().sub;
 
-  $scope.addToOffer = function(recordId, recordTitle, recordArtist) {
-    offerArray.push(recordId);
-    $scope.offerDisplay.push(`${recordTitle} by ${recordArtist}`);
-    $scope.userRecords = $scope.userRecords.filter(record => record._id !== recordId);
+  $scope.addToOffer = function(record) {
+    $scope.offerArray.push(record);
+  };
+
+  $scope.removeRecord = function(e) {
+    // const index = $scope.offerDisplay.indexOf(e);
+    // $scope.offerDisplay.splice(index, 1);
+    // $scope.userRecords.push(tempRecordData.filter(record => record.title === e));
+    // offerArray.splice(indexOf)
+    // console.log($scope.userRecords);
   };
 
   $scope.submitRequest = function(currentUserId) {
-    $scope.data.offeredRecord = offerArray;
+    $scope.data.offeredRecord = $scope.offerArray.map(item => item._id);
+    console.log($scope.data.offeredRecord);
     $http({
       method: 'POST',
       url: `/api/records/${$state.params.id}/requests`,
