@@ -7,14 +7,14 @@ function RequestsNewCtrl($scope, $state, $http, $auth) {
 
   $scope.addToOffer = function(record) {
     $scope.offerArray.push(record);
+    const recordIndex = $scope.userRecords.indexOf(record);
+    $scope.userRecords.splice(recordIndex, 1);
   };
 
-  $scope.removeRecord = function(e) {
-    // const index = $scope.offerDisplay.indexOf(e);
-    // $scope.offerDisplay.splice(index, 1);
-    // $scope.userRecords.push(tempRecordData.filter(record => record.title === e));
-    // offerArray.splice(indexOf)
-    // console.log($scope.userRecords);
+  $scope.removeRecord = function(record) {
+    const recordIndex = $scope.offerArray.indexOf(record);
+    $scope.offerArray.splice(recordIndex, 1);
+    $scope.userRecords.push(record);
   };
 
   $scope.submitRequest = function(currentUserId) {
