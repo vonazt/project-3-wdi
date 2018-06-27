@@ -1,9 +1,9 @@
 {{ data.offeredRecord }}
 <div class="columns is-multiline">
-  <div class="column is-one-quarter-desktop" ng-repeat="record in recordToDisplay">
+  <div class="column is-one-quarter-desktop">
     <div class="card-image">
       <figure class="image">
-        <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
+        <img  ng-src="{{ data.wantedRecord.image }}" alt="{{ data.wantedRecord.title}}"/>
       </figure>
     </div>
   </div>
@@ -12,6 +12,8 @@
       <div class="content">
         <h2 class="title is-2">{{ data.wantedRecord.artist }}</h2>
         <h5 class="title is-5">{{ data.wantedRecord.title }}</h5>
+        <h5 class="title is-5">Genres: <span ng-repeat="genre in data.wantedRecord.genres">{{ genre }} | </span> </h5>
+        <h5 class="title is-5">Label: {{ data.wantedRecord.label }} </h5>
         <h5 class="title is-5">Condition: "{{ data.wantedRecord.condition }}"</h5>
         <h5 class="title is-5">Rating: {{ '⭐️'.repeat(data.wantedRecord.avgRating)}} </h5>
       </div>
@@ -27,7 +29,7 @@
       <div class="card-content">
         <div class="content">
           <h4 class="subtitle is-4">{{ data.wantedRecord.owner.username }}</h4>
-          <h5 class="subtitle is-5">Rating: {{ data.wantedRecord.owner.avgRating }}</h5>
+          <h5 class="subtitle is-5">Rating: {{ '⭐️'.repeat(data.wantedRecord.avgRating) }}</h5>
         </div>
       </div>
     </div>
