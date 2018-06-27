@@ -1,4 +1,4 @@
-c<div class="columns is-multiline">
+<div class="columns is-multiline">
   <div class="column is-one-quarter-desktop">
     <div class="card-image">
       <figure class="image">
@@ -37,7 +37,7 @@ c<div class="columns is-multiline">
     <form ng-submit="submitRequest(currentUserId)">
       <div class="field">
         <label class="label">Offer</label>
-        <p class="input" ng-repeat="offer in data.offeredRecord">{{ offer.artist }}</p>
+        <p class="input" ng-repeat="offer in data.offeredRecord">{{ offer.title }}</p>
       </div>
       <div class="field">
         <label for="message" class="label">Message</label>
@@ -46,8 +46,8 @@ c<div class="columns is-multiline">
       <button class="button">Make request</button>
     </form>
   </div>
-  <div ng-repeat="record in data.offeredRecord">
-    <a class="button" ng-click="addToOffer(record._id, record.title, record.artist)" ng-model="recordToOffer">{{ record.title }}</a>
+  <div ng-repeat="record in userRecords">
+    <a class="button" ng-click="addToOffer(record)" ng-model="recordToOffer">{{ record.title }}</a>
   </div>
 
 </div>
