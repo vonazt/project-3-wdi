@@ -104,13 +104,19 @@ function swapRecordsRoute(req, res, next) {
         req.body.offeredRecordId
       ]
     })
+    .populate('owner')
     .then(records => {
       const firstOwnerIdToSwap = records[0].owner;
       const secondOwnerIdToSwap = records[1].owner;
       records[0].owner = secondOwnerIdToSwap;
       records[1].owner = firstOwnerIdToSwap;
-      records[0].save();
-      records[1].save();
+      records[0].owner.numberOfTrades ++;
+      records[1].owner.numberOfTrades ++;
+      records[0].owner.save();
+      records[1].owner.save();
+      records.forEach(record => {
+        record.save();
+      });
     })
     .then(() => {
       Request
