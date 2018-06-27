@@ -40,7 +40,7 @@ const recordData = [{
 
 let token;
 
-describe('POST /records', () => {
+xdescribe('POST /records', () => {
 
   beforeEach(done => {
     Promise.all([

@@ -26,7 +26,7 @@ const updatedRecordData = {
 let recordId;
 let token;
 
-describe('PUT /records/:id', () => {
+xdescribe('PUT /records/:id', () => {
   beforeEach(done => {
     Record
       .remove({})

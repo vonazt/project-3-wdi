@@ -33,7 +33,7 @@ const recordData = {
 let token;
 let recordId;
 
-describe('DELETE /records/:id', () => {
+xdescribe('DELETE /records/:id', () => {
   beforeEach(done => {
     Record
       .remove({})
