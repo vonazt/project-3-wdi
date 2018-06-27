@@ -1,4 +1,5 @@
 /* global describe, it, api, expect, beforeEach */
+/* global describe, it, api, expect, beforeEach */
 
 const User = require('../../models/user');
 const Record = require('../../models/record');
@@ -12,35 +13,19 @@ const userData = {
   passwordConfirmation: 'pass'
 };
 
-const recordData = [{
-  artist: 'David Bowie',
-  title: 'The Man Who Sold The World',
+const recordData = {
+  artist: 'Test Artist',
+  title: 'Test Album',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: ['Rock'],
+  genres: ['Rock'],
+  label: 'RCA',
   releaseDate: 1970,
-  condition: 'Mint',
-  owner: userData,
-  comments: [{
-    content: 'great pressing',
-    rating: 4
-  }]
-}, {
-  artist: 'Aphex Twin',
-  title: 'Syro',
-  image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
-  genre: ['Electronic', 'Experimental'],
-  releaseDate: 2014,
-  condition: 'VG',
-  owner: userData,
-  comments: [{
-    content: 'great pressing',
-    rating: 4
-  }]
-}];
+  condition: 'Mint'
+};
 
 let token;
 
-xdescribe('POST /records', () => {
+describe('POST /records', () => {
 
   beforeEach(done => {
     Promise.all([
@@ -65,7 +50,7 @@ xdescribe('POST /records', () => {
   it('should return a 201 response', done => {
     api.post('/api/records')
       .set('Authorization', `Bearer ${token}`)
-      .send(recordData[0])
+      .send(recordData)
       .end((err, res) => {
         expect(res.status).to.eq(201);
         done();
@@ -75,7 +60,7 @@ xdescribe('POST /records', () => {
   it('should return the created record', done => {
     api.post('/api/records')
       .set('Authorization', `Bearer ${token}`)
-      .send(recordData[0])
+      .send(recordData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.body).to.include.keys([
@@ -83,7 +68,8 @@ xdescribe('POST /records', () => {
           'artist',
           'title',
           'image',
-          'genre',
+          'genres',
+          'label',
           'releaseDate',
           'condition'
         ]);
@@ -94,14 +80,15 @@ xdescribe('POST /records', () => {
   it('should return the correct data', done => {
     api.post('/api/records')
       .set('Authorization', `Bearer ${token}`)
-      .send(recordData[0])
+      .send(recordData)
       .end((err, res) => {
-        expect(res.body.artist).to.eq(recordData[0].artist);
-        expect(res.body.title).to.eq(recordData[0].title);
-        expect(res.body.image).to.eq(recordData[0].image);
-        expect(res.body.genre).to.deep.eq(recordData[0].genre);
-        expect(res.body.releaseDate).to.eq(recordData[0].releaseDate);
-        expect(res.body.condition).to.eq(recordData[0].condition);
+        expect(res.body.artist).to.eq(recordData.artist);
+        expect(res.body.title).to.eq(recordData.title);
+        expect(res.body.image).to.eq(recordData.image);
+        expect(res.body.genres).to.deep.eq(recordData.genres);
+        expect(res.body.label).to.eq(recordData.label);
+        expect(res.body.releaseDate).to.eq(recordData.releaseDate);
+        expect(res.body.condition).to.eq(recordData.condition);
         done();
       });
   });
