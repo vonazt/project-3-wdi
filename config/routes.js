@@ -22,7 +22,6 @@ router.post('/records/swap', secureRoute, records.swapRecords);
 
 router.post('/records/:id/comments', secureRoute, records.commentCreate);
 router.route('/records/:id/comments/:commentId')
-  .put(secureRoute, records.commentUpdate)
   .delete(secureRoute, records.commentDelete);
 
 router.route('/records/:id/requests')
@@ -44,7 +43,6 @@ router.route('/users/:id')
 router.post('/users/:id/comments', secureRoute, users.commentCreate);
 
 router.route('/users/:id/comments/:commentId')
-  .put(secureRoute, users.commentUpdate)
   .delete(secureRoute, users.commentDelete);
 
 router.route('/messages')
