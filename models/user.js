@@ -45,8 +45,10 @@ userSchema.fill('incomingRequests', function(callback){
         .map(request => {
           request = request.toJSON();
           delete request.wantedRecord.comments;
-          delete request.offeredRecord.comments;
-          delete request.offeredRecord.owner.comments;
+          request.offeredRecord.map(record => {
+            delete record.comments;
+            delete record.owner.comments;
+          });
           return request;
         });
       callback(null, requests);

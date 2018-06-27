@@ -17,7 +17,12 @@ function showRequestRoute(req, res, next){
     })
     .populate({
       path: 'offeredRecord',
-      populate: { path: 'owner' }
+      populate: {
+        path: 'owner',
+        populate: {
+          path: 'records'
+        }
+      }
     })
     .then(request => res.json(request))
     .catch(next);

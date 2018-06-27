@@ -4,14 +4,18 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
   $scope.isOwner;
   $scope.currentUser = $auth.getPayload();
 
-  $http({
-    method: 'GET',
-    url: `/api/users/${$state.params.id}`
-  })
-    .then(res => {
-      $scope.user = res.data;
-      $scope.isOwner = checkProfileOwner(res, $auth) ? true : false;
-    });
+  function getUser() {
+    $http({
+      method: 'GET',
+      url: `/api/users/${$state.params.id}`
+    })
+      .then(res => {
+        $scope.user = res.data;
+        $scope.isOwner = checkProfileOwner(res, $auth) ? true : false;
+      });
+  }
+
+  getUser();
 
   $scope.createMessage = function(user, currentUser) {
     const data = {
@@ -46,7 +50,7 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       url: `/api/requests/${request._id}`,
       data: request
     })
-      .then(() => $state.go('usersShow', { id: $state.params.id }));
+      .then(getUser);
   };
 
   $scope.declineOffer = function(request){
@@ -67,7 +71,7 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       url: `/api/requests/${request._id}`,
       data: request
     })
-      .then(() => $state.go('usersShow', { id: $state.params.id }));
+      .then(getUser);
   };
 
   $scope.swapRecords = function(outgoingRecordId, incomingRecordId, requestId) {
@@ -89,7 +93,7 @@ function UsersShowCtrl($scope, $http, $state, $auth) {
       method: 'DELETE',
       url: `/api/requests/${request._id}`
     })
-      .then(() => $state.go($state.current, {}, { reload: true }));
+      .then(getUser);
   };
 
   $scope.commentData = {};

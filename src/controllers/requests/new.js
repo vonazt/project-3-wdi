@@ -12,7 +12,7 @@ function RequestsNewCtrl($scope, $state, $http, $auth) {
   };
 
   $scope.submitRequest = function(currentUserId) {
-    $scope.data.offeredRecord = offerArray[0];
+    $scope.data.offeredRecord = offerArray;
     $http({
       method: 'POST',
       url: `/api/records/${$state.params.id}/requests`,
