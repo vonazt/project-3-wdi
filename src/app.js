@@ -18,6 +18,7 @@ import RecordsNewCtrl from './controllers/records/new.js';
 import RecordsEditCtrl from './controllers/records/edit.js';
 import CollectionsIndexCtrl from './controllers/collections/index.js';
 import RequestsNewCtrl from './controllers/requests/new.js';
+import RequestsEditCtrl from './controllers/requests/edit.js';
 import MessagesIndexCtrl from './controllers/messages/index.js';
 import MessagesShowCtrl from './controllers/messages/show.js';
 import UsersIndexCtrl from './controllers/users/index.js';
@@ -44,6 +45,7 @@ angular.module('tallManRecordsApi', [
   .controller('RecordsEditCtrl', RecordsEditCtrl)
   .controller('CollectionsIndexCtrl', CollectionsIndexCtrl)
   .controller('RequestsNewCtrl', RequestsNewCtrl)
+  .controller('RequestsEditCtrl', RequestsEditCtrl)
   .controller('MessagesIndexCtrl', MessagesIndexCtrl)
   .controller('MessagesShowCtrl', MessagesShowCtrl)
   .controller('UsersIndexCtrl', UsersIndexCtrl)

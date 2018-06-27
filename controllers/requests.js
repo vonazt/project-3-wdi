@@ -11,6 +11,7 @@ function createRequestRoute(req, res, next) {
 function updateRequestRoute(req, res, next) {
   Request
     .findById(req.params.id)
+    .populate('owner records')
     .then(request => {
       request.set(req.body);
       return request.save();

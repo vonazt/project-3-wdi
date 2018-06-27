@@ -47,7 +47,14 @@ function Router($stateProvider, $urlRouterProvider) {
     .state('requestsNew', {
       url: '/records/:id/requests',
       templateUrl: './views/requests/new.html',
-      controller: 'RequestsNewCtrl'
+      controller: 'RequestsNewCtrl',
+      resolve: { secureState }
+    })
+    .state('requestsEdit', {
+      url: '/requests/:id/edit',
+      templateUrl: './views/requests/edit.html',
+      controller: 'RequestsEditCtrl',
+      resolve: { secureState }
     })
     .state('usersIndex', {
       url: '/users',
