@@ -52,15 +52,31 @@
         <th>Message</th>
         <th>Status</th>
       </thead>
-
+      <!-- {{user.outgoingRequests[0].wantedRecord}}
+      <hr>
+      {{user.outgoingRequests[0].offeredRecord[1]}}
+      <hr>
+      {{user.outgoingRequests[0].offeredRecord[2]}}
+      <hr>
+      {{user.outgoingRequests[1]}} -->
       <tbody>
-        <tr ng-repeat="request in user.outgoingRequests">
-          <td>{{ request.wantedRecord.owner.username }}</td>
-          <td>{{ request.wantedRecord.owner.avgRating }}</td>
+            <div ng-repeat="offeredRecords in user.outgoingRequests">
+              <div ng-repeat="records in offeredRecords">
+                <div ng-repeat="record in records">
+                    {{ record.artist }}
+                </div>
+
+              </div>
+
+            </div>
+            <!-- <td><span ng-repeat="record in user.outgoingRequests[0].offeredRecord[0]">{{ record }}</span></td> -->
+
+
+          <!-- <td>{{ request.wantedRecord.owner.avgRating }}</td>
           <td>{{ request.wantedRecord.title }}</td>
           <td>{{ request.offeredRecord.title }}</td>
           <td>{{ request.message }}</td>
-          <td>{{ request.status }}</td>
+          <td>{{ request.status }}</td> -->
           <td><a class="button is-success" ng-if="request.stage[1] < 1" ui-sref="requestsEdit({ id: request._id })">Edit</a></td>
           <td><a class="button is-danger" ng-click="deleteOffer(request)">Delete</a></td>
           <td><a class="button is-danger" ng-if="request.stage[1] === 1" ng-click="recordsAction(user.username, request, 'records sent', 1)">Record(s) sent</a></td>
