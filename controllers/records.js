@@ -75,17 +75,6 @@ function commentDeleteRoute(req, res, next){
     .catch(next);
 }
 
-function commentUpdateRoute(req, res, next){
-  Record
-    .findById(req.params.id)
-    .then(record => {
-      const comment = record.comments.id(req.params.commentId);
-      comment.set(req.body);
-      return record.save();
-    })
-    .then(record => res.json(record))
-    .catch(next);
-}
 
 function showRequestRoute(req, res, next) {
   Record
@@ -138,7 +127,6 @@ module.exports = {
   collectionsIndex: collectionsIndexRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
-  commentUpdate: commentUpdateRoute,
   showRequest: showRequestRoute,
   swapRecords: swapRecordsRoute
 };
