@@ -6,10 +6,11 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../../config/environment');
 
 const recordData = {
-  artist: 'David Bowie',
-  title: 'The Man Who Sold The World',
+  artist: 'Test Artist',
+  title: 'Test Album',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-  genre: ['Rock'],
+  genres: ['Rock'],
+  label: 'RCA',
   releaseDate: 1970,
   condition: 'Mint'
 };
@@ -19,6 +20,7 @@ const updatedRecordData = {
   title: 'Syro',
   image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
   genre: ['Electronic', 'Experimental'],
+  label: 'RCA',
   releaseDate: 2014,
   condition: 'VG'
 };
@@ -26,7 +28,7 @@ const updatedRecordData = {
 let recordId;
 let token;
 
-xdescribe('PUT /records/:id', () => {
+describe('PUT /records/:id', () => {
   beforeEach(done => {
     Record
       .remove({})
@@ -75,11 +77,10 @@ xdescribe('PUT /records/:id', () => {
           'artist',
           'title',
           'image',
-          'genre',
+          'genres',
+          'label',
           'releaseDate',
-          'condition',
-          'owner',
-          'comments'
+          'condition'
         ]);
         done();
       });
@@ -93,7 +94,7 @@ xdescribe('PUT /records/:id', () => {
         expect(res.body.artist).to.eq(updatedRecordData.artist);
         expect(res.body.title).to.eq(updatedRecordData.title);
         expect(res.body.image).to.eq(updatedRecordData.image);
-        expect(res.body.genre).to.deep.eq(updatedRecordData.genre);
+        expect(res.body.label).to.eq(updatedRecordData.label);
         expect(res.body.releaseDate).to.eq(updatedRecordData.releaseDate);
         expect(res.body.condition).to.eq(updatedRecordData.condition);
         done();
