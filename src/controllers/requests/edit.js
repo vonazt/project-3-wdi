@@ -18,7 +18,6 @@ function RequestsEditCtrl($scope, $state, $http, $auth) {
 
   $scope.editRequest = function(currentUserId) {
     $scope.data.offeredRecord = $scope.offerArray.map(item => item._id);
-    $scope.data.message = $scope.data.message;
     $http({
       method: 'PUT',
       url: `/api/requests/${$state.params.id}`,
