@@ -25,3 +25,17 @@ hr {
     background-color: rgba(240,53,53, 1)
   }
 }
+
+.button.is-info {
+  background-color: white;
+  color: black;
+  font-family: $main-font;
+  border: 2px solid $brand-color;
+  &:hover {
+    background-color: $submit-color;
+  }
+}
+
+.comments {
+  background-color: white;
+}

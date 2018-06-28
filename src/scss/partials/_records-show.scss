@@ -27,3 +27,14 @@
   border-color: $brand-color;
   margin-bottom: .5rem;
 }
+
+.comments-container {
+  background-color: white;
+  border: $content-border;
+  padding: .5rem;
+  margin-top: 1rem;
+  border-radius: 2%;
+  .comment-field {
+    padding: .2rem;
+  }
+}
