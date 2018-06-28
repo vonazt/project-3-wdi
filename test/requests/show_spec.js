@@ -49,12 +49,12 @@ describe('GET /requests/:id', () => {
       })
       .then(() => Request.create({
         wantedRecord: recordOneId,
-        offeredRecord: [recordTwoId],
+        offeredRecords: [recordTwoId],
         message: 'Test offer'
       }))
       .then((request) => {
         requestData.wantedRecord = request.wantedRecord;
-        requestData.offeredRecord = request.offeredRecord;
+        requestData.offeredRecords = request.offeredRecords;
         requestData.message = request.message;
         requestData._id = request._id;
         requestId = request._id;
@@ -94,7 +94,7 @@ describe('GET /requests/:id', () => {
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         expect(res.body.wantedRecord._id).to.eq(requestData.wantedRecord.toString());
-        expect(res.body.offeredRecord[0]._id).to.eq(requestData.offeredRecord[0].toString());
+        expect(res.body.offeredRecords[0]._id).to.eq(requestData.offeredRecords[0].toString());
         expect(res.body.message).to.eq(requestData.message);
         done();
       });

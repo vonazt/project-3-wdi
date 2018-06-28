@@ -88,12 +88,12 @@ describe('POST /records/swap', ()=>{
       })
       .then(() => Request.create({
         wantedRecord: recordData[0]._id,
-        offeredRecord: [recordData[1]._id],
+        offeredRecords: [recordData[1]._id],
         message: 'test-message'
       }))
       .then((request) => {
         requestData.ownedRecordId = request.wantedRecord;
-        requestData.offeredRecordId = request.offeredRecord;
+        requestData.offeredRecordId = request.offeredRecords;
         requestData.requestId = request._id;
       })
       .then(done);
