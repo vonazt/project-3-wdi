@@ -4,3 +4,13 @@
   border: 3px solid $brand-color;
   border-radius: 15px;
 }
+
+.is-register-button {
+    background-color: white;
+    color: black;
+    font-family: $main-font;
+    border: 2px solid $brand-color;
+    &:hover {
+      background-color: $submit-color;
+    }
+}
