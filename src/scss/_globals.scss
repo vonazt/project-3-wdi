@@ -3,3 +3,11 @@ body {
   background: url('../assets/images/record-shelves.jpg');
   min-height: 1000px;
 }
+
+.display-container {
+  background: linear-gradient(rgba(255,255,255, 1), rgba(220,220,220,1));
+  padding: 20px;
+  border-radius: 2%;
+  border: 3px solid $brand-color;
+  min-height: 1000px;
+}

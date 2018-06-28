@@ -1,4 +1,4 @@
-<div class="records-container">
+<div class="display-container">
   <form>
     <div class="columns">
       <div class="column">
@@ -46,7 +46,7 @@
                 <hr>
                 <h5 class="title card-info is-5"><strong>Condition:</strong> {{ record.condition }}</h5>
                 <hr>
-                <h5 class="title card-info is-5"><strong>Owned by:</strong> {{ record.owner.username }}</h5>
+                <h5 class="title card-info is-5"><strong>Owned by:</strong> {{ record.owner.username }}: {{ '⭐️'.repeat(record.owner.avgRating)}}</h5>
               </div>
             </div>
           </article>
