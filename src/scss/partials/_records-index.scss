@@ -1,12 +1,23 @@
+.records-container {
+  background: linear-gradient(rgba(255,255,255, 1), rgba(220,220,220,1));
+  padding: 20px;
+  border-radius: 2%;
+  border: 3px solid $brand-color;
+}
+
 .box {
   border: 2px solid $brand-color;
   .content {
     line-height: 1em;
   }
   .card-info {
+    font-weight: 400;
     font-size: 1.1em;
     margin-bottom: 0;
     letter-spacing: .1em;
+    strong {
+      font-weight: 900;
+    }
   }
   hr {
     margin: .2rem;
