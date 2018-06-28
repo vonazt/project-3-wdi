@@ -1,6 +1,5 @@
 /* global describe, it, api, expect, beforeEach,   */
 const Message = require('../../../models/message');
-const Comment = require('../../../models/comment');
 const User = require('../../../models/user');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../../../config/environment');

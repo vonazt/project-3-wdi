@@ -1,5 +1,4 @@
 /* global describe, it, api, expect, beforeEach */
-/* global describe, it, api, expect, beforeEach */
 
 const User = require('../../models/user');
 const Record = require('../../models/record');
