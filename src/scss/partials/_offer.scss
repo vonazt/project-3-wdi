@@ -15,6 +15,16 @@
   .record-offer-label {
     font-size: 2em;
   }
+  .offered-record {
+    cursor: pointer;
+    &:hover {
+      background-color: $brand-color;
+      color: white;
+    }
+  }
+  .make-request {
+
+  }
 }
 
 .my-records-offer {
