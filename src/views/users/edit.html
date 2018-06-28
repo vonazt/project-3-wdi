@@ -1,47 +1,50 @@
-<form ng-submit="updateUser()" name="form" novalidate>
-  <div class="field">
-    <label for="username" class="username">Username</label>
-    <input type="text" name="username" class="input" id="username" ng-model="data.username" required>
+<div class="auth-display-container">
+  <form ng-submit="updateUser()" name="form" novalidate>
+    <div class="field">
+      <label for="username" class="username">Username</label>
+      <input type="text" name="username" class="input" id="username" ng-model="data.username" required>
 
-    <div ng-messages="form.username.$error" ng-if="form.username.$touched">
-      <small ng-message="required">This field is required</small>
+      <div ng-messages="form.username.$error" ng-if="form.username.$touched">
+        <small ng-message="required">This field is required</small>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label for="email" class="email">Email</label>
-    <input type="email" name="email" class="input" id="email" ng-model="data.email" required>
+    <div class="field">
+      <label for="email" class="email">Email</label>
+      <input type="email" name="email" class="input" id="email" ng-model="data.email" required>
 
-    <div ng-messages="form.email.$error" ng-if="form.email.$touched">
-      <small ng-message="required">This field is required</small>
-      <small ng-message="email">Please enter a valid email</small>
+      <div ng-messages="form.email.$error" ng-if="form.email.$touched">
+        <small ng-message="required">This field is required</small>
+        <small ng-message="email">Please enter a valid email</small>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label for="password" class="username">Change password</label>
-    <input type="password" name="password" class="input" id="password" ng-model="data.password">
+    <!-- <div class="field">
+      <label for="password" class="username">Change password</label>
+      <input type="password" name="password" class="input" id="password" ng-model="data.password">
 
-    <div ng-messages="form.password.$error" ng-if="form.password.$touched">
-      <small ng-message="required">This field is required</small>
+      <div ng-messages="form.password.$error" ng-if="form.password.$touched">
+        <small ng-message="required">This field is required</small>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label for="passwordConfirmation" class="passwordConfirmation">Confirm password</label>
-    <input type="password" name="passwordConfirmation" class="input" id="passwordConfirmation" ng-model="data.passwordConfirmation" ng-pattern="data.password">
+    <div class="field">
+      <label for="passwordConfirmation" class="passwordConfirmation">Confirm password</label>
+      <input type="password" name="passwordConfirmation" class="input" id="passwordConfirmation" ng-model="data.passwordConfirmation" ng-pattern="data.password">
 
-    <div ng-messages="form.passwordConfirmation.$error" ng-if="form.passwordConfirmation.$touched">
-      <small ng-message="required">This field is required</small>
-      <small ng-message="pattern">Passwords do not match</small>
+      <div ng-messages="form.passwordConfirmation.$error" ng-if="form.passwordConfirmation.$touched">
+        <small ng-message="required">This field is required</small>
+        <small ng-message="pattern">Passwords do not match</small>
+      </div>
+    </div> -->
+
+    <div class="field">
+      <label for="avatar" class="label">Avatar</label>
+      <button class="button" name="avatar" id="avatar" ng-model="data.avatar" file-picker required>Pick an avatar</button>
     </div>
-  </div>
+    <img src="{{ data.avatar }}" ng-if="data.avatar" />
 
-  <div class="field">
-    <label for="avatar" class="label">Avatar</label>
-    <button class="button" name="avatar" id="avatar" ng-model="data.avatar" file-picker required>Pick an avatar</button>
-  </div>
-  <img src="{{ data.avatar }}" ng-if="data.avatar" />
+    <button class="button" ng-disabled="form.$invalid">Edit profile</button>
+  </form>
 
-  <button class="button" ng-disabled="form.$invalid">Edit profile</button>
-</form>
+</div>
