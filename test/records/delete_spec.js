@@ -49,7 +49,7 @@ describe('DELETE /records/:id', () => {
       });
   });
 
-  it('should return a 204', done => {
+  it('should return a 204 response', done => {
     api.delete(`/api/records/${recordId}`)
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) =>{
