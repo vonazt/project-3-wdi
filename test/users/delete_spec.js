@@ -6,7 +6,7 @@ const { secret } = require('../../config/environment');
 let userId;
 let token;
 
-describe('GET /users/:id', () => {
+describe('DELETE /users/:id', () => {
   beforeEach(done => {
     User
       .remove({})

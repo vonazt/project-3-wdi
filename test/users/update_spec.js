@@ -11,7 +11,7 @@ const updatedUserData =
 let userId;
 let token;
 
-describe('GET /users/:id', () => {
+describe('PUT /users/:id', () => {
   beforeEach(done => {
     User
       .remove({})
