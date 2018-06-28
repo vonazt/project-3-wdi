@@ -5,13 +5,13 @@ function RecordsEditCtrl($scope, $state, $http) {
   $scope.addGenre = function() {
     $scope.genreArray.push($scope.data.genre);
     $scope.showGenreArray = true;
-    $scope.data.genre = '';
+    $scope.data.genres = '';
   };
 
   $scope.removeGenre = function(e) {
     const index = $scope.genreArray.indexOf(e);
     $scope.genreArray.splice(index, 1);
-    $scope.data.genre = '';
+    $scope.data.genres = '';
   };
 
   $scope.updateRecord = function() {
@@ -30,9 +30,9 @@ function RecordsEditCtrl($scope, $state, $http) {
   })
     .then(res => {
       $scope.data = res.data;
-      res.data.genre.forEach(item => $scope.genreArray.push(item));
+      res.data.genres.forEach(item => $scope.genreArray.push(item));
       $scope.showGenreArray = true;
-      $scope.data.genre = '';
+      $scope.data.genres = '';
     });
 }
 
