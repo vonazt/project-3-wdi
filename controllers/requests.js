@@ -18,7 +18,7 @@ function showRequestRoute(req, res, next){
       populate: { path: 'owner' }
     })
     .populate({
-      path: 'offeredRecord',
+      path: 'offeredRecords',
       populate: {
         path: 'owner',
         populate: {

@@ -17,7 +17,7 @@ function RequestsEditCtrl($scope, $state, $http, $auth) {
   };
 
   $scope.editRequest = function(currentUserId) {
-    $scope.data.offeredRecord = $scope.offerArray.map(item => item._id);
+    $scope.data.offeredRecords = $scope.offerArray.map(item => item._id);
     $http({
       method: 'PUT',
       url: `/api/requests/${$state.params.id}`,
@@ -32,9 +32,9 @@ function RequestsEditCtrl($scope, $state, $http, $auth) {
   })
     .then(res => {
       $scope.data = res.data;
-      $scope.offerArray = $scope.data.offeredRecord.map(record => record);
-      const checkRecordArray = $scope.data.offeredRecord.map(record => record._id);
-      $scope.data.offeredRecord[0].owner.records.forEach(record => {
+      $scope.offerArray = $scope.data.offeredRecords.map(record => record);
+      const checkRecordArray = $scope.data.offeredRecords.map(record => record._id);
+      $scope.data.offeredRecords[0].owner.records.forEach(record => {
         if(!checkRecordArray.includes(record._id)) {
           $scope.userRecords.push(record);
         }

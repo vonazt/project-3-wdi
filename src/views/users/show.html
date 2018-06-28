@@ -30,16 +30,16 @@
           <tr ng-repeat="request in user.incomingRequests">
 
             <td>
-              {{ request.offeredRecord[0].owner.username }}
+              {{ request.offeredRecords[0].owner.username }}
             </td>
             <td>
-              {{ '⭐️'.repeat(request.offeredRecord[0].owner.avgRating) }}
+              {{ '⭐️'.repeat(request.offeredRecords[0].owner.avgRating) }}
             </td>
             <td>
               {{ request.wantedRecord.title }}
             </td>
             <td>
-              <p ng-repeat="record in request.offeredRecord">
+              <p ng-repeat="record in request.offeredRecords">
                 <span ng-if="!$last">{{ record.title }}, </span>
                 <span ng-if="$last">{{ record.title }}</span>
               </p>
@@ -54,7 +54,7 @@
             <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
             <td><a class="button is-danger" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
             <td><a class="button is-danger" ng-if="request.stage[1] === 2" ng-click="recordsAction(user.username, request, 'records received', 1)">Record(s) received</a></td>
-            <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecord, request._id)">Swap records</a></td>
+            <td><a class="button is-danger" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecords, request._id)">Swap records</a></td>
           </tr>
         </tbody>
       </table>
@@ -81,7 +81,7 @@
               {{ offersMade.wantedRecord.artist }}
             </td>
             <td>
-              <p ng-repeat="record in offersMade.offeredRecord">
+              <p ng-repeat="record in offersMade.offeredRecords">
                 <span ng-if="!$last">{{ record.title }}, </span>
                 <span ng-if="$last">{{ record.title }}</span>
               </p>

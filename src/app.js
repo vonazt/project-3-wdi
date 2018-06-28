@@ -6,6 +6,7 @@ import 'filepicker-js';
 import 'angular-filepicker/dist/angular_filepicker';
 
 import 'bulma';
+import './scss/main.scss';
 
 import Router from './config/routes';
 import Auth from './config/satellizer';
