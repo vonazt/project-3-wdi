@@ -45,6 +45,7 @@ userSchema.fill('incomingRequests', function(callback){
         .reduce((flattened, requests) => flattened.concat(requests))
         .map(request => {
           request = request.toJSON();
+          request._id = request._id.toString();
           delete request.wantedRecord.comments;
           request.offeredRecord.map(record => {
             delete record.comments;
@@ -52,7 +53,7 @@ userSchema.fill('incomingRequests', function(callback){
           });
           return request;
         });
-      callback(null, requests);
+      callback(null, _.uniqBy(requests, '_id'));
     });
 });
 
