@@ -1,5 +1,6 @@
 const Record = require('../models/record');
 const Request = require('../models/request');
+const Promise = require('bluebird');
 
 function indexRoute(req, res, next) {
   Record
@@ -108,19 +109,13 @@ function swapRecordsRoute(req, res, next) {
       offeredRecords[0].owner.numberOfTrades ++;
       ownedRecord[0].owner.save();
       offeredRecords[0].owner.save();
-      records.forEach(record => {
-        record.save();
-      });
+
+      return Promise.all(records.map(record => record.save()))
+        .then(() => Request.findById(req.body.requestId))
+        .then(request => request.remove())
+        .then(() => res.json(records));
     })
-    .then(() => {
-      Request
-        .findById(req.body.requestId)
-        .then(request => {
-          request.remove();
-        });
-    })
-    .then(records => res.json(records))
-    .catch(next);
+    .catch((err) => next(err));
 }
 
 module.exports = {

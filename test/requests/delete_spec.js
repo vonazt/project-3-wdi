@@ -87,7 +87,6 @@ describe('DELETE /requests/:id', () => {
     api.delete(`/api/requests/${requestId}`)
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
-        console.log(res.body);
         expect(res.body).to.be.empty;
         done();
       });

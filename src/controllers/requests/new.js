@@ -47,7 +47,7 @@ function RequestsNewCtrl($scope, $state, $http, $auth) {
 
   $scope.createMessage = function(user, currentUser) {
     const data = {
-      userOneId: user._id,
+      userOneId: user,
       userTwoId: currentUser.sub
     };
     $http({
