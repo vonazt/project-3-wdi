@@ -6,7 +6,7 @@
           <img ng-src="{{ record.image }}" alt="{{ record.title}}"/>
         </figure>
       </div>
-      <hr class="edit-album-hr">
+      <hr ng-if="isAuthenticated() && isOwner" class="edit-album-hr">
       <a ui-sref="recordsEdit({ id: record._id })" class="button is-info edit-album-button" ng-if="isAuthenticated() && isOwner">Edit Album Details</a>
       <button class="button is-danger" ng-click="deleteRecord()" ng-if="isAuthenticated() && isOwner">Delete Album</button>
     </div>
@@ -86,9 +86,9 @@
           </div>
         </article>
       </div>
-
+    </div>
     <div class="column is-one-quarter-desktop">
-      <a class="button" ng-if="!isOwner" ui-sref="requestsNew({ id: record._id })">Make an offer</a>
+      <a class="button is-info is-offer" ng-if="!isOwner" ui-sref="requestsNew({ id: record._id })">Make an offer</a>
     </div>
   </div>
 </div>
