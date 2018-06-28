@@ -23,17 +23,17 @@ const users = [
 ];
 
 users[0].comments = [{
-  content: 'great pressing',
+  content: 'very easy trade - would recommend',
   rating: 4,
   author: users[1]
 }, {
-  content: 'not bowie\'s best',
+  content: 'this guy is just the worst',
   rating: 3,
   author: users[0]
 }];
 
 users[1].comments = [{
-  content: 'comes on three vinyl',
+  content: 'dude has the best collection ever',
   rating: 5,
   author: users[0]
 }];
@@ -45,98 +45,98 @@ mongoose.connect(dbURI, (err, db) => {
     .then(users => {
       console.log(`${users.length} users(s) created`);
       return Record.create([{
-        artist: 'Richard Aritst',
-        title: 'Richard Album',
-        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/MWSTWUS2.jpg/220px-MWSTWUS2.jpg',
-        genres: ['Rock'],
-        label: 'RCA',
-        releaseDate: 1970,
-        condition: 'Mint',
+        artist: 'Led Zeppelin',
+        title: 'IV',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/2/26/Led_Zeppelin_-_Led_Zeppelin_IV.jpg/220px-Led_Zeppelin_-_Led_Zeppelin_IV.jpg',
+        genres: ['Hard rock', 'Blues rock'],
+        label: 'Atlantic',
+        releaseDate: 1971,
+        condition: 'Good',
         owner: users[0],
         comments: [{
-          content: 'great pressing',
+          content: 'great pressing of an amazing album',
           rating: 4,
           author: users[1]
         }, {
-          content: 'not bowie\'s best',
+          content: 'no stairway!',
           rating: 3,
           author: users[0]
         }]
       }, {
-        artist: 'Martin Artist',
-        title: 'Martin Album',
-        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Aphex_Twin_-_Syro_alt_cover.jpg/220px-Aphex_Twin_-_Syro_alt_cover.jpg',
-        genres: ['Electronic', 'Experimental'],
+        artist: 'Aphex Twin',
+        title: 'Richard D. James Album',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/Richard_d_james_album_cover.jpg/220px-Richard_d_james_album_cover.jpg',
+        genres: ['Electronic', 'Drill \'n\' bass'],
         label: 'Warp',
-        releaseDate: 2014,
-        condition: 'VG',
+        releaseDate: 1996,
+        condition: 'Mint',
         owner: users[1],
         comments: [{
-          content: 'comes on three vinyl',
+          content: 'aphex twin at his best - even better at 33rpm',
           rating: 5,
           author: users[0]
         }]
       }, {
-        artist: 'Richard Aritst 2',
-        title: 'Richard Album 2',
+        artist: 'Cannibal Ox',
+        title: 'The Cold Vein',
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/CannibalOxTheColdVein.jpg/220px-CannibalOxTheColdVein.jpg',
-        genres: ['Rock'],
-        label: 'RCA',
-        releaseDate: 1970,
-        condition: 'Mint',
+        genres: ['Hip hop'],
+        label: 'Def Jux',
+        releaseDate: 2001,
+        condition: 'Very Good',
         owner: users[0],
         comments: [{
-          content: 'great pressing',
-          rating: 4,
+          content: 'El-P produces some incredible beats on this album but the pressing is shit',
+          rating: 3,
           author: users[1]
         }, {
-          content: 'not bowie\'s best',
-          rating: 3,
-          author: users[0]
-        }]
-      }, {
-        artist: 'Richard Aritst 3',
-        title: 'Richard Album 3',
-        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Low_%28album%29.jpg/220px-Low_%28album%29.jpg',
-        genres: ['Rock'],
-        label: 'RCA',
-        releaseDate: 1970,
-        condition: 'Mint',
-        owner: users[0],
-        comments: [{
-          content: 'great pressing',
-          rating: 4,
-          author: users[1]
-        }, {
-          content: 'not bowie\'s best',
-          rating: 3,
-          author: users[0]
-        }]
-      }, {
-        artist: 'Martin Artist 2',
-        title: 'Martin Album 2',
-        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Year_of_the_Snitch_album_cover.jpg/220px-Year_of_the_Snitch_album_cover.jpg',
-        genres: ['Electronic', 'Experimental'],
-        label: 'Warp',
-        releaseDate: 2014,
-        condition: 'VG',
-        owner: users[1],
-        comments: [{
-          content: 'comes on three vinyl',
+          content: 'love this album so much',
           rating: 5,
           author: users[0]
         }]
       }, {
-        artist: 'Martin Artist 3',
-        title: 'Martin Album 3',
-        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Bottomlesspitdeathgrips.jpg/220px-Bottomlesspitdeathgrips.jpg',
-        genres: ['Electronic', 'Experimental'],
-        label: 'Warp',
-        releaseDate: 2014,
-        condition: 'VG',
+        artist: 'David Bowie',
+        title: 'Low',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Low_%28album%29.jpg/220px-Low_%28album%29.jpg',
+        genres: ['Art rock', 'Avant pop'],
+        label: 'RCA',
+        releaseDate: 1977,
+        condition: 'Acceptable',
+        owner: users[0],
+        comments: [{
+          content: 'this record changed my life',
+          rating: 4,
+          author: users[1]
+        }, {
+          content: 'best bowie album!',
+          rating: 3,
+          author: users[0]
+        }]
+      }, {
+        artist: 'Michael Jacjson',
+        title: 'Thriller',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/55/Michael_Jackson_-_Thriller.png/220px-Michael_Jackson_-_Thriller.png',
+        genres: ['Pop', 'Post-disco', 'Funk'],
+        label: 'Epic',
+        releaseDate: 1982,
+        condition: 'Good',
         owner: users[1],
         comments: [{
-          content: 'comes on three vinyl',
+          content: 'can\'t get enough of this album',
+          rating: 2,
+          author: users[0]
+        }]
+      }, {
+        artist: 'Sleep',
+        title: 'Dopesmoker',
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Dopesmoker_%28Reissue%29.jpeg/220px-Dopesmoker_%28Reissue%29.jpeg',
+        genres: ['Drone', 'Experimental'],
+        label: 'Rise Above',
+        releaseDate: 1999,
+        condition: 'Mint',
+        owner: users[1],
+        comments: [{
+          content: 'An hour-long, single-song, drone masterpiece. Need I say more?',
           rating: 5,
           author: users[0]
         }]

@@ -109,7 +109,6 @@ function swapRecordsRoute(req, res, next) {
       offeredRecords[0].owner.numberOfTrades ++;
       ownedRecord[0].owner.save();
       offeredRecords[0].owner.save();
-
       return Promise.all(records.map(record => record.save()))
         .then(() => Request.findById(req.body.requestId))
         .then(request => request.remove())
