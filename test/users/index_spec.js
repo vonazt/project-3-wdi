@@ -10,7 +10,7 @@ const userData =
     avatar: 'https://www.panzerdragoonlegacy.com/system/pictures/1517/original/azel-panzer-dragoon-rpg-ntsc-j-version-case-back-insert-enhanced.jpg?1483099400'
   };
 
-xdescribe('GET /users', () => {
+describe('GET /users', () => {
   beforeEach(done => {
     User
       .remove({})
@@ -33,14 +33,5 @@ xdescribe('GET /users', () => {
         done();
       });
   });
-
-  xit('should return an array of objects', done => {
-    api.get('/api/users')
-      .end((err, res) => {
-        res.body.forEach(user => expect(user).to.be.an('object'));
-        done();
-      });
-  });
-
 
 });

@@ -42,7 +42,7 @@ userSchema.fill('incomingRequests', function(callback){
   Promise.all(requests)
     .then(allRequests => {
       const requests = allRequests
-        .reduce((flattened, requests) => flattened.concat(requests))
+        .reduce((flattened, requests) => flattened.concat(requests), [])
         .map(request => {
           request = request.toJSON();
           request._id = request._id.toString();
@@ -72,7 +72,7 @@ userSchema.fill('outgoingRequests', function(callback){
   Promise.all(requests)
     .then(allRequests => {
       const requests = allRequests
-        .reduce((flattened, requests) => flattened.concat(requests))
+        .reduce((flattened, requests) => flattened.concat(requests), [])
         .map(request => {
           request = request.toJSON();
           request._id = request._id.toString();

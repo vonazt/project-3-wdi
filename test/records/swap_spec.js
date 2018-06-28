@@ -58,7 +58,7 @@ describe('POST /records/swap', ()=>{
         token = jwt.sign({sub: user._id}, secret , {expiresIn: '6h'});
       })
       .then(() => User.create(userData[1]))
-      .then( user => {
+      .then(user => {
         ownerTwo = user._id;
       })
       .then(() => Record.create([{
@@ -94,7 +94,7 @@ describe('POST /records/swap', ()=>{
       .then((request) => {
         requestData.ownedRecordId = request.wantedRecord;
         requestData.offeredRecordId = request.offeredRecord;
-        requestData._id = request._id;
+        requestData.requestId = request._id;
       })
       .then(done);
   });
