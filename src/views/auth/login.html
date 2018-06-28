@@ -1,12 +1,24 @@
-<form ng-submit="handleSubmit()">
-  <div class="field">
-    <label for="email" class="label">Email</label>
-    <input type="text" name="email" class="input" id="email" ng-model="data.email">
-  </div>
-  <div class="field">
-    <label for="password" class="label">Password</label>
-    <input type="password" name="password" class="input" id="password" ng-model="data.password">
-  </div>
+<div class="auth-display-container">
+  <form ng-submit="handleSubmit()">
+    <div class="field">
+      <label for="email" class="label">Email</label>
+      <p class="control has-icons-left">
+        <input type="text" name="email" class="input" id="email" ng-model="data.email">
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+    </p>
+    </div>
+    <div class="field">
+      <label for="password" class="label">Password</label>
+      <p class="control has-icons-left">
+        <input type="password" name="password" class="input" id="password" ng-model="data.password">
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </p>
+    </div>
 
-  <button class="button">Submit</button>
-</form>
+    <button class="button is-info">Submit</button>
+  </form>
+</div>

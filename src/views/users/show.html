@@ -7,8 +7,8 @@
       </figure>
       <div class="profile-buttons">
         <a ui-sref="usersEdit({ id: user._id })" class="button is-info" ng-if="isAuthenticated() && isOwner">Edit Profile</a>
-        <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && isOwner">Delete User</a>
-        <a class="button is-info" ng-click="createMessage(user, currentUser)">Message User</a>
+        <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && isOwner">Delete Profile</a>
+        <a class="button is-info" ng-if="!isOwner" ng-click="createMessage(user, currentUser)">Message User</a>
       </div>
     </div>
     <div class="column is-one-quarter">
