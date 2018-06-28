@@ -1,4 +1,7 @@
 function RequestsNewCtrl($scope, $state, $http, $auth) {
+  $scope.isOwner;
+  $scope.currentUser = $auth.getPayload();
+
   $scope.recordToDisplay = [];
   $scope.userRecords = [];
   $scope.offerArray = [];
@@ -41,6 +44,19 @@ function RequestsNewCtrl($scope, $state, $http, $auth) {
         }
       });
     });
+
+  $scope.createMessage = function(user, currentUser) {
+    const data = {
+      userOneId: user._id,
+      userTwoId: currentUser.sub
+    };
+    $http({
+      method: 'POST',
+      url: '/api/messages',
+      data: data
+    })
+      .then(() => $state.go('messagesIndex'));
+  };
 }
 
 export default RequestsNewCtrl;
