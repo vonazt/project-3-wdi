@@ -48,12 +48,12 @@ describe('POST /requests', () => {
       })
       .then(() => Request.create({
         wantedRecord: recordOneId,
-        offeredRecord: [recordTwoId],
+        offeredRecords: [recordTwoId],
         message: 'Test offer'
       }))
       .then((request) => {
         requestData.wantedRecord = request.wantedRecord;
-        requestData.offeredRecord = request.offeredRecord;
+        requestData.offeredRecords = request.offeredRecords;
         requestData.message = request.message;
         done();
       });
@@ -86,7 +86,7 @@ describe('POST /requests', () => {
         expect(res.body).to.include.keys([
           '_id',
           'wantedRecord',
-          'offeredRecord',
+          'offeredRecords',
           'message'
         ]);
         done();
