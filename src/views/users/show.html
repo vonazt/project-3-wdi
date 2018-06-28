@@ -118,9 +118,9 @@
                     {{ offersMade.status }}
                   </td>
                   <td><a class="button is-info" ng-if="offersMade.stage[1] < 1" ui-sref="requestsEdit({ id: offersMade._id })">Edit</a></td>
-                  <td><a class="button is-info" ng-click="deleteOffer(offersMade)">Delete</a></td>
+                  <td><a class="button is-danger" ng-if="offersMade.stage[1] < 2" ng-click="deleteOffer(offersMade)">Delete</a></td>
                   <td><a class="button is-info" ng-if="offersMade.stage[1] === 1" ng-click="recordsAction(user.username, offersMade, 'records sent', 1)">Record(s) sent</a></td>
-                  <td><a class="button is-infor" ng-if="offersMade.stage[0] === 2" ng-click="recordsAction(user.username, offersMade, 'records received', 0)">Record(s) received</a></td>
+                  <td><a class="button is-info" ng-if="offersMade.stage[0] === 2" ng-click="recordsAction(user.username, offersMade, 'records received', 0)">Record(s) received</a></td>
                 </tr>
               </tbody>
             </table>
