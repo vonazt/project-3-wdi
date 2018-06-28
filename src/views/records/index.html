@@ -2,20 +2,20 @@
   <form>
     <div class="columns">
       <div class="column">
-        <div class="field">
-          <input class="input" name="search" placeholder="Search..." ng-model="search" />
+        <div class="field search-box">
+          <input class="input" name="search" placeholder="Search records..." ng-model="search" />
         </div>
       </div>
       <div class="column">
         <div class="field">
           <div class="control">
-            <div class="select">
+            <div class="select sort-records">
               <select ng-model="sort">
-                <option value="">Sort Records</option>
-                <option value="title">Album: A-Z</option>
-                <option value="-title">Album: Z-A</option>
-                <option value="artist">Artist: A-Z</option>
-                <option value="-artist">Artist: Z-A</option>
+                <option class="" value="">Sort Records</option>
+                <option class="sort-records" value="title">Album: A-Z</option>
+                <option class="sort-records" value="-title">Album: Z-A</option>
+                <option class="sort-records" value="artist">Artist: A-Z</option>
+                <option class="sort-records" value="-artist">Artist: Z-A</option>
               </select>
             </div>
           </div>
@@ -37,6 +37,8 @@
             <div class="media-content">
               <div class="content">
                 <h4 class="title card-info is-4"><strong>{{ record.title }}</strong> by <strong>{{ record.artist }}</strong></h4>
+                <hr>
+                <h5 class="title card-info is-5"><strong>Release date:</strong> {{ record.releaseDate }}</h5>
                 <hr>
                 <h5 class="title card-info is-5"><strong>Genre: </strong><span ng-repeat="genre in record.genres"><span ng-if="!$last">{{ genre }} | </span><span ng-if="$last">{{ genre }}</span></h5>
                 <hr>
