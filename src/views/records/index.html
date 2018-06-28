@@ -10,6 +10,7 @@
         <div class="control">
           <div class="select">
             <select ng-model="sort">
+              <option value="">Sort Records</option>
               <option value="title">Album: A-Z</option>
               <option value="-title">Album: Z-A</option>
               <option value="artist">Artist: A-Z</option>
@@ -23,20 +24,29 @@
 </form>
 
 <div class="columns is-multiline">
-  <div ng-repeat="record in records | filter: search | orderBy: sort" class="column is-one-fifth-desktop is-third-tablet">
+  <div ng-repeat="record in records | filter: search | orderBy: sort" class="column is-half-desktop is-third-tablet">
     <a ui-sref="recordsShow({ id: record._id})">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image">
-            <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4 class="title is-4">{{ record.title }}</h4>
-            <h5 class="title is-5">{{ record.artist }}</h5>
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image">
+              <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
+            </figure>
           </div>
-        </div>
+          <div class="media-content">
+            <div class="content">
+              <h4 class="title card-info is-4">{{ record.title }} by {{ record.artist }}</h4>
+              <hr>
+              <h5 class="title card-info is-5">Genre: <span ng-repeat="genre in record.genres"><span ng-if="!$last">{{ genre }} | </span><span ng-if="$last">{{ genre }}</span></h5>
+              <hr>
+              <h5 class="title card-info is-5">Label: {{ record.label }}</h5>
+              <hr>
+              <h5 class="title card-info is-5">Condition: {{ record.condition }}</h5>
+              <hr>
+              <h5 class="title card-info is-5">Owned by: {{ record.owner.username }}</h5>
+            </div>
+          </div>
+        </article>
       </div>
     </a>
   </div>

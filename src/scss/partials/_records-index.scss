@@ -1,0 +1,15 @@
+.box {
+  border: 2px solid $brand-color;
+  .content {
+    line-height: 1em;
+  }
+  .card-info {
+    font-size: 1.1em;
+    margin-bottom: 0;
+    letter-spacing: .1em;
+  }
+  hr {
+    margin: .2rem;
+    background-color: $brand-color;
+  }
+}
