@@ -1,4 +1,20 @@
-.homepage-banner {
-  font-family: $brand-font;
-  font-size: 3em;
+
+.hero-body {
+  background: url('../assets/images/record-shelves.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-left: 0;
+  padding-right: 0;
+  .container {
+    padding: 50px 0 50px 50px;
+    min-width: 2000px;
+    background: rgba(255,255,255,.6);
+    .homepage-banner {
+      font-family: $brand-font;
+      font-size: 5em;
+      color: $brand-color;
+      text-shadow: 1px 1px 2px black;
+    }
+  }
+
 }

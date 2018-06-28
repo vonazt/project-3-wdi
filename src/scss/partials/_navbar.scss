@@ -1,0 +1,18 @@
+a.navbar-item {
+  color: $brand-color;
+  &:hover {
+    color: black;
+  }
+}
+
+.navbar-link {
+  color: $brand-color;
+  &:hover {
+    color: black;
+  }
+}
+
+.navbar-brand {
+  font-family: $brand-font;
+  text-transform: uppercase;;
+}
