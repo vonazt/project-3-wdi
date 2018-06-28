@@ -7,7 +7,7 @@ function CollectionsIndexCtrl($scope, $http, $auth){
       $scope.records = res.data;
       const filteredRecordsArray = [];
       $scope.records.forEach(record => {
-        if(record.owner ===  $auth.getPayload().sub) filteredRecordsArray.push(record);
+        if(record.owner.id ===  $auth.getPayload().sub) filteredRecordsArray.push(record);
       });
       $scope.records = filteredRecordsArray;
       return $scope.records = filteredRecordsArray;

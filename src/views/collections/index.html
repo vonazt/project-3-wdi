@@ -1,43 +1,55 @@
-<form>
-  <div class="columns">
-    <div class="column">
-      <div class="field">
-        <input class="input" name="search" placeholder="Search..." ng-model="search" />
+<div class="display-container">
+  <form>
+    <div class="columns">
+      <div class="column">
+        <div class="field search-box">
+          <input class="input" name="search" placeholder="Search records..." ng-model="search" />
+        </div>
       </div>
-    </div>
-    <div class="column">
-      <div class="field">
-        <div class="control">
-          <div class="select">
-            <select ng-model="sort">
-              <option value="title">Album: A-Z</option>
-              <option value="-title">Album: Z-A</option>
-              <option value="artist">Artist: A-Z</option>
-              <option value="-artist">Artist: Z-A</option>
-            </select>
+      <div class="column">
+        <div class="field">
+          <div class="control">
+            <div class="select sort-records">
+              <select ng-model="sort">
+                <option class="" value="">Sort Records</option>
+                <option class="sort-records" value="title">Album: A-Z</option>
+                <option class="sort-records" value="-title">Album: Z-A</option>
+                <option class="sort-records" value="artist">Artist: A-Z</option>
+                <option class="sort-records" value="-artist">Artist: Z-A</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 
-<div class="columns is-multiline">
-  <div ng-repeat="record in records" class="column is-one-fifth-desktop is-third-tablet">
-    <a ui-sref="recordsShow({ id: record._id})">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image">
-            <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
-          </figure>
+  <div class="columns is-multiline">
+    <div ng-repeat="record in records | filter: search | orderBy: sort" class="column is-half-desktop is-third-tablet">
+      <a ui-sref="recordsShow({ id: record._id})">
+        <div class="box">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image">
+                <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <h4 class="title card-info is-4"><strong>{{ record.title }}</strong> by <strong>{{ record.artist }}</strong></h4>
+                <hr>
+                <h5 class="title card-info is-5"><strong>Release date:</strong> {{ record.releaseDate }}</h5>
+                <hr>
+                <h5 class="title card-info is-5"><strong>Genre: </strong><span ng-repeat="genre in record.genres"><span ng-if="!$last">{{ genre }} | </span><span ng-if="$last">{{ genre }}</span></h5>
+                <hr>
+                <h5 class="title card-info is-5"><strong>Label:</strong> {{ record.label }}</h5>
+                <hr>
+                <h5 class="title card-info is-5"><strong>Condition:</strong> {{ record.condition }}</h5>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="card-content">
-          <div class="content">
-            <h4 class="title is-4">{{ record.title }}</h4>
-            <h5 class="title is-5">{{ record.artist }}</h5>
-          </div>
-        </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
 </div>
