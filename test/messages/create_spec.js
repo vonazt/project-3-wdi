@@ -68,6 +68,7 @@ describe('POST /messages', () => {
       .set('Authorization', `Bearer ${token}`)
       .send(messageData)
       .end((err, res) => {
+        console.log(messageData);
         expect(res.status).to.eq(201);
         done();
       });
