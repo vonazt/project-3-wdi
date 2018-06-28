@@ -1,9 +1,12 @@
 function MessagesShowCtrl($scope, $state,  $http){
+
   $http({
     method: 'GET',
     url: `/api/messages/${$state.params.id}`
   })
-    .then(res  => $scope.message = res.data);
+    .then(res  => {
+      $scope.message = res.data;
+    });
 
   $scope.commentData = {};
   $scope.createComment = function() {

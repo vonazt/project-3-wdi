@@ -1,41 +1,60 @@
-<form ng-submit="handleSubmit()" name="form" novalidate>
-  <div class="field">
-    <label for="username" class="username">Username</label>
-    <input type="text" name="username" class="input" id="username" ng-model="data.username" required>
+<div class="auth-display-container">
+  <form ng-submit="handleSubmit()" name="form" novalidate>
 
-    <div ng-messages="form.username.$error" ng-if="form.username.$touched">
-      <small ng-message="required">This field is required</small>
+    <div class="field">
+      <label for="username" class="username">Username</label>
+      <div class="control has-icons-left">
+        <input type="text" name="username" class="input" id="username" ng-model="data.username" required>
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </div>
+      <div ng-messages="form.username.$error" ng-if="form.username.$touched">
+        <small ng-message="required">This field is required</small>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label for="email" class="email">Email</label>
-    <input type="email" name="email" class="input" id="email" ng-model="data.email" required>
-
-    <div ng-messages="form.email.$error" ng-if="form.email.$touched">
-      <small ng-message="required">This field is required</small>
-      <small ng-message="email">Please enter a valid email</small>
+    <div class="field">
+      <label for="email" class="email">Email</label>
+      <div class="control has-icons-left">
+        <input type="email" name="email" class="input" id="email" ng-model="data.email" required>
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+      </div>
+      <div ng-messages="form.email.$error" ng-if="form.email.$touched">
+        <small ng-message="required">This field is required</small>
+        <small ng-message="email">Please enter a valid email</small>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label for="password" class="username">Password</label>
-    <input type="password" name="password" class="input" id="password" ng-model="data.password" required>
-
-    <div ng-messages="form.password.$error" ng-if="form.password.$touched">
-      <small ng-message="required">This field is required</small>
+    <div class="field">
+      <label for="password" class="username">Password</label>
+      <div class="control has-icons-left">
+        <input type="password" name="password" class="input" id="password" ng-model="data.password" required>
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </div>
+      <div ng-messages="form.password.$error" ng-if="form.password.$touched">
+        <small ng-message="required">This field is required</small>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label for="passwordConfirmation" class="passwordConfirmation">Confirm password</label>
-    <input type="password" name="passwordConfirmation" class="input" id="passwordConfirmation" ng-model="data.passwordConfirmation" ng-pattern="data.password" required>
-
-    <div ng-messages="form.passwordConfirmation.$error" ng-if="form.passwordConfirmation.$touched">
-      <small ng-message="required">This field is required</small>
-      <small ng-message="pattern">Passwords do not match</small>
+    <div class="field">
+      <label for="passwordConfirmation" class="passwordConfirmation">Confirm password</label>
+      <div class="control has-icons-left">
+        <input type="password" name="passwordConfirmation" class="input" id="passwordConfirmation" ng-model="data.passwordConfirmation" ng-pattern="data.password" required>
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </div>
+      <div ng-messages="form.passwordConfirmation.$error" ng-if="form.passwordConfirmation.$touched">
+        <small ng-message="required">This field is required</small>
+        <small ng-message="pattern">Passwords do not match</small>
+      </div>
     </div>
-  </div>
 
-  <button class="button" ng-disabled="form.$invalid">Submit</button>
-</form>
+    <button class="button is-register-button" ng-disabled="form.$invalid">Submit</button>
+  </form>
+</div>

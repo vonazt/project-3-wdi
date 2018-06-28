@@ -19,7 +19,7 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" ui-sref="usersIndex">Users</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" ng-if="isAuthenticated()" ui-sref="usersShow({ id: currentUserId})">My User</a>
+            <a class="navbar-item" ng-if="isAuthenticated()" ng-Mouseover="getUserId()" ui-sref="usersShow({ id: currentUserId})">My Profile</a>
             <a class="navbar-item" ui-sref="usersIndex">Users</a>
           </div>
         </div>
