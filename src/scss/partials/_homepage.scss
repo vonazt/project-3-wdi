@@ -7,13 +7,18 @@
   padding-right: 0;
   .container {
     padding: 50px 0 50px 50px;
-    min-width: 2000px;
-    background: rgba(255,255,255,.6);
+    margin-left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,.7), rgba(255,255,255,.1));
     .homepage-banner {
       font-family: $brand-font;
       font-size: 5em;
       color: $brand-color;
       text-shadow: 1px 1px 2px black;
+    }
+    .homepage-tagline {
+      font-size: 1.5em;
+      padding-left: 10px;
+      color: black;
     }
   }
 
