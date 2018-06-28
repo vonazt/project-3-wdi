@@ -1,0 +1,44 @@
+.record-show-image {
+  border: $record-border;
+}
+
+.record-show-card {
+  border: $content-border;
+  border-radius: 2%;
+  .content {
+    padding: .5rem;
+    font-weight: 400;
+    .show-info {
+      font-weight: 400;
+      margin: 0.4rem 0;
+      padding-left: .2rem;
+      strong {
+        font-weight: 900;
+      }
+    }
+  }
+}
+
+.edit-album-hr {
+  margin: 1rem 0;
+}
+
+.edit-album-button {
+  border-color: $brand-color;
+  margin-bottom: .5rem;
+}
+
+.comments-container {
+  background-color: white;
+  border: $content-border;
+  padding: .5rem;
+  margin-top: 1rem;
+  border-radius: 2%;
+  .comment-field {
+    padding: .2rem;
+  }
+}
+
+.is-offer {
+  font-size: 1.5em;
+}

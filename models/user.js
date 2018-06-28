@@ -33,7 +33,7 @@ userSchema.fill('incomingRequests', function(callback){
       .find({ wantedRecord: record._id })
       .populate('wantedRecord')
       .populate({
-        path: 'offeredRecord',
+        path: 'offeredRecords',
         populate: {
           path: 'owner'
         }
@@ -47,7 +47,7 @@ userSchema.fill('incomingRequests', function(callback){
           request = request.toJSON();
           request._id = request._id.toString();
           delete request.wantedRecord.comments;
-          request.offeredRecord.map(record => {
+          request.offeredRecords.map(record => {
             delete record.comments;
             delete record.owner.comments;
           });
@@ -60,8 +60,8 @@ userSchema.fill('incomingRequests', function(callback){
 userSchema.fill('outgoingRequests', function(callback){
   const requests = this.records.map(record => {
     return this.model('Request')
-      .find({ offeredRecord: record._id })
-      .populate('offeredRecord')
+      .find({ offeredRecords: record._id })
+      .populate('offeredRecords')
       .populate({
         path: 'wantedRecord',
         populate: {
@@ -78,7 +78,7 @@ userSchema.fill('outgoingRequests', function(callback){
           request._id = request._id.toString();
           delete request.wantedRecord.comments;
           delete request.wantedRecord.owner.comments;
-          delete request.offeredRecord.comments;
+          delete request.offeredRecords.comments;
           return request;
         });
 

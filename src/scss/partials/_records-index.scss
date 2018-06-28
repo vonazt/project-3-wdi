@@ -1,0 +1,37 @@
+
+
+.search-box {
+  .input {
+    font-family: $main-font;
+    border-color: $brand-color;
+    box-shadow: inset 0 1px 2px $brand-color;
+    &:hover {
+      border-color: $brand-color;
+    }
+  }
+  ::placeholder {
+    color: rgba(0, 0, 0, .8);
+    font-family: $main-font;
+  }
+}
+
+.select select {
+  font-family: $main-font;
+  border: 2px solid $brand-color;
+}
+
+.box {
+  border: $content-border;
+  .content {
+    line-height: 1em;
+  }
+  .card-info {
+    font-weight: 400;
+    font-size: 1.1em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    strong {
+      font-weight: 900;
+    }
+  }
+}

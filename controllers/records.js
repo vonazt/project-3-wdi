@@ -5,6 +5,7 @@ const Promise = require('bluebird');
 function indexRoute(req, res, next) {
   Record
     .find()
+    .populate('owner')
     .then(records => res.json(records))
     .catch(next);
 }
