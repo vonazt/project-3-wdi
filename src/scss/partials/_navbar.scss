@@ -5,6 +5,10 @@ a.navbar-item {
   }
 }
 
+.navbar-end {
+  padding-right: 10px;
+}
+
 .navbar-link {
   color: $brand-color;
   &:hover {

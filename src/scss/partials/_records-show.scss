@@ -1,0 +1,29 @@
+.record-show-image {
+  border: $record-border;
+}
+
+.record-show-card {
+  border: $content-border;
+  border-radius: 2%;
+  .content {
+    padding: .5rem;
+    font-weight: 400;
+    .show-info {
+      font-weight: 400;
+      margin: 0.4rem 0;
+      padding-left: .2rem;
+      strong {
+        font-weight: 900;
+      }
+    }
+  }
+}
+
+.edit-album-hr {
+  margin: 1rem 0;
+}
+
+.edit-album-button {
+  border-color: $brand-color;
+  margin-bottom: .5rem;
+}
