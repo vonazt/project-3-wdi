@@ -1,6 +1,7 @@
 /* global describe, it, api, expect, beforeEach */
 const Record = require('../../models/record');
 const User = require('../../models/user');
+const Request = require('../../models/request');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../../config/environment');
 
@@ -40,12 +41,13 @@ const userData = [
     avatar: 'https://res.cloudinary.com/jpress/image/fetch/c_fill,f_auto,h_405,q_auto:eco,w_600/https://inews.co.uk/wp-content/uploads/2017/05/GamesMaster-main.jpg'
   }
 ];
+const requestData = {};
 
 let token;
 let ownerOne;
 let ownerTwo;
 
-xdescribe('POST /records/swap', ()=>{
+describe('POST /records/swap', ()=>{
   beforeEach(done => {
     User
       .remove({})
@@ -83,9 +85,18 @@ xdescribe('POST /records/swap', ()=>{
         recordData[1].owner = record[1].owner;
         recordData[0]._id = record[0]._id;
         recordData[1]._id = record[1]._id;
-        console.log(recordData);
-        done();
-      });
+      })
+      .then(() => Request.create({
+        wantedRecord: recordData[0]._id,
+        offeredRecord: [recordData[1]._id],
+        message: 'test-message'
+      }))
+      .then((request) => {
+        requestData.ownedRecordId = request.wantedRecord;
+        requestData.offeredRecordId = request.offeredRecord;
+        requestData._id = request._id;
+      })
+      .then(done);
   });
 
   it('should return a 401 response without a token', done => {
@@ -99,15 +110,11 @@ xdescribe('POST /records/swap', ()=>{
   it('should return a 200 response', done => {
     api.post('/api/records/swap')
       .set('Authorization', `Bearer ${token}`)
-      .send([recordData[0]._id , [recordData[1]._id]])
+      .send(requestData)
       .end((err, res) => {
-        console.log(res.body);
         expect(res.status).to.eq(200);
         done();
       });
   });
-
-
-
 
 });
