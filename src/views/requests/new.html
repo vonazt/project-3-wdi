@@ -7,7 +7,7 @@
         </figure>
       </div>
     </div>
-    <div class="column is-half-desktop" ng-repeat="record in recordToDisplay">
+    <div class="column is-half-desktop is-half-tablet" ng-repeat="record in recordToDisplay">
       <div class="card record-show-card">
         <div class="content">
           <h2 class="title show-info is-2">{{ record.title }}</h2>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="column is-half-desktop">
+    <div class="column is-half-desktop is-half-tablet is-half-mobile">
       <div class="offer-container">
         <form ng-submit="submitRequest(currentUserId)">
           <div class="field">

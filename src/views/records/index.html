@@ -25,7 +25,7 @@
   </form>
 
   <div class="columns is-multiline">
-    <div ng-repeat="record in records | filter: search | orderBy: sort" class="column is-half-desktop is-third-tablet">
+    <div ng-repeat="record in records | filter: search | orderBy: sort" class="column is-half-desktop is-half-tablet is-half-mobile">
       <a ui-sref="recordsShow({ id: record._id})">
         <div class="box">
           <article class="media">

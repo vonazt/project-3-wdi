@@ -11,10 +11,17 @@
 
     <div class="navbar-brand">
       <a class="navbar-item" ui-sref="home">Tall Man Records</a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" ng-class="{ 'is-active': navbarOpen }" ng-click="toggleMenu()">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
     </div>
 
-    <div class="navbar-menu">
+    <div class="navbar-menu" ng-class="{ 'is-active': navbarOpen }">
       <div class="navbar-end">
+
         <a class="navbar-item" ng-if="isAuthenticated()" ui-sref="messagesIndex">Messages</a>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" ui-sref="usersIndex">Users</a>
