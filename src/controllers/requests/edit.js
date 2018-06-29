@@ -3,6 +3,7 @@ function RequestsEditCtrl($scope, $state, $http, $auth) {
   $scope.userRecords = [];
   $scope.offerArray = [];
   $scope.currentUserId = $auth.getPayload().sub;
+  $scope.currentUser = $auth.getPayload();
 
   $scope.addToOffer = function(record) {
     $scope.offerArray.push(record);
@@ -40,6 +41,19 @@ function RequestsEditCtrl($scope, $state, $http, $auth) {
         }
       });
     });
+
+  $scope.createMessage = function(user, currentUser) {
+    const data = {
+      userOneId: user,
+      userTwoId: currentUser.sub
+    };
+    $http({
+      method: 'POST',
+      url: '/api/messages',
+      data: data
+    })
+      .then(() => $state.go('messagesIndex'));
+  };
 }
 
 export default RequestsEditCtrl;
