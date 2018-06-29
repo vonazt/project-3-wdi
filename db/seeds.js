@@ -113,7 +113,7 @@ mongoose.connect(dbURI, (err, db) => {
           author: users[0]
         }]
       }, {
-        artist: 'Michael Jacjson',
+        artist: 'Michael Jackson',
         title: 'Thriller',
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/55/Michael_Jackson_-_Thriller.png/220px-Michael_Jackson_-_Thriller.png',
         genres: ['Pop', 'Post-disco', 'Funk'],
