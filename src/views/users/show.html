@@ -25,12 +25,12 @@
             <input class="input" name="search" placeholder="Search records..." ng-model="search" />
           </div>
         </form>
-        <div class="my-records-offer" ng-repeat="record in user.records | filter: search">
+        <div class="my-records-profile" ng-repeat="record in user.records | filter: search">
           <figure class="media-left">
             <p class="image is-64x64">
               <img ng-src="{{ record.image }}" alt="{{ record.title }}">
             </p>
-            <p class="user-records-display">{{ record.title }} by {{ record.artist }}</p>
+            <a class="user-records-display" ui-sref="recordsShow({ id: record._id })">{{ record.title }} by {{ record.artist }}</a>
           </figure>
         </div>
       </div>

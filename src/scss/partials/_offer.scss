@@ -3,7 +3,7 @@
   .message-user {
     cursor: pointer;
     &:hover {
-      color: $submit-color;
+      color: $brand-color;
     }
   }
 }
@@ -24,9 +24,6 @@
       color: white;
     }
   }
-  .make-request {
-
-  }
 }
 
 .my-records-offer {
@@ -41,7 +38,7 @@
       border-radius: 0;
       padding: 2rem;
       &:hover {
-        background-color: $submit-color;
+        background-color: $brand-color;
         color: white;
       }
     }

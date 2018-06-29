@@ -10,11 +10,32 @@
   font-size: 1.2rem;
 }
 
-.user-records-display {
+.my-records-profile {
+  display: flex;
+  margin: .7rem;
+  figure {
+    display: flex;
+    a {
+      border: none;
+      margin-left: 1rem;
+      border-bottom: 1px solid $brand-color;
+      border-radius: 0;
+      padding: 1rem;
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}
+
+a.user-records-display {
   margin-left: 1rem;
   border-bottom: 1px solid $brand-color;
   border-radius: 0;
-  padding: 1rem;
+  color: black;
+  &:hover {
+    background-color: white;
+  }
 }
 
 .user-offers-container {

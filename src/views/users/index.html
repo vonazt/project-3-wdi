@@ -7,7 +7,7 @@
     </thead>
     <tbody ng-repeat="user in users">
       <tr>
-        <td><img class="icon is-medium" src="{{ user.avatar }}" alt="{{ user.username }}">  <a ui-sref="usersShow({ id: user._id})">{{ user.username }}</a></td>
+        <td><img class="icon is-medium" ng-src="{{ user.avatar }}" alt="{{ user.username }}">  <a ui-sref="usersShow({ id: user._id})">{{ user.username }}</a></td>
         <td>{{ '⭐️'.repeat(user.avgRating)}}</td>
         <td> <a class="button is-info" ng-click="createMessage(user, currentUser)">Message User</a> </td>
       </tr>

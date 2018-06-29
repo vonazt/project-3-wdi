@@ -18,7 +18,7 @@ hr {
 }
 
 .button.is-danger {
-  background-color: $brand-color;
+  background-color: $danger-color;
   font-family: $main-font;
   font-weight: 900;
   &:hover {
@@ -32,7 +32,8 @@ hr {
   font-family: $main-font;
   border: 2px solid $brand-color;
   &:hover {
-    background-color: $submit-color;
+    background-color: $brand-color;
+    color: white;
   }
 }
 

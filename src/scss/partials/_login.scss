@@ -11,6 +11,7 @@
     font-family: $main-font;
     border: 2px solid $brand-color;
     &:hover {
-      background-color: $submit-color;
+      background-color: $brand-color;
+      color: white;
     }
 }
