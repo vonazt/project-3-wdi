@@ -1,0 +1,24 @@
+a.navbar-item {
+  color: $brand-color;
+  &:hover {
+    color: black;
+  }
+}
+
+.navbar-end {
+  padding-right: 10px;
+}
+
+.navbar-link {
+  color: $brand-color;
+  &:hover {
+    color: black;
+  }
+}
+
+.navbar-brand {
+  padding-top: .2rem;
+  font-size: 1.5rem;
+  font-family: $brand-font;
+  text-transform: uppercase;;
+}

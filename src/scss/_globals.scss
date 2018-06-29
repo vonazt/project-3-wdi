@@ -1,0 +1,42 @@
+body {
+  font-family: $main-font;
+  background: rgba(150,23,23, 1);
+  min-height: 1000px;
+}
+
+.display-container {
+  background: linear-gradient(rgba(255,255,255, 1), rgba(220,220,220,1));
+  padding: 20px;
+  border-radius: 2%;
+  border: 3px solid $brand-color;
+  min-height: 1000px;
+}
+
+hr {
+  margin: .2rem;
+  background-color: $brand-color;
+}
+
+.button.is-danger {
+  background-color: $danger-color;
+  font-family: $main-font;
+  font-weight: 900;
+  &:hover {
+    background-color: rgba(240,53,53, 1)
+  }
+}
+
+.button.is-info {
+  background-color: white;
+  color: black;
+  font-family: $main-font;
+  border: 2px solid $brand-color;
+  &:hover {
+    background-color: $brand-color;
+    color: white;
+  }
+}
+
+.comments {
+  background-color: white;
+}

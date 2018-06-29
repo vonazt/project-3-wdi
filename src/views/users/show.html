@@ -1,0 +1,197 @@
+<div class="display-container">
+  <h1 class="title is-1">{{ user.username }}'s profile</h1>
+  <div class="columns is-multiline">
+    <div class="column is-one-quarter">
+      <figure class="image user-show-image is-square">
+        <img src="{{ user.avatar }}" alt="{{ user.username }}">
+      </figure>
+      <div class="profile-buttons">
+        <a ui-sref="usersEdit({ id: user._id })" class="button is-info" ng-if="isAuthenticated() && isOwner">Edit Profile</a>
+        <a ui-sref="usersDelete({ id: user._id })" class="button is-danger" ng-if="isAuthenticated() && isOwner">Delete Profile</a>
+        <a class="button is-info" ng-if="!isOwner" ng-click="createMessage(user, currentUser)">Message User</a>
+      </div>
+    </div>
+    <div class="column is-one-quarter">
+      <ul class="user-stats">
+        <li>User Rating: {{ '⭐️'.repeat(user.avgRating)}}</li>
+        <li>Number of trades: {{ user.numberOfTrades }}</li>
+      </ul>
+    </div>
+    <div class="column is-half-desktop">
+      <div class="offer-container">
+        <h4 class="title show-info is-4">{{ user.username }}'s Records</h4>
+        <form>
+          <div class="field search-box">
+            <input class="input" name="search" placeholder="Search records..." ng-model="search" />
+          </div>
+        </form>
+        <div class="my-records-profile" ng-repeat="record in user.records | filter: search">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img ng-src="{{ record.image }}" alt="{{ record.title }}">
+            </p>
+            <a class="user-records-display" ui-sref="recordsShow({ id: record._id })">{{ record.title }} by {{ record.artist }}</a>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-offers-container">
+      <div class="columns is-multiline">
+        <div class="column is-fullwidth">
+          <div class="offers-table">
+            <h2 class="title is-2">Offers received</h2>
+            <table class="table is-hoverable is-fullwidth">
+              <thead>
+                <th>User</th>
+                <th>User Rating</th>
+                <th>Wants</th>
+                <th>Offers</th>
+                <th>Message</th>
+                <th>Status</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="request in user.incomingRequests">
+                  <td>
+                    {{ request.offeredRecords[0].owner.username }}
+                  </td>
+                  <td>
+                    {{ '⭐️'.repeat(request.offeredRecords[0].owner.avgRating) }}
+                  </td>
+                  <td>
+                    {{ request.wantedRecord.title }}
+                  </td>
+                  <td>
+                    <p ng-repeat="record in request.offeredRecords">
+                      <span ng-if="!$last">{{ record.title }}, </span>
+                      <span ng-if="$last">{{ record.title }}</span>
+                    </p>
+                  </td>
+                  <td>
+                    {{ request.message }}
+                  </td>
+                  <td>
+                    {{ request.status }}
+                  </td>
+                  <td><a class="button is-info" ng-if="request.stage[0] < 1" ng-click="acceptOffer(request)">Accept</a></td>
+                  <td><a class="button is-danger" ng-if="request.stage[0] < 1" ng-click="declineOffer(request)">Decline</a></td>
+                  <td><a class="button is-info" ng-if="request.stage[0] === 1" ng-click="recordsAction(user.username, request, 'records sent', 0)">Record(s) sent</a></td>
+                  <td><a class="button is-info" ng-if="request.stage[1] === 2" ng-click="recordsAction(user.username, request, 'records received', 1)">Record(s) received</a></td>
+                  <td><a class="button is-info" ng-if="request.stage[1] === 3 && request.stage[0] === 3" ng-click="swapRecords(request.wantedRecord._id, request.offeredRecords, request._id)">Swap records</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <hr class="edit-album-hr">
+
+            <h2 class="title is-2">Offers made</h2>
+            <table class="table is-hoverable is-fullwidth">
+              <thead>
+                <th>User</th>
+                <th>User Rating</th>
+                <th>Wants</th>
+                <th>Offers</th>
+                <th>Message</th>
+                <th>Status</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="offersMade in user.outgoingRequests">
+                  <td class="offer-row">
+                    {{ offersMade.wantedRecord.owner.username }}
+                  </td class="offer-row">
+                  <td class="offer-row">
+                    {{ '⭐️'.repeat(offersMade.wantedRecord.owner.avgRating) }}
+                  </td>
+                  <td class="offer-row">
+                    {{ offersMade.wantedRecord.artist }}
+                  </td>
+                  <td class="offer-row">
+                    <p ng-repeat="record in offersMade.offeredRecords">
+                      <span ng-if="!$last">{{ record.title }}, </span>
+                      <span ng-if="$last">{{ record.title }}</span>
+                    </p>
+                  </td>
+                  <td class="offer-row">
+                    {{ offersMade.message }}
+                  </td>
+                  <td class="offer-row">
+                    {{ offersMade.status }}
+                  </td>
+                  <td><a class="button is-info" ng-if="offersMade.stage[1] < 1" ui-sref="requestsEdit({ id: offersMade._id })">Edit</a></td>
+                  <td><a class="button is-danger" ng-if="offersMade.stage[1] < 2" ng-click="deleteOffer(offersMade)">Delete</a></td>
+                  <td><a class="button is-info" ng-if="offersMade.stage[1] === 1" ng-click="recordsAction(user.username, offersMade, 'records sent', 1)">Record(s) sent</a></td>
+                  <td><a class="button is-info" ng-if="offersMade.stage[0] === 2" ng-click="recordsAction(user.username, offersMade, 'records received', 0)">Record(s) received</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="columns is-multiline">
+    <div class="column is-two-thirds">
+      <div class="comments-container">
+        <article class="media">
+          <div class="media-content">
+            <h4 class="title is-4">Comments: </h4>
+            <form ng-submit="createComment()">
+              <div class="field">
+                <p class="control">
+                  <textarea class="textarea" id="content" name="content" placeholder="Add a comment..." ng-model="commentData.content"></textarea>
+                </p>
+              </div>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <button class="button is-info">Submit</a>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="control">
+                      <div class="select">
+                        <select ng-model="commentData.rating">
+                          <option value="">Rate User</option>
+                          <option value="1">⭐️</option>
+                          <option value="2">⭐️⭐️</option>
+                          <option value="3">⭐️⭐️⭐️</option>
+                          <option value="4">⭐️⭐️⭐️⭐️</option>
+                          <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </form>
+            </div>
+          </article>
+
+          <article class="media comments" ng-repeat="comment in user.comments">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img ng-src="{{ comment.author.avatar }}" alt="{{ commment.author.username }}">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content comment-field">
+                <p>
+                  <strong>{{ comment.author.username }}</strong>
+                  <br>
+                  {{ comment.content }}
+                  <br>
+                  <small>User rating: {{ '⭐️'.repeat(comment.rating) }}</small>
+
+                </p>
+              </div>
+            </div>
+            <div class="media-right">
+              <button class="delete" ng-click="deleteComment(comment)" ng-if="isAuthenticated()"></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

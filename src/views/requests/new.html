@@ -1,0 +1,85 @@
+<div class="display-container">
+  <div class="columns is-multiline">
+    <div class="column is-one-quarter-desktop" ng-repeat="record in recordToDisplay">
+      <div class="card-image">
+        <figure class="image record-show-image">
+          <img  ng-src="{{ record.image }}" alt="{{ record.title}}"/>
+        </figure>
+      </div>
+    </div>
+    <div class="column is-half-desktop" ng-repeat="record in recordToDisplay">
+      <div class="card record-show-card">
+        <div class="content">
+          <h2 class="title show-info is-2">{{ record.title }}</h2>
+          <h4 class="title show-info is-4">by <strong>{{ record.artist }}</strong></h4>
+          <hr>
+          <h5 class="title show-info is-5"><strong>Genres:</strong> <span ng-repeat="genre in record.genres"><span ng-if="!$last">{{ genre }} | </span><span ng-if="$last">{{ genre }}</span></h5>
+          <hr>
+          <h5 class="title show-info is-5"><strong>Label:</strong> {{ record.label }} </h5>
+          <hr>
+          <h5 class="title show-info is-5"><strong>Release Date:</strong> {{ record.releaseDate }} </h5>
+          <hr>
+          <h5 class="title show-info is-5"><strong>Condition:</strong> {{ record.condition }} </h5>
+          <hr>
+          <h5 class="title show-info is-5"><strong>Rating:</strong> {{ '⭐️'.repeat(record.avgRating)}} </h5>
+        </div>
+      </div>
+    </div>
+    <div class="column is-one-quarter-desktop" ng-repeat="record in recordToDisplay">
+      <div class="card record-show-card">
+        <div class="card-image">
+          <figure class="image">
+            <img ng-src="{{ record.owner.avatar }}" alt="{{ record.owner.username }}"/>
+          </figure>
+        </div>
+        <div class="card-content user-card">
+          <div class="content">
+            <h4 class="title show-info is-4">Owner: {{ record.owner.username }}</h4>
+            <hr>
+            <h5 class="title show-info is-5">Rating: {{ '⭐️'.repeat(record.owner.avgRating) }}</h5>
+            <hr>
+            <h5 class="title show-info message-user is-5" ng-click="createMessage(record.owner._id, currentUser)">Message {{ record.owner.username }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-half-desktop">
+      <div class="offer-container">
+        <form ng-submit="submitRequest(currentUserId)">
+          <div class="field">
+            <label class="label record-offer-label">Offer</label>
+            <p ng-if="offerArray.length > 0"><small>Click to remove</small></p>
+            <p class="input offered-record" ng-repeat="record in offerArray" ng-click="removeRecord(record)">{{ record.title }} by {{ record.artist }}</p>
+          </div>
+          <div class="field">
+            <label for="message" class="label">Message</label>
+            <textarea type="text" class="input" name="message" ng-model="data.message" id="message"></textarea>
+          </div>
+          <button class="button is-info">Make request</button>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="column is-half-desktop">
+      <div class="offer-container">
+        <h4 class="title show-info is-4">My Records</h4>
+        <form>
+          <div class="field search-box">
+            <input class="input" name="search" placeholder="Search records..." ng-model="search" />
+          </div>
+        </form>
+        <p class="remove-note"><small>Click to add to offer</small></p>
+        <div class="my-records-offer" ng-repeat="record in userRecords | filter: search">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img ng-src="{{ record.image }}" alt="{{ record.title }}">
+            </p>
+            <a class="button" ng-click="addToOffer(record)" ng-model="recordToOffer">{{ record.title }} by {{ record.artist }}</a>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

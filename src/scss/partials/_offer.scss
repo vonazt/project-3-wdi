@@ -1,0 +1,46 @@
+.user-card {
+  padding: .2rem;
+  .message-user {
+    cursor: pointer;
+    &:hover {
+      color: $brand-color;
+    }
+  }
+}
+
+.offer-container {
+  background-color: white;
+  padding: .6rem;
+  border: $content-border;
+  max-height: 350px;
+  overflow: scroll;
+  .record-offer-label {
+    font-size: 2em;
+  }
+  .offered-record {
+    cursor: pointer;
+    &:hover {
+      background-color: $brand-color;
+      color: white;
+    }
+  }
+}
+
+.my-records-offer {
+  display: flex;
+  margin: .7rem;
+  figure {
+    display: flex;
+    a {
+      border: none;
+      margin-left: 1rem;
+      border-bottom: 1px solid $brand-color;
+      border-radius: 0;
+      padding: 2rem;
+      &:hover {
+        background-color: $brand-color;
+        color: white;
+      }
+    }
+  }
+}

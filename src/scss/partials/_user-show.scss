@@ -1,0 +1,52 @@
+.user-show-image {
+  border: $content-border;
+}
+
+.profile-buttons {
+  margin-top: .75rem;
+}
+
+.user-stats {
+  font-size: 1.2rem;
+}
+
+.my-records-profile {
+  display: flex;
+  margin: .7rem;
+  figure {
+    display: flex;
+    a {
+      border: none;
+      margin-left: 1rem;
+      border-bottom: 1px solid $brand-color;
+      border-radius: 0;
+      padding: 1rem;
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}
+
+a.user-records-display {
+  margin-left: 1rem;
+  border-bottom: 1px solid $brand-color;
+  border-radius: 0;
+  color: black;
+  &:hover {
+    background-color: white;
+  }
+}
+
+.user-offers-container {
+  margin: 1.5rem .75rem;
+  background-color: white;
+  border: $content-border;
+  .offers-table {
+    padding: 1rem;
+    .offer-row {
+      max-height: 5px;
+      overflow: scroll;
+    }
+  }
+}

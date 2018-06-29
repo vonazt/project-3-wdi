@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="tallManRecordsApi">
 <head>
   <meta charset="utf-8">
-  <title>WDI32 Group Project</title>
+  <title>Tall Man Records</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Coustard|Heebo:400,700|Shrikhand" rel="stylesheet">
 </head>
-<body>
+<body ng-controller="MainCtrl" class="has-navbar-fixed-top">
+  <nav class="navbar is-fixed-top">
 
-  <h1>WDI32 Group Project</h1>
+    <div class="navbar-brand">
+      <a class="navbar-item" ui-sref="home">Tall Man Records</a>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" ng-if="isAuthenticated()" ui-sref="messagesIndex">Messages</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" ui-sref="usersIndex">Users</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" ng-if="isAuthenticated()" ng-Mouseover="getUserId()" ui-sref="usersShow({ id: currentUserId})">My Profile</a>
+            <a class="navbar-item" ui-sref="usersIndex">Users</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" ui-sref="recordsIndex">Records</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" ui-sref="recordsIndex">All Records</a>
+            <a class="navbar-item" ui-sref="collectionsIndex" ng-if="isAuthenticated()">My Records</a>
+            <a class="navbar-item" ui-sref="recordsNew" ng-if="isAuthenticated()">Add Record</a>
+          </div>
+        </div>
+        <a class="navbar-item" ui-sref="register" ng-if="!isAuthenticated()">Register</a>
+        <a class="navbar-item" ui-sref="login" ng-if="!isAuthenticated()">Login</a>
+        <a class="navbar-item" ng-click="logout()" ng-if="isAuthenticated()">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="notification is-{{ flashMessage.type }}" ng-if="flashMessage">
+    {{ flashMessage.content }}
+  </div>
+
+  <section class="section" ng-if="!isHomepage">
+    <div class="container">
+      <ui-view></ui-view>
+    </div>
+  </section>
+
+  <ui-view ng-if="isHomepage"></ui-view>
 
 </body>
 </html>
