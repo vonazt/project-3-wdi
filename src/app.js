@@ -28,7 +28,7 @@ import UsersEditCtrl from './controllers/users/edit.js';
 import AuthLoginCtrl from './controllers/auth/login';
 import AuthRegisterCtrl from './controllers/auth/register';
 
-import filePicker from './directives/filePicker';
+import filePicker from './directives/filepicker';
 
 angular.module('tallManRecordsApi', [
   'ui.router',
