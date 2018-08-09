@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="user-offers-container">
+    <div ng-if="isAuthenticated() && isOwner" class="user-offers-container">
       <div class="columns is-multiline">
         <div class="column is-fullwidth">
           <div class="offers-table">
